@@ -25,7 +25,7 @@
             <p class="text-center blue instgm-hshtg">#Prescott</p>
         </article>
         <div class="clearfix"></div>
-        <div class="fb-like-box" data-href="http://www.facebook.com/EDITME" data-height="400" data-show-faces="false" data-colorscheme="light" data-stream="true" show-border="false" data-header="false" style="background-color:#fff !important;max-width:700px;margin:0 auto 4%;"></div>
+        <div class="fb-like-box" data-href="http://www.facebook.com/TheNew939" data-height="400" data-show-faces="false" data-colorscheme="light" data-stream="true" show-border="false" data-header="false" style="background-color:#fff !important;max-width:700px;margin:0 auto 4%;"></div>
     </section>
     <div class="clearfix"></div>
 </div><!-- /front-page-->

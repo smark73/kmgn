@@ -16,7 +16,7 @@
         <div class="row row1">
             <section class="col-md-4">
                 <a href="/" >
-                    <img class="size-full wp-image-31 centered logo" alt="EDIT ME Radio - Flagstaff and Prescott Radio" src="/media/EDITME.png"/>
+                    <img class="size-full wp-image-31 centered logo" alt="93-9 The Mountain Radio - Flagstaff and Prescott Radio" src="/media/logo-939themountain.png"/>
                 </a>
             </section>
             <section class="col-md-8">

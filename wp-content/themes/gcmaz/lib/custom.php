@@ -88,14 +88,14 @@ $pages = array(
         'page_id' => -1,
         'slug' => 'song-requests',
         'author_id' => 1,
-        'title' => 'Request a Song on EDIT ME',
+        'title' => 'Request a Song on 93-9 The Mountain',
         'tpl' => 'template-rbn-hdr.php',
     ),
     $page_photos = array(
         'page_id' => -1,
         'slug' => 'photos',
         'author_id' => 1,
-        'title' => 'EDIT ME Photos',
+        'title' => '93-9 The Mountain Photos',
         'tpl' => '',
     ),
     $page_weather = array(
@@ -107,16 +107,16 @@ $pages = array(
     ),
     $page_contact = array(
         'page_id' => -1,
-        'slug' => 'contact-EDITME-radio',
+        'slug' => 'contact-93-9-rock-radio',
         'author_id' => 1,
-        'title' => 'Contact EDIT ME Radio',
+        'title' => 'Contact 93-9 The Mountain Radio',
         'tpl' => 'template-rbn-hdr.php',
     ),
     $page_jobs = array(
         'page_id' => -1,
         'slug' => 'employment',
         'author_id' => 1,
-        'title' => 'Employment at EDIT ME Radio',
+        'title' => 'Employment at 93-9 The Mountain Radio',
         'tpl' => 'template-rbn-hdr.php',
     ),
     $page_advertise = array(
@@ -158,7 +158,7 @@ $pages = array(
         'page_id' => -1,
         'slug' => 'kmgn',
         'author_id' => 1,
-        'title' => 'The New 93-9 The Mountain (KMGN) Media Kit',
+        'title' => '93-9 The Mountain (KMGN) Media Kit',
         'tpl' => 'template-adv-info.php',
     ),
     $page_kfszmk = array(
