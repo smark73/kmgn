@@ -36,7 +36,7 @@ div.expldrbrd a img{max-width:660px;width:100%;height:auto;border:0}
 
 /**** common styles ****/
 img {width:auto;height:auto}
-.boxy {margin:2%;background:rgba(255,255,255,.3); -webkit-border-radius:4px;border-radius:4px;-moz-border-radius:4px;padding:5px;}
+.boxy {margin:0 2% 2%;background:rgba(255,255,255,.3); -webkit-border-radius:4px;border-radius:4px;-moz-border-radius:4px;padding:5px;}
 .centered {text-align:center;margin:auto;display:block;}
 .dropshadow{-webkit-box-shadow:  0px 7px 5px 0px rgba(0, 0, 0, .3);box-shadow:  0px 7px 5px 0px rgba(0, 0, 0, .3);}
 .outershadow{-webkit-box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5);box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5);}
@@ -390,18 +390,9 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
    ========================================================================== */
 @media (max-width: @screen-xs-max)  {
     .innerbg {
-        background: #b1b9c5; /* Old browsers */
-        /* IE9 SVG, needs conditional override of 'filter' to 'none' */
-        background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2IxYjljNSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjI1JSIgc3RvcC1jb2xvcj0iI2MyYzlkMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijc1JSIgc3RvcC1jb2xvcj0iI2MyYzlkMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNiMWI5YzUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-        background: -moz-linear-gradient(left,  #b1b9c5 0%, #c2c9d3 25%, #c2c9d3 75%, #b1b9c5 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, right top, color-stop(0%,#b1b9c5), color-stop(25%,#c2c9d3), color-stop(75%,#c2c9d3), color-stop(100%,#b1b9c5)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(left,  #b1b9c5 0%,#c2c9d3 25%,#c2c9d3 75%,#b1b9c5 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(left,  #b1b9c5 0%,#c2c9d3 25%,#c2c9d3 75%,#b1b9c5 100%); /* Opera 11.10+ */
-        background: -ms-linear-gradient(left,  #b1b9c5 0%,#c2c9d3 25%,#c2c9d3 75%,#b1b9c5 100%); /* IE10+ */
-        background: linear-gradient(to right,  #b1b9c5 0%,#c2c9d3 25%,#c2c9d3 75%,#b1b9c5 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b1b9c5', endColorstr='#b1b9c5',GradientType=1 ); /* IE6-8 */
+        background: @gray; /* Old browsers */
     }
-    img.logo{max-width:175px}
+    img.logo{max-width:145px}
     /* hide the following for xsmall screens */
     .sidebar .facebook-like-box-3,
     .sidebar .widget_facebook-like-box,
@@ -424,10 +415,9 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
 
 @media (min-width: @screen-md) and (max-width: @screen-md-max) {
     .innerbg {background-image: url(/media/bg-top.jpg);}
-    img.logo{max-width:250px}
-    .listenlive{margin-top:4%}
+    img.logo{max-width:230px}
+    .listenlive{margin-top:5%}
     .listenlive-txt{font-size:1.4em}
-    .row1{margin-bottom:2%}
     .strm-lft{margin-left:2%;margin-right:-2%}
     // enable navbar dropdowns on hover
     ul.nav li.dropdown:hover > ul.dropdown-menu {display: block;}
@@ -437,10 +427,9 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
 
 @media (min-width: @screen-lg) {
     .innerbg {background-image: url(/media/bg-top.jpg);}
-    img.logo{max-width:300px;padding:10px}
-    .listenlive{margin-top:5%}
+    img.logo{max-width:250px}
+    .listenlive{margin-top:7%}
     .listenlive-txt{font-size:1.6em}
-    .row1{margin-bottom:0}
     .strm-lft{margin-left:2%;margin-right:-2%}
     // enable navbar dropdowns on hover
     ul.nav li.dropdown:hover > ul.dropdown-menu {display: block;}
