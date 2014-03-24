@@ -15,10 +15,15 @@ if($post->post_title == 'Home'){
 
 // since groupnum is populated from above, lets echo necessary html to display it
 if($groupnum !== null){
-    echo '<div class="hidden-xs expldrbrd centered">';
-         echo adrotate_group($groupnum);
-    echo '</div><div class="col-xs-12 hidden-sm hidden-md hidden-lg centered">';
-        echo adrotate_group($groupnum);
-    echo '</div>';
-
+    if(substr(adrotate_group($groupnum), 0, 2) != "<a"){
+        // no ads in our group or error retrieving them
+        // (test to see if it returned an <a tag ... if not, it must be an error message)
+        // see adrotate-output.php for list of errors
+    } else {
+        echo '<div class="hidden-xs expldrbrd centered">';
+             echo adrotate_group($groupnum);
+        echo '</div><div class="col-xs-12 hidden-sm hidden-md hidden-lg centered">';
+            echo adrotate_group($groupnum);
+        echo '</div>';
+    }
 } 

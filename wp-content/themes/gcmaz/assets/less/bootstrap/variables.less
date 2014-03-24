@@ -16,11 +16,11 @@
 
 // Brand colors
 // -------------------------
-@brand-primary:         @red;
-@brand-success:         @red;
-@brand-warning:         @yellow;
-@brand-danger:          @yellow;
-@brand-info:                @blue;
+@brand-primary:         @yellow;
+@brand-success:         @yellow;
+@brand-warning:         @bright-red;
+@brand-danger:          @bright-red;
+@brand-info:                @gray-light;
 
 @dark-blue:             #12204f;
 @light-blue:            #526284;
@@ -30,12 +30,12 @@
 @white:                     #ffffff;
 @blue:                      #2d4a9f;
 @black:                     #000000;
-@yellow:                    #ffff00;
+@yellow:                    #faaf40;
 
 // Scaffolding
 // -------------------------
 
-@body-bg:               @faded-blue;
+@body-bg:               @gray-dark;
 @text-color:            @gray-dark;
 
 // Links
@@ -168,21 +168,21 @@
 // Dropdowns
 // -------------------------
 
-@dropdown-bg:                    darken(@brand-primary, 5%);
-@dropdown-border:                darken(@brand-primary, 5%);
-@dropdown-fallback-border:       darken(@brand-primary, 5%);
-@dropdown-divider-bg:            darken(@brand-primary, 5%);
+@dropdown-bg:                    darken(@gray, 5%);
+@dropdown-border:                darken(@gray, 5%);
+@dropdown-fallback-border:       darken(@gray, 5%);
+@dropdown-divider-bg:            darken(@gray, 5%);
 
-@dropdown-link-active-color:     @white;
-@dropdown-link-active-bg:        darken(@brand-primary, 5%);
+@dropdown-link-active-color:     @yellow;
+@dropdown-link-active-bg:        lighten(@gray, 5%);
 
-@dropdown-link-color:            @white;
-@dropdown-link-hover-color:      @white;
-@dropdown-link-hover-bg:         @brand-primary;
+@dropdown-link-color:            @yellow;
+@dropdown-link-hover-color:      lighten(@yellow, 5%);
+@dropdown-link-hover-bg:         @gray;
 
 @dropdown-link-disabled-color:   @gray-light;
 
-@dropdown-header-color:          @white;
+@dropdown-header-color:          @yellow;
 
 @dropdown-caret-color:           #000;
 
@@ -246,25 +246,25 @@
 // Basics of a navbar
 @navbar-height:                    40px;
 @navbar-margin-bottom:             @line-height-computed;
-@navbar-default-color:             @white;
-@navbar-default-bg:                @brand-primary;
+@navbar-default-color:             @yellow;
+@navbar-default-bg:                @gray;
 @navbar-default-border:            darken(@navbar-default-bg, 6.5%);
 @navbar-border-radius:             @border-radius-base;
 @navbar-padding-horizontal:        floor(@grid-gutter-width / 2);
 @navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
 
 // Navbar links
-@navbar-default-link-color:                  @white;
-@navbar-default-link-hover-color:        @white; //nochange
+@navbar-default-link-color:                  @yellow;
+@navbar-default-link-hover-color:        lighten(@yellow, 5%);
 @navbar-default-link-hover-bg:            darken(@navbar-default-bg, 2%);
-@navbar-default-link-active-color:       @white;
+@navbar-default-link-active-color:       @gray-lighter;
 @navbar-default-link-active-bg:            @dropdown-link-active-bg;
 @navbar-default-link-disabled-color:       #ccc;
 @navbar-default-link-disabled-bg:          transparent;
 
 // Navbar brand label
 @navbar-default-brand-color:               @navbar-default-link-color;
-@navbar-default-brand-hover-color:         @white; //nochange
+@navbar-default-brand-hover-color:         @white;
 @navbar-default-brand-hover-bg:            lighten(@brand-primary, 5%);
 
 // Navbar toggle (3 bars in TR)
@@ -600,8 +600,8 @@
 // ------------------------
 @text-muted:                  @gray-light;
 @abbr-border-color:           @gray-light;
-@headings-small-color:        @white;
-@headings-gen-color:            @white;
+@headings-small-color:        @yellow;
+@headings-gen-color:            @yellow;
 @blockquote-small-color:      @gray-light;
 @blockquote-border-color:     @gray-lighter;
 @page-header-border-color:    @gray-lighter;

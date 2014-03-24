@@ -23,6 +23,7 @@
             <a href="http://www.gcmaz.com/legal/eeo.pdf" target="_blank" class="ftr-sm">EEO</a>
         </p>
     </section>
+    <div class="clear-fix"></div>
 </footer>
 <div class="clear-fix"><br/></div>
 <?php wp_footer(); ?>
