@@ -2,6 +2,9 @@
     <div class="centered rbn-hdg">
         <?php get_template_part('templates/page', 'header'); ?>
     </div>
+    <a href="http://www.orpheumflagstaff.com/" target="_blank">
+        <img src="/media/orpheum.jpg" alt="The Opheum - Live Music Venue" style="width:100%;height:auto;margin-top:-10px;" class="centered img-responsive"/>
+    </a>
     <?php if (!have_posts()) : ?>
       <div class="alert alert-warning">
         <?php _e('Sorry, no results were found.', 'roots'); ?>
