@@ -12,6 +12,7 @@ function bt_flush_rewrite_rules() {
      flush_rewrite_rules();
 }
 
+// add more buttons to editor
 function add_more_buttons($buttons) {
  $buttons[] = 'hr';
  $buttons[] = 'del';
