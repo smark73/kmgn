@@ -123,13 +123,19 @@ h5 {color:@red;font-weight:600;}
 
 /*index news and social */
 .indx-social{background:#fff;margin:0 2%;width:95%;}
+.indx-fb-feed{max-width:95%;}
 
 /* z-index for following indx-bnr-wrap, indx-bnr + is to keep the hyperlink wrapped around the image, otherwise the nivo slider squashes */
+// adrotate -> default mode
 .indx-bnr-wrap{margin:5% 4%;padding:1%;background:rgba(0,0,0,0.1);z-index:1000;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px}
 .indx-bnr{height:auto;padding:0 2%;z-index:1001}
 .indx-bnr a{display:block;z-index:1002}
 .indx-bnr a img {height:auto}
-.indx-fb-feed{max-width:95%;}
+// adrotate -> dynamic mode group (get couple of new divs added
+.indx-bnr div.g{z-index:1002;width:auto;height:auto;overflow:hidden}
+.indx-bnr div.g div{position:absolute;top:0;left:0;height:auto;max-width:95%}
+.indx-bnr-mulitple{width:auto;height:auto}
+.indx-bnr-multiple a img{width:auto;height:auto}
 
 // .hr-spcr{height:5px;border-radius:2px;-webkit-border-radius: 2px;border:1px solid rgba(255,255,255,0.1);background:rgba(0,0,0,0.05);width:95%;margin:3% auto;}
 .instgm-hshtg{font-size:0.75em;font-weight:500;}

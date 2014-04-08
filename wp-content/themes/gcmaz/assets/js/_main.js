@@ -76,7 +76,7 @@ var GcmazSite = {
   // Home page
   home: {
     init: function() {
-      // JS here
+        // JS here
     }
   },
   // About page
