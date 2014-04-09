@@ -131,15 +131,19 @@ function whats_fields (){
     global $post;
     $custom = get_post_custom($post->ID);
     $whats_date = $custom['whats_date'][0];
+    $whats_fulldate = $custom['whats_fulldate'][0];
     ?>
     <p>
         <label>Date (leave blank for ongoing)</label><br />
         <input size="45" name="whats_date" id="whats_date" value="<?php echo $whats_date; ?>" />
+        <input type="hidden" name="whats_fulldate" id="whats_fulldate"/>
     </p>
     <script>
         jQuery(document).ready(function(){
             jQuery('#whats_date').datepicker({
-                dateFormat : 'D, M d'
+                dateFormat : 'D, M d',
+                altFormat: 'yy-mm-dd',
+                altField: '#whats_fulldate'
             });
         });
     </script>
@@ -193,6 +197,7 @@ add_action('publish_post', 'save_concert_attributes');
 function save_whats_attributes(){
     global $post;
     update_post_meta($post->ID, "whats_date", $_POST["whats_date"]);
+    update_post_meta($post->ID, "whats_fulldate", $_POST["whats_fulldate"]);
 }
 function save_community_attributes(){
     global $post;
