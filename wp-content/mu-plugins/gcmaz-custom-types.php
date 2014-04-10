@@ -157,11 +157,14 @@ function community_fields (){
     <p>
         <label>Date (leave blank for ongoing)</label><br />
         <input size="45" name="community_date" id="community_date" value="<?php echo $community_date; ?>" />
+        <input type="hidden" name="community_fulldate" id="community_fulldate"/>
     </p>
     <script>
         jQuery(document).ready(function(){
             jQuery('#community_date').datepicker({
-                dateFormat : 'D, M d'
+                dateFormat : 'D, M d',
+                altFormat: 'yy-mm-dd',
+                altField: '#community_fulldate'
             });
         });
     </script>
@@ -175,11 +178,14 @@ function concert_fields (){
     <p>
         <label>Date (leave blank for ongoing)</label><br />
         <input size="45" name="concert_date" id="concert_date" value="<?php echo $concert_date; ?>" />
+        <input type="hidden" name="concert_fulldate" id="concert_fulldate"/>
     </p>
     <script>
         jQuery(document).ready(function(){
             jQuery('#concert_date').datepicker({
-                dateFormat : 'D, M d'
+                dateFormat : 'D, M d',
+                altFormat: 'yy-mm-dd',
+                altField: '#concert_fulldate'
             });
         });
     </script>
@@ -202,10 +208,12 @@ function save_whats_attributes(){
 function save_community_attributes(){
     global $post;
     update_post_meta($post->ID, "community_date", $_POST["community_date"]);
+    update_post_meta($post->ID, "community_fulldate", $_POST["community_fulldate"]);
 }
 function save_concert_attributes(){
     global $post;
     update_post_meta($post->ID, "concert_date", $_POST["concert_date"]);
+    update_post_meta($post->ID, "concert_fulldate", $_POST["concert_fulldate"]);
 }
 
 //add taxonomy
