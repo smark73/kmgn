@@ -2,7 +2,7 @@
 
     <?php $ptko_settings = get_option('ptko_settings'); ?>
     
-    <a href="<?php echo esc_url($ptko_settings['ptko_link']);?>" target="_blank" id="tkobtn" onclick="ga('send', 'event', 'takeover', 'click', 'EDITME');">
+    <a href="<?php echo esc_url($ptko_settings['ptko_link']);?>" target="_blank" id="tkobtn" onclick="ga('send', 'event', 'takeover', 'click', '939mtn');">
         <div class="hidden-xs">
             <div class="takeover-hdr centered" style="height:100%;">
                 <div class="takeover-hdr1 centered">
