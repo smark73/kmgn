@@ -12,6 +12,11 @@
     }
   ?>
 
+  <?php
+    // display the Page Take Over if it's enabled
+    do_action('display_ptko');
+  ?>
+    
   <div class="innerbg wrap container" role="document">
         <div class="row row1">
             <section class="col-md-4">

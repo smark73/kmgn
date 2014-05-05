@@ -58,7 +58,7 @@ if($ptko_settings['ptko_toggle'] == 1){
         return $classes;
     }
     // add takeover header
-    add_action('wp_head', 'ptko_inc_hdr');
+    add_action('display_ptko', 'ptko_inc_hdr');
     function ptko_inc_hdr($ptko_settings){
         get_template_part('templates/takeover-hdr');
     }
