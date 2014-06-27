@@ -123,8 +123,12 @@ function add_concert_box(){
 }
 
 // Enqueue Datepicker + jQuery UI CSS
-wp_enqueue_script( 'jquery-ui-datepicker' );
-wp_enqueue_style( 'jquery-ui-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/smoothness/jquery-ui.css', true);
+// Enqueue Datepicker + jQuery UI CSS
+function enqueue_dp_ui(){
+    wp_enqueue_script( 'jquery-ui-datepicker' );
+    wp_enqueue_style( 'jquery-ui-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/smoothness/jquery-ui.css', true);
+}
+add_action('admin_init', 'enqueue_dp_ui');
 
 //create custom fields 
 function whats_fields (){
