@@ -125,10 +125,15 @@ h5 {color:@red;font-weight:600;}
 .indx-social{background:#fff;margin:0 2%;width:95%;}
 .indx-fb-feed{max-width:95%;}
 
-/* z-index for following indx-bnr-wrap, indx-bnr + is to keep the hyperlink wrapped around the image, otherwise the nivo slider squashes */
+/* 
+    index ad rotate banners
+    1) z-index for following indx-bnr-wrap, indx-bnr + is to keep the hyperlink wrapped around the image, otherwise the nivo slider squashes
+    2) indx-bnr-wrap has a padding-bottom to size correctly 19% works
+        and indx-bnr has a negative top margin to move it up into the indx-bnr-wrap padding
+*/
 // adrotate -> default mode
-.indx-bnr-wrap{margin:5% 4%;padding:1%;background:rgba(0,0,0,0.1);z-index:1000;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px}
-.indx-bnr{height:auto;padding:0 2%;z-index:1001}
+.indx-bnr-wrap{margin:5% 4%;padding:1% 1% 19% 1%;background:rgba(0,0,0,0.1);z-index:1000;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px}
+.indx-bnr{height:auto;padding:1% 2%;z-index:1001}
 .indx-bnr a{display:block;z-index:1002}
 .indx-bnr a img {height:auto}
 // adrotate -> dynamic mode group (get couple of new divs added
