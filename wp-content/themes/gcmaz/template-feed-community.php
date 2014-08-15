@@ -35,7 +35,7 @@ Template Name: Feed: Community
                 ?>
                     <article>
                       <div class="entry-content feed-listing">
-                          <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>">
+                          <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank">
                               <?php echo esc_html($item->get_title()); ?>
                           </a>
                           <span class="archv-date pull-right red">
