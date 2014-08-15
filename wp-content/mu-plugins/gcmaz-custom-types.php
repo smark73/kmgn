@@ -204,24 +204,46 @@ add_action('publish_post', 'save_whats_attributes');
 add_action('publish_post', 'save_community_attributes');
 add_action('publish_post', 'save_concert_attributes');
 
+//save custom fields and set specific category
 function save_whats_attributes(){
     global $post;
-    update_post_meta($post->ID, "whats_date", $_POST["whats_date"]);
-    update_post_meta($post->ID, "whats_fulldate", $_POST["whats_fulldate"]);
+    if($post->post_type == 'whats-happening'){
+        //custom fields
+        $whats_date = sanitize_text_field($_POST['whats_date']);
+        $whats_fulldate = sanitize_text_field($_POST['whats_fulldate']);
+        update_post_meta($post->ID, "whats_date", $whats_date);
+        update_post_meta($post->ID, "whats_fulldate", $whats_fulldate);
+        //category
+        wp_set_object_terms($post->ID, 'whats-happening', 'category', true);
+    }
 }
 function save_community_attributes(){
     global $post;
-    update_post_meta($post->ID, "community_date", $_POST["community_date"]);
-    update_post_meta($post->ID, "community_fulldate", $_POST["community_fulldate"]);
+    if($post->post_type == 'community-info'){
+        //custom fields
+        $community_date = sanitize_text_field($_POST['community_date']);
+        $community_fulldate = sanitize_text_field($_POST['community_fulldate']);
+        update_post_meta($post->ID, "community_date", $community_date);
+        update_post_meta($post->ID, "community_fulldate", $community_fulldate);
+        //category
+        wp_set_object_terms($post->ID, 'community-info', 'category', true);
+    }
 }
 function save_concert_attributes(){
     global $post;
-    update_post_meta($post->ID, "concert_date", $_POST["concert_date"]);
-    update_post_meta($post->ID, "concert_fulldate", $_POST["concert_fulldate"]);
+    if($post->post_type == 'concert'){
+        //custom fields
+        $concert_date = sanitize_text_field($_POST['concert_date']);
+        $concert_fulldate = sanitize_text_field($_POST['concert_fulldate']);
+        update_post_meta($post->ID, "concert_date", $concert_date);
+        update_post_meta($post->ID, "concert_fulldate", $concert_fulldate);
+        //category
+        wp_set_object_terms($post->ID, 'concert', 'category', true);
+    }
 }
 
 //add taxonomy
-add_action('init', 'create_location_taxonomy', 0);
+/*add_action('init', 'create_location_taxonomy', 0);
 
 function create_location_taxonomy(){
     $loc_labels = array(
@@ -248,4 +270,4 @@ function create_location_taxonomy(){
         'update_count_callback' => '_update_post_term_count',
         'rewrite' => array('slug' => 'locations')
     ));
-}
+}*/
