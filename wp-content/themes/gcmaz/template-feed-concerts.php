@@ -15,7 +15,7 @@ Template Name: Feed: Concerts
                 return 0;  //set to zero
             }
             add_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
-            $feed = fetch_feed('http://www.gcmaz.com/concert/feed');
+            $feed = fetch_feed('http://www.gcmaz.com/concerts/feed');
             $feed->set_cache_duration(0);
             $limit = $feed->get_item_quantity(50); // specify number of items
             $items = $feed->get_items(0, $limit); // create an array of items
