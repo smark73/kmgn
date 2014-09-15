@@ -30,9 +30,9 @@ global $station;
                     <article>
                       <div class="entry-content feed-listing">
                           <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank">
-                              <?php echo esc_html($item->get_title()); ?>
+                              <?php echo shorten(esc_html($item->get_title()), 60); ?>
                           </a>
-                          <?php echo $item->get_content(); ?>
+                          <?php echo shorten($item->get_content(), 400); ?>
                       </div>
                       <div class="clearfix"/></div>
                       <hr class="archv-pg-hr"/>
