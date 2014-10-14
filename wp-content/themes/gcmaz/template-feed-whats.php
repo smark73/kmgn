@@ -13,12 +13,15 @@ global $station;
         if (function_exists('fetch_feed') ) {
             //clear feed cache
             function clear_feed_cache($secs){
-                return 0;  //set to zero
+                //return 0;  //set to zero
+                return 600;  //10 mins
             }
             add_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
             $feed = fetch_feed('http://gcmaz.com/?feed=whats');
-            $feed->set_cache_duration(0);
-            $limit = $feed->get_item_quantity(50); // specify number of items
+            //$feed->enable_cache(false);
+            //$feed->set_cache_duration(0);
+            $feed->enable_order_by_date(false);
+            $limit = $feed->get_item_quantity(999); // specify number of items
             $items = $feed->get_items(0, $limit); // create an array of items
             //remove feed cache filter
             remove_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
