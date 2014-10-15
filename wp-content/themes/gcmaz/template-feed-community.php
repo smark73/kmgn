@@ -30,17 +30,29 @@ global $station;
     <?php foreach ($items as $item) : ?>
         <?php foreach ($item->get_categories() as $item_cat) : ?>
             <?php if ($item_cat->get_label() == $station) : ?>
-                    <article>
-                      <div class="entry-content feed-listing">
-                          <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank">
-                              <?php echo shorten(esc_html($item->get_title()), 60); ?>
-                          </a>
-                          <?php echo shorten($item->get_content(), 400); ?>
-                      </div>
-                      <div class="clearfix"/></div>
-                      <hr class="archv-pg-hr"/>
-                    </article>
-            <?php endif;?>
+    
+                <?php //$counter +=1 ; //set counter, if we have no listings for this station then display message below ?>
+    
+                <article>
+                  <div class="entry-content feed-listing">
+                      <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank" class="listhdr">
+                          <?php echo esc_html($item->get_title()); //shorten(esc_html($item->get_title()), 90); ?>
+                      </a>
+                      <br/>
+                      <?php echo $item->get_content(); ?>
+                  </div>
+                  <div class="clearfix"/></div>
+                  <hr class="archv-pg-hr"/>
+                </article>
+    
+            <?php endif; ?>
         <?php endforeach; ?>
+    
+        <?php
+            //if($counter == 0){
+                //echo "<div style='margin:6% 4%'><div class='alert alert-warning'>No listings to display right now</div></div>" ;
+            //}
+        ?>
+    
   <?php endforeach; ?>
 </div>
