@@ -300,3 +300,12 @@ function shorten($string, $length)
     // Send the new description back to the page.
     return $desc;
 }
+
+/*
+ * Add Custom Query Vars for the Media Kits, Adv Info, Etc where I append them in the url's
+ */
+function add_query_vars_filter($vars){
+    $vars[] = 'show';
+    return $vars;
+}
+add_filter('query_vars', 'add_query_vars_filter');
