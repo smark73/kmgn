@@ -14,7 +14,9 @@ Template Name: Feed:Advertising Info
  */
 // initilize our vars
 // our custom query vars added to WP in custom.php otherwise ignored
-$show = get_query_var('show');
+// get 'show' query var, or set it to default
+$show = (get_query_var('show')) ? get_query_var('show') : "Marketing Contacts";
+
 $page_var = "Advertising Info";
 ?>
 <div class="in-cnt-wrp row">
