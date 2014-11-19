@@ -13,32 +13,56 @@
     //$gcmaz_wpdb->show_errors();
     
     //get the search input 
-    $s = get_search_query();
+    $search_qry = get_search_query(); 
+    // create an array of search terms and compose a sql statement fragment for it
+    $search_terms = explode(" ", $search_qry);
+    $sql_search_terms = array();
+    foreach($search_terms as $term){
+        $sql_search_terms[] = "post_content LIKE '%%" . mysql_real_escape_string($term) . "%%' OR post_title LIKE '%%" . mysql_real_escape_string($term) . "%%'";
+    }
     
     // Queries
     //prepare the queries and escape the wildcards %=escape and %=wildcard
     // first get advertising page parent id for use in 2 query
+   
+    $var_for_adv_pg = "advertise-on-northern-arizona-radio";
     $sql_adv_pg = "
                 SELECT ID
                 FROM $gcmaz_wpdb->posts
-                WHERE post_name = 'advertise-on-northern-arizona-radio'
+                WHERE post_name = '%s'
                 ";
-    $get_adv_page_id = $gcmaz_wpdb->get_var($gcmaz_wpdb->prepare($sql_adv_pg));
+    $get_adv_page_id = $gcmaz_wpdb->get_var($gcmaz_wpdb->prepare($sql_adv_pg, $var_for_adv_pg));  // J
+    
+    // the C, D, E  ... denote placeholders in the wpdb->prepare statement in order where 
+    // the sql statement has %s, %d denoting "string" or "integer" 
+    // (see ++++ blueprint)
+    $var_for_publish = "publish"; //C
+    $var_for_page = "page"; //D
+    $var_for_post = "post"; //E
+    $var_for_whats = "whats-happening"; //F
+    $var_for_concert = "concert"; //G
+    $var_for_community = "community-info"; //H
+    $var_for_splash = "splash-post"; //I
     
     $sql =  "
                 SELECT *
                 FROM $gcmaz_wpdb->posts
-                WHERE (post_content LIKE '%%$s%%' OR post_title LIKE '%%$s%%')
-                    AND post_status = 'publish'
-                    AND (post_type = 'page' OR post_type = 'post' OR post_type = 'whats-happening' OR post_type = 'concert' OR post_type = 'community-info' OR post_type = 'splash-post')
-                    AND post_parent != $get_adv_page_id
+                WHERE (" . implode(' OR ', $sql_search_terms) . ")
+                    AND post_status = '%s'
+                    AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s')
+                    AND post_parent != %d
                 ORDER BY post_date DESC
                  ";
     
+    //print_r($sql);
+
     //get the results
-    $rows = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql));
+    // ++++ blueprint of the statement
+    // $rows = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare( "the sql query", C, D, E, F, G, H, I, J)
+    $rows = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash, $get_adv_page_id));
 
 ?>
+
 
 <div class="in-cnt-wrp row">
     <div class="centered rbn-hdg">
