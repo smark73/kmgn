@@ -14,13 +14,13 @@
     <section class="ftr3 col-xs-6 col-sm-6 col-md-3 col-lg-3 text-center">
         <a href="/"><img src="/media/logo-939themountain.png" width="125" height="auto" alt="93-9 The Mountain Classic Rock Radio"/></a>
         <p>93-9 The Mountain Radio</p>
-        <p>&copy; GuyAnn Corporation. All Rights Reserved</p>
+        <p>&copy; Great Circle Media. All Rights Reserved</p>
         <p>
-            <a href="http://www.gcmaz.com/legal/GeneralContestRules.pdf" target="_blank" class="ftr-sm">Contest Rules</a>
+            <a href="http://www.gcmaz.com/media/GeneralContestRules.pdf" target="_blank" class="ftr-sm">Contest Rules</a>
             &nbsp;|&nbsp;
-            <a href="/employment/" class="ftr-sm">Employment</a>
+            <a href="http://www.gcmaz.com/employment/" class="ftr-sm">Employment</a>
             &nbsp;|&nbsp;
-            <a href="http://www.gcmaz.com/legal/eeo.pdf" target="_blank" class="ftr-sm">EEO</a>
+            <a href="http://www.gcmaz.com/media/eeo.pdf" target="_blank" class="ftr-sm">EEO</a>
         </p>
     </section>
     <div class="clear-fix"></div>
