@@ -15,10 +15,15 @@
     //get the search input 
     $search_qry = get_search_query(); 
     // create an array of search terms and compose a sql statement fragment for it
+    // first define our stopwords (not relevant in searches & too many results)
+    $stopwords = array('a', 'about', 'above', 'above', 'across', 'after', 'afterwards', 'again', 'against', 'all', 'almost', 'alone', 'along', 'already', 'also','although','always','am','among', 'amongst', 'amoungst', 'amount',  'an', 'and', 'another', 'any','anyhow','anyone','anything','anyway', 'anywhere', 'are', 'around', 'as',  'at', 'back','be','became', 'because','become','becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'below', 'beside', 'besides', 'between', 'beyond', 'bill', 'both', 'bottom','but', 'by', 'call', 'can', 'cannot', 'cant', 'co', 'con', 'could', 'couldnt', 'cry', 'de', 'describe', 'detail', 'do', 'done', 'down', 'due', 'during', 'each', 'eg', 'eight', 'either', 'eleven','else', 'elsewhere', 'empty', 'enough', 'etc', 'even', 'ever', 'every', 'everyone', 'everything', 'everywhere', 'except', 'few', 'fifteen', 'fify', 'fill', 'find', 'fire', 'first', 'five', 'for', 'former', 'formerly', 'forty', 'found', 'four', 'from', 'front', 'full', 'further', 'get', 'give', 'go', 'had', 'has', 'hasnt', 'have', 'he', 'hence', 'her', 'here', 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'him', 'himself', 'his', 'how', 'however', 'hundred', 'ie', 'if', 'in', 'inc', 'indeed', 'interest', 'into', 'is', 'it', 'its', 'itself', 'keep', 'last', 'latter', 'latterly', 'least', 'less', 'ltd', 'made', 'many', 'may', 'me', 'meanwhile', 'might', 'mill', 'mine', 'more', 'moreover', 'most', 'mostly', 'move', 'much', 'must', 'my', 'myself', 'name', 'namely', 'neither', 'never', 'nevertheless', 'next', 'nine', 'no', 'nobody', 'none', 'noone', 'nor', 'not', 'nothing', 'now', 'nowhere', 'of', 'off', 'often', 'on', 'once', 'one', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'our', 'ours', 'ourselves', 'out', 'over', 'own','part', 'per', 'perhaps', 'please', 'put', 'rather', 're', 'same', 'see', 'seem', 'seemed', 'seeming', 'seems', 'serious', 'several', 'she', 'should', 'show', 'side', 'since', 'sincere', 'six', 'sixty', 'so', 'some', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhere', 'still', 'such', 'system', 'take', 'ten', 'than', 'that', 'the', 'their', 'them', 'themselves', 'then', 'thence', 'there', 'thereafter', 'thereby', 'therefore', 'therein', 'thereupon', 'these', 'they', 'thickv', 'thin', 'third', 'this', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'top', 'toward', 'towards', 'twelve', 'twenty', 'two', 'un', 'under', 'until', 'up', 'upon', 'us', 'very', 'via', 'was', 'we', 'well', 'were', 'what', 'whatever', 'when', 'whence', 'whenever', 'where', 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'with', 'within', 'without', 'would', 'yet', 'you', 'your', 'yours', 'yourself', 'yourselves', 'the');
     $search_terms = explode(" ", $search_qry);
     $sql_search_terms = array();
     foreach($search_terms as $term){
-        $sql_search_terms[] = "post_content LIKE '%%" . mysql_real_escape_string($term) . "%%' OR post_title LIKE '%%" . mysql_real_escape_string($term) . "%%'";
+        //check terms to see if in stopwords array for better results
+        if(!in_array($term, $stopwords)){
+            $sql_search_terms[] = "post_content LIKE '%%" . mysql_real_escape_string($term) . "%%' OR post_title LIKE '%%" . mysql_real_escape_string($term) . "%%'";
+        }
     }
     
     // Queries
@@ -32,7 +37,7 @@
                 WHERE post_name = '%s'
                 ";
     $get_adv_page_id = $gcmaz_wpdb->get_var($gcmaz_wpdb->prepare($sql_adv_pg, $var_for_adv_pg));  // J
-    
+
     // the C, D, E  ... denote placeholders in the wpdb->prepare statement in order where 
     // the sql statement has %s, %d denoting "string" or "integer" 
     // (see ++++ blueprint)
@@ -83,9 +88,10 @@
                     $id = $post->ID;
                     $title  = $post->post_title;
                     //$desc = apply_filters('the_content', get_the_excerpt());
-                    $clink = get_the_category();
+                    //$clink = get_the_category();
                     $plink = get_permalink();
-                    $link = $clink[0] . str_replace(home_url(), OUTGOING_URL, $plink);
+                    //$link = $clink[0] . str_replace(home_url(), OUTGOING_URL, $plink);
+                    $link = str_replace(home_url(), OUTGOING_URL, $plink);
                     if($link != ''){
                         // don't display non-linked items
                         echo "<h4><a href='$link' rel='bookmark' title='$title'>$title</a></h4>";
