@@ -79,8 +79,6 @@ if($ptko_settings['ptko_toggle'] == 1){
     }
 }
 
-
-
 /*
  * START Create pages programatically
  * @returns -1 if the post was never created, -2 if a post with the same title exists, or the ID of the post if successful.
@@ -88,64 +86,31 @@ if($ptko_settings['ptko_toggle'] == 1){
  * pages on templates need to have tpl defined.  pages with their own page-asdf.php need tpl set null
  * pages we need to create are
  * ----------------- 
- * on air
  * song requests
- * photos
- * weather
  * contact
- * jobs
- * advertise
- *   - sales marketing contacts
- *   - internet info
- *   - kaff media kit
- *   - kaff am media kit
- *   - mtn media kit
- *   - hits media kit
- *   - magic media kit
- *   - oldies media kit
+ * advertise (x2)
+ * weather
  * thank you - form redirect
+ * whats
+ * community
+ * concerts
+ * on air
+ * 
  */
+/* ONLY NEEDED FOR SETUP
 $pages = array(
-    $page_onair = array(
-        'page_id' => -1,
-        'slug' => 'radio-shows',
-        'author_id' => 1,
-        'title' => 'On Air Shows',
-        'tpl' => 'template-rbn-hdr.php',
-    ),
     $page_requests = array(
         'page_id' => -1,
         'slug' => 'song-requests',
         'author_id' => 1,
-        'title' => 'Request a Song on 93-9 The Mountain',
+        'title' => 'Request a Song',
         'tpl' => 'template-rbn-hdr.php',
-    ),
-    $page_photos = array(
-        'page_id' => -1,
-        'slug' => 'photos',
-        'author_id' => 1,
-        'title' => '93-9 The Mountain Photos',
-        'tpl' => '',
-    ),
-    $page_weather = array(
-        'page_id' => -1,
-        'slug' => 'weather',
-        'author_id' => 1,
-        'title' => 'Area Weather',
-        'tpl' => '',
     ),
     $page_contact = array(
         'page_id' => -1,
-        'slug' => 'contact-93-9-rock-radio',
+        'slug' => 'contact-radio',
         'author_id' => 1,
-        'title' => 'Contact 93-9 The Mountain Radio',
-        'tpl' => 'template-rbn-hdr.php',
-    ),
-    $page_jobs = array(
-        'page_id' => -1,
-        'slug' => 'employment',
-        'author_id' => 1,
-        'title' => 'Employment at 93-9 The Mountain Radio',
+        'title' => 'Contact Radio',
         'tpl' => 'template-rbn-hdr.php',
     ),
     $page_advertise = array(
@@ -155,67 +120,53 @@ $pages = array(
         'title' => 'Advertise On Northern Arizona Radio',
         'tpl' => 'template-rbn-hdr.php',
     ),
-    $page_sales = array(
+    $page_adv_info = array(
         'page_id' => -1,
-        'slug' => 'sales-and-marketing-contacts',
+        'slug' => 'advertising-info',
         'author_id' => 1,
-        'title' => 'Sales and Marketing Contacts',
-        'tpl' => 'template-adv-info.php',
+        'title' => 'Advertising Information',
+        'tpl' => 'template-feed-advertising.php',
     ),
-    $page_internet = array(
+    $page_weather = array(
         'page_id' => -1,
-        'slug' => 'internet-and-digital-advertising',
+        'slug' => 'weather',
         'author_id' => 1,
-        'title' => 'Internet and Digital Advertising',
-        'tpl' => 'template-adv-info.php',
-    ),
-    $page_kaffmk = array(
-        'page_id' => -1,
-        'slug' => 'kaff',
-        'author_id' => 1,
-        'title' => '92.9 KAFF Media Kit',
-        'tpl' => 'template-adv-info.php',
-    ),
-    $page_kaffammk = array(
-        'page_id' => -1,
-        'slug' => 'kaff-am',
-        'author_id' => 1,
-        'title' => 'Flagstaff Country 93.5 AM 930 (KAFF AM) Media Kit',
-        'tpl' => 'template-adv-info.php',
-    ),
-    $page_kmgnmk = array(
-        'page_id' => -1,
-        'slug' => 'kmgn',
-        'author_id' => 1,
-        'title' => '93-9 The Mountain (KMGN) Media Kit',
-        'tpl' => 'template-adv-info.php',
-    ),
-    $page_kfszmk = array(
-        'page_id' => -1,
-        'slug' => 'kfsz',
-        'author_id' => 1,
-        'title' => 'Hits 106 (KFSZ) Media Kit',
-        'tpl' => 'template-adv-info.php',
-    ),
-    $page_ktmgmk = array(
-        'page_id' => -1,
-        'slug' => 'ktmg',
-        'author_id' => 1,
-        'title' => 'Magic 99.1 (KTMG) Media Kit',
-        'tpl' => 'template-adv-info.php',
-    ),
-    $page_knotmk = array(
-        'page_id' => -1,
-        'slug' => 'knot',
-        'author_id' => 1,
-        'title' => 'Fun Oldies 100.9 1450AM (KNOT) Media Kit',
-        'tpl' => 'template-adv-info.php',
+        'title' => 'Area Weather',
+        'tpl' => '',
     ),
     $page_thanks = array(
         'page_id' => -1,
         'slug' => 'thank-you',
         'author_id' => 1,
         'title' => 'Thank You',
+        'tpl' => 'template-rbn-hdr.php',
+    ),
+    $page_whats = array(
+        'page_id' => -1,
+        'slug' => 'whats-happening-northern-arizona',
+        'author_id' => 1,
+        'title' => 'Whats Happening in Northern Arizona',
+        'tpl' => 'template-feed-whats.php',
+    ),
+    $page_community = array(
+        'page_id' => -1,
+        'slug' => 'northern-arizona-community-info',
+        'author_id' => 1,
+        'title' => 'Northern Arizona Community Information',
+        'tpl' => 'template-feed-community.php',
+    ),
+    $page_concerts = array(
+        'page_id' => -1,
+        'slug' => 'concerts-northern-arizona',
+        'author_id' => 1,
+        'title' => 'Concerts in Northern Arizona,
+        'tpl' => 'template-feed-concerts.php',
+    ),
+    $page_onair = array(
+        'page_id' => -1,
+        'slug' => 'radio-shows',
+        'author_id' => 1,
+        'title' => 'On Air Shows',
         'tpl' => 'template-rbn-hdr.php',
     ),
 );
@@ -264,9 +215,10 @@ foreach($pages as $pinfo){
     
     add_filter('after_setup_theme', $programatically_create_pages($page_id, $slug, $author_id, $title, $tpl));
 }
+*/
 
 /*
- * END 
+ * END Auto page creation
  */
 
 /*
