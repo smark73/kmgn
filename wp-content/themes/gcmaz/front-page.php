@@ -7,7 +7,7 @@
             <span class="centered txtshdw gen-hdr">News and Social</span>
         </div>
         <div class="col-md-12 indx-news">
-            <h4><a href="http://www.gcmaz.com/northern-arizona-news" target="_blank" title="View All Northern Arizona News Stories">KAFF News | View All &raquo;</a></h4>
+            <h4><a href="http://www.gcmaz.com/kaff-news" target="_blank" title="View All KAFF News Stories">KAFF News | View All &raquo;</a></h4>
             <?php $feed = get_post_custom_values('feed_info'); echo do_shortcode($feed[0]); ?>
         </div>
         <div class="fb-like-box hidden-xs" data-href="http://www.facebook.com/TheNew939" data-height="400" data-show-faces="false" data-colorscheme="light" data-stream="true" show-border="false" data-header="false" style="background-color:#fff !important;max-width:700px;margin:0 auto 4%;"></div>
