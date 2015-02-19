@@ -7,10 +7,10 @@ global $station;
 $station = 'KMGN';
 
 // *** START Session for all *.gcmaz.com to set domain var (to keep track of which subdomain user started on)
-function register_session($ses_name = 'gcmaz', $lifetime = 600){
+function register_session( $lifetime = 600 ){
     if(!session_id()){
         session_set_cookie_params($lifetime, '/', '.gcmaz.com');
-        session_name($ses_name);
+        session_name( 'gcmaz' );
         session_start();
     }
     //set the variable

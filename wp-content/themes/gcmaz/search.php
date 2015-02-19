@@ -22,7 +22,7 @@
     foreach($search_terms as $term){
         //check terms to see if in stopwords array for better results
         if(!in_array($term, $stopwords)){
-            $sql_search_terms[] = "post_content LIKE '%%" . mysql_real_escape_string($term) . "%%' OR post_title LIKE '%%" . mysql_real_escape_string($term) . "%%'";
+            $sql_search_terms[] = "post_content LIKE '%%" . sanitize_text_field($term) . "%%' OR post_title LIKE '%%" . sanitize_text_field($term) . "%%'";
         }
     }
     
