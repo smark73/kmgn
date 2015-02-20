@@ -14,6 +14,22 @@
     $gcmaz_wpdb->show_errors();
     
     
+    /*********************************
+     *  Pagination setup
+     ********************************/
+    // how many results we want to show 
+    // ... since we're performing 2 queries, the actual
+    // returned result set will be this number X 2
+    // in order for pagination to work correctly with 2 queries, we have to .................................................
+    $results_per_page = 4;
+    // set page var for pagination
+    $paged = ( get_query_var( 'page' ) ) ? absint( get_query_var( 'page' ) ) : 1;
+    
+    // the offset of the list, based on current page 
+    $offset = ($paged - 1) * ceil($results_per_page / 2);
+$debug_offset = "<br/>offset: " . $offset;
+print_r($debug_offset);
+    
     /************************************
      *  Get the search query
      * 
@@ -43,6 +59,7 @@
      *   I.  Get Advertising Page id to eliminate it from search results
      *   II. Prepare the statement
      *   III. Get the results
+     *   IV.  Pagination of results
      * 
      *  Notes about the prepare statement:
      *  a.    escape the wildcards %=escape and %=wildcard
@@ -81,6 +98,7 @@
                     AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s')
                     AND post_parent != %d
                 ORDER BY post_date DESC
+                LIMIT $offset, $results_per_page
                  ";
     
     //for debugging
@@ -89,6 +107,9 @@
 
     //  III.  GET RESULTS  see notes (blueprint) for details
     $rows = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash, $get_adv_page_id));
+    
+$debug_rows1_total = "<br/>rows1: " . $gcmaz_wpdb->num_rows;
+print_r($debug_rows1_total);
     
 
     // QUERY 2) LOCAL Search
@@ -119,14 +140,22 @@
                     AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s')
                     AND post_parent != %d
                 ORDER BY post_date DESC
+                LIMIT $offset, $results_per_page
                  ";
     
+$debug_rows2_total = "<br/>rows2: " . $wpdb->num_rows;
+print_r($debug_rows2_total);
+    
     //for debugging
-    $prepared_statement = $wpdb->prepare($sql_local, $var_for_publish, $var_for_page, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash, $get_adv_page_id_local);
-    print_r($prepared_statement);
+    //$prepared_statement = $wpdb->prepare($sql_local, $var_for_publish, $var_for_page, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash, $get_adv_page_id_local);
+    //print_r($prepared_statement);
 
     //  III.  GET RESULTS  see notes (blueprint) for details
     $rows_local = $wpdb->get_results($wpdb->prepare($sql_local, $var_for_publish_local, $var_for_page_local, $var_for_post_local, $var_for_whats_local, $var_for_concert_local, $var_for_community_local, $var_for_splash_local, $get_adv_page_id_local));
+    
+
+    
+    
     
     
     /*********************************************
@@ -168,12 +197,36 @@
     $results_local = objectToArray($rows_local);
     
     // merge
-    $results = array_merge( $results_gcmaz, $results_local );
+    $results_merged = array_merge( $results_gcmaz, $results_local );
     // sort
-    uasort( $results, function( $a, $b ) {
+    uasort( $results_merged, function( $a, $b ) {
         return strtotime( $a['post_date'] ) - strtotime( $b['post_date'] );
     });
-    $results = array_reverse( $results );
+    $results = array_reverse( $results_merged );
+    
+    // --------  PAGINATION 
+    // get returned rows from query
+    //$total_results = $gcmaz_wpdb->num_rows + $wpdb->num_rows;  <- doesnt work so count array instead
+    $total_results = count($results);
+$debug_tr = "<br/>total results: " . $total_results;
+print_r($debug_tr);
+
+    //total pages
+    $total_pages = ceil($total_results / $results_per_page);
+$debug_tp= "<br/>total pages: " . $total_pages;
+print_r($debug_tp);
+    
+    
+// debug array
+$debug_rg = "<br/>results gcmaz: " . count($results_gcmaz);
+$debug_rl = "<br/>results local: " . count($results_local);
+$debug_m = "<br/>results merged: " . count($results_merged);
+$debug_s = "<br/>results sorted: " . count($results);
+print_r($debug_rg);
+print_r($debug_rl);
+print_r($debug_m);
+print_r($debug_s);
+    
     
     // II. CREATE USEABLE LINKS
     function create_useable_link($guid_in, $post_name_in){
@@ -224,6 +277,20 @@
                     ?>
                 </ul>
             <?php endif; ?>
+            
+            <div style="margin:2% auto;padding:10px;display:block">
+            <?php
+                //display pagination
+                echo paginate_links( array(
+                    'base' => add_query_arg('page', '%#%'),
+                    'format' => '',
+                    'prev_text' => __('&laquo;'),
+                    'next_text' => __('&raquo;'),
+                    'total' => $total_pages,
+                    'current' => $paged
+                ));
+            ?>
+            </div>
             
         </section>
     </article>
