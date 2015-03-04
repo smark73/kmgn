@@ -21,14 +21,21 @@
     // ... since we're performing 2 queries, the actual
     // returned result set will be this number X 2
     // in order for pagination to work correctly with 2 queries, we have to .................................................
-    $results_per_page = 4;
+    //$results_per_page = 4;
     // set page var for pagination
-    $paged = ( get_query_var( 'page' ) ) ? absint( get_query_var( 'page' ) ) : 1;
+    //$paged = ( get_query_var( 'page' ) ) ? absint( get_query_var( 'page' ) ) : 1;
     
     // the offset of the list, based on current page 
-    $offset = ($paged - 1) * ceil($results_per_page / 2);
-$debug_offset = "<br/>offset: " . $offset;
-print_r($debug_offset);
+    //$offset = ($paged - 1) * ceil($results_per_page / 2);
+    //$debug_offset = "<br/>offset: " . $offset;
+    //print_r($debug_offset);
+    
+    // max results to get from queries
+    // since 2 queries, possible number is 2x this
+    $rows_to_return = 100;
+    //results per page
+    $results_per_page = 2;
+    
     
     /************************************
      *  Get the search query
@@ -43,14 +50,53 @@ print_r($debug_offset);
     
     // II.  DEFINE AND REMOVE STOP WORDS
     $stopwords = array('a', 'about', 'above', 'above', 'across', 'after', 'afterwards', 'again', 'against', 'all', 'almost', 'alone', 'along', 'already', 'also','although','always','am','among', 'amongst', 'amoungst', 'amount',  'an', 'and', 'another', 'any','anyhow','anyone','anything','anyway', 'anywhere', 'are', 'around', 'as',  'at', 'back','be','became', 'because','become','becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'below', 'beside', 'besides', 'between', 'beyond', 'bill', 'both', 'bottom','but', 'by', 'call', 'can', 'cannot', 'cant', 'co', 'con', 'could', 'couldnt', 'cry', 'de', 'describe', 'detail', 'do', 'done', 'down', 'due', 'during', 'each', 'eg', 'eight', 'either', 'eleven','else', 'elsewhere', 'empty', 'enough', 'etc', 'even', 'ever', 'every', 'everyone', 'everything', 'everywhere', 'except', 'few', 'fifteen', 'fify', 'fill', 'find', 'fire', 'first', 'five', 'for', 'former', 'formerly', 'forty', 'found', 'four', 'from', 'front', 'full', 'further', 'get', 'give', 'go', 'had', 'has', 'hasnt', 'have', 'he', 'hence', 'her', 'here', 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'him', 'himself', 'his', 'how', 'however', 'hundred', 'ie', 'if', 'in', 'inc', 'indeed', 'interest', 'into', 'is', 'it', 'its', 'itself', 'keep', 'last', 'latter', 'latterly', 'least', 'less', 'ltd', 'made', 'many', 'may', 'me', 'meanwhile', 'might', 'mill', 'mine', 'more', 'moreover', 'most', 'mostly', 'move', 'much', 'must', 'my', 'myself', 'name', 'namely', 'neither', 'never', 'nevertheless', 'next', 'nine', 'no', 'nobody', 'none', 'noone', 'nor', 'not', 'nothing', 'now', 'nowhere', 'of', 'off', 'often', 'on', 'once', 'one', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'our', 'ours', 'ourselves', 'out', 'over', 'own','part', 'per', 'perhaps', 'please', 'put', 'rather', 're', 'same', 'see', 'seem', 'seemed', 'seeming', 'seems', 'serious', 'several', 'she', 'should', 'show', 'side', 'since', 'sincere', 'six', 'sixty', 'so', 'some', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhere', 'still', 'such', 'system', 'take', 'ten', 'than', 'that', 'the', 'their', 'them', 'themselves', 'then', 'thence', 'there', 'thereafter', 'thereby', 'therefore', 'therein', 'thereupon', 'these', 'they', 'thickv', 'thin', 'third', 'this', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'top', 'toward', 'towards', 'twelve', 'twenty', 'two', 'un', 'under', 'until', 'up', 'upon', 'us', 'very', 'via', 'was', 'we', 'well', 'were', 'what', 'whatever', 'when', 'whence', 'whenever', 'where', 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'with', 'within', 'without', 'would', 'yet', 'you', 'your', 'yours', 'yourself', 'yourselves', 'the');
-    //$stopwords = array('');
-    $sql_search_terms = array();
-    foreach($search_terms as $term){
-        //check terms to see if in stopwords array for better results
-        if(!in_array($term, $stopwords)){
-            $sql_search_terms[] = "post_content LIKE '%%" . sanitize_text_field($term) . "%%' OR post_title LIKE '%%" . sanitize_text_field($term) . "%%'";
+    //$stopwords = array('');  // debug stopword probs
+    
+    // remove stopwords from our search term array
+    // if only stop words - the first one stays populated 
+    foreach( $stopwords as $stopword ){
+        if( array_search ( $stopword, $search_terms ) ){
+            $key = array_search( $stopword, $search_terms );
+            print_r($key);
+            unset($search_terms[$key]);
         }
     }
+    print_r($search_terms);
+
+
+    // init array of final terms
+    $sql_search_terms = array();
+    
+
+    // run through search terms and eliminate stop words
+        // query gives an error if end up with 0 terms, so we keep track of actual terms 
+    $temp_count = 0;
+    //foreach($search_terms as $term){
+        //check terms to see if in stopwords array for better results
+        //if(!in_array($term, $stopwords)){
+            //$sql_search_terms[] = "post_content LIKE '%%" . sanitize_text_field($term) . "%%' OR post_title LIKE '%%" . sanitize_text_field($term) . "%%'";
+            //$temp_count ++;
+        //}
+    //}
+    foreach($search_terms as $term){
+        if( isset( $term ) && $term != '' ){
+            //check terms to see if in stopwords array for better results
+            $sql_search_terms[] = "post_content LIKE '%%" . sanitize_text_field($term) . "%%' OR post_title LIKE '%%" . sanitize_text_field($term) . "%%'";
+            $temp_count ++;
+        }
+    }
+    
+    if( $temp_count == 0 ){
+        nothing_found();
+    }
+    //print_r($temp_count);
+    // make sure we haven't eliminated all the search terms -> returns an error
+    // if we have elimnated all search terms, we need to recreate the sql statement with the original search terms
+    //if( $temp_count == 0 ){
+         //foreach($search_terms as $term){
+            //$sql_search_terms[] = "post_content LIKE '%%" . sanitize_text_field($term) . "%%' OR post_title LIKE '%%" . sanitize_text_field($term) . "%%'";
+         //}
+    //}
     
     
     /*******************************************************
@@ -98,7 +144,7 @@ print_r($debug_offset);
                     AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s')
                     AND post_parent != %d
                 ORDER BY post_date DESC
-                LIMIT $offset, $results_per_page
+                LIMIT $rows_to_return
                  ";
     
     //for debugging
@@ -108,8 +154,8 @@ print_r($debug_offset);
     //  III.  GET RESULTS  see notes (blueprint) for details
     $rows = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash, $get_adv_page_id));
     
-$debug_rows1_total = "<br/>rows1: " . $gcmaz_wpdb->num_rows;
-print_r($debug_rows1_total);
+    //$debug_rows1_total = "<br/>rows1: " . $gcmaz_wpdb->num_rows;
+    //print_r($debug_rows1_total);
     
 
     // QUERY 2) LOCAL Search
@@ -140,11 +186,11 @@ print_r($debug_rows1_total);
                     AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s')
                     AND post_parent != %d
                 ORDER BY post_date DESC
-                LIMIT $offset, $results_per_page
+                LIMIT $rows_to_return
                  ";
     
-$debug_rows2_total = "<br/>rows2: " . $wpdb->num_rows;
-print_r($debug_rows2_total);
+    //$debug_rows2_total = "<br/>rows2: " . $wpdb->num_rows;
+    //print_r($debug_rows2_total);
     
     //for debugging
     //$prepared_statement = $wpdb->prepare($sql_local, $var_for_publish, $var_for_page, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash, $get_adv_page_id_local);
@@ -208,24 +254,25 @@ print_r($debug_rows2_total);
     // get returned rows from query
     //$total_results = $gcmaz_wpdb->num_rows + $wpdb->num_rows;  <- doesnt work so count array instead
     $total_results = count($results);
-$debug_tr = "<br/>total results: " . $total_results;
-print_r($debug_tr);
+    //$debug_tr = "<br/>total results: " . $total_results;
+    //print_r($debug_tr);
 
     //total pages
-    $total_pages = ceil($total_results / $results_per_page);
-$debug_tp= "<br/>total pages: " . $total_pages;
-print_r($debug_tp);
+    //$total_pages = ceil($total_results / $results_per_page);
+    //$debug_tp= "<br/>total pages: " . $total_pages;
+    //print_r($debug_tp);
     
     
 // debug array
-$debug_rg = "<br/>results gcmaz: " . count($results_gcmaz);
-$debug_rl = "<br/>results local: " . count($results_local);
-$debug_m = "<br/>results merged: " . count($results_merged);
-$debug_s = "<br/>results sorted: " . count($results);
-print_r($debug_rg);
-print_r($debug_rl);
-print_r($debug_m);
-print_r($debug_s);
+//$debug_rg = "<br/>results gcmaz: " . count($results_gcmaz);
+//$debug_rl = "<br/>results local: " . count($results_local);
+//$debug_m = "<br/>results merged: " . count($results_merged);
+//$debug_s = "<br/>results sorted: " . count($results);
+//print_r($debug_rg);
+//print_r($debug_rl);
+//print_r($debug_m);
+//print_r($debug_s);
+    
     
     
     // II. CREATE USEABLE LINKS
@@ -247,6 +294,20 @@ print_r($debug_s);
         return $pretty_date;
     }
     
+    // IV.  PAGINATION of RESULTS
+    $total_results = count($results);
+    $total_pages = ceil($total_results / $results_per_page);
+    //print_r($total_pages);
+    
+    function gcmaz_pagination(){
+        
+    }
+    
+    
+    function nothing_found(){
+       $nothing_found = true;
+        // do nothing
+    }
 ?>
 
 <div class="in-cnt-wrp row">
@@ -260,6 +321,7 @@ print_r($debug_s);
         </div>
         <section class="search-results">
 
+            <?php if ( true != $nothing_found ) : ?>
             <?php if( !empty( $results ) ) : ?>
                 <ul class="search-result-list list-unstyled">
                     <?php
@@ -277,18 +339,21 @@ print_r($debug_s);
                     ?>
                 </ul>
             <?php endif; ?>
+            <?php else : ?>
+                <h4>No results</h4>
+            <?php endif; ?>
             
             <div style="margin:2% auto;padding:10px;display:block">
             <?php
                 //display pagination
-                echo paginate_links( array(
-                    'base' => add_query_arg('page', '%#%'),
-                    'format' => '',
-                    'prev_text' => __('&laquo;'),
-                    'next_text' => __('&raquo;'),
-                    'total' => $total_pages,
-                    'current' => $paged
-                ));
+                //echo paginate_links( array(
+                    //'base' => add_query_arg('page', '%#%'),
+                    //'format' => '',
+                    //'prev_text' => __('&laquo;'),
+                    //'next_text' => __('&raquo;'),
+                    //'total' => $total_pages,
+                    //'current' => $paged
+                //));
             ?>
             </div>
             
