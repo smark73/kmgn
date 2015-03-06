@@ -147,6 +147,28 @@ function add_query_vars_filter($vars){
 add_filter('query_vars', 'add_query_vars_filter');
 
 /*
+ *  function to convert object to array
+ */
+function object_to_array($object_to_array) {
+    if (is_object($object_to_array)) {
+        // Gets the properties of the given object
+        // with get_object_vars function
+        $object_to_array = get_object_vars($object_to_array);
+    }
+    if (is_array($object_to_array)) {
+        /*
+        * Return array converted to object
+        * Using __FUNCTION__ (Magic constant)
+        * for recursive call
+        */
+        return array_map(__FUNCTION__, $object_to_array);
+    } else {
+        // Return array
+        return $object_to_array;
+    }
+}
+
+/*
  * START Create pages programatically
  * @returns -1 if the post was never created, -2 if a post with the same title exists, or the ID of the post if successful.
  * 
