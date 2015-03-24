@@ -135,7 +135,7 @@
         // QUERY 2) LOCAL Search
 
         //  I.  
-            // array of pages on gcmaz we don't want to return
+            // array of pages on local we don't want to return
             // need to set this up as options in custom gcmaz plugin instead of hardcoded (select pages to ignore in search results)
             $pages_to_ignore_local = array(619, 21);
 
