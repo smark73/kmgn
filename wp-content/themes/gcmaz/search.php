@@ -44,11 +44,9 @@
     foreach( $stopwords as $stopword ){
         if( array_search ( $stopword, $search_terms ) ){
             $key = array_search( $stopword, $search_terms );
-            print_r($key);
             unset($search_terms[$key]);
         }
     }
-    //print_r($search_terms);
 
     // III. COMPOSE THE SQL STATEMENT
     // init array of final terms
@@ -83,7 +81,7 @@
         /*******************************************************
          * 2 Queries (gcmaz domain & local site)
          * 
-         *   I.  Get Advertising Page id to eliminate it from search results
+         *   I.  unfinished - pages to ignore
          *   II. Prepare the statement
          *   III. Get the results
          *   IV.  Merge and sort the results
@@ -93,19 +91,15 @@
          *  b.    the C, D, E  ... denote placeholders in the wpdb->prepare statement in order where 
          *  c.     the sql statement has %s, %d denoting "string" or "integer"
          *  d.    blueprint of the prepared statement
-         *         $rows = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare( "the sql query", C, D, E, F, G, H, I, J)
+         *         $rows = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare( "the sql query", C, D, E, F, G, H, I, J, K, L, M, N, O, P)
          *  e.    variables used in "local" end with _local to avoid collision
          ********************************************************/
         // QUERY 1) GCMAZ.com search
+        // I. 
+            // array of pages on gcmaz we don't want to return
+            // need to set this up as options in custom gcmaz plugin instead of hardcoded (select pages to ignore in search results)
+            $pages_to_ignore_gcmaz = array(1882, 1881, 1880, 1879, 1878, 1877, 1846, 1845, 15);
 
-        //  I.  GET ADV PAGE ID
-        $var_for_adv_pg = "advertise-on-northern-arizona-radio";
-        $sql_adv_pg = "
-                    SELECT ID
-                    FROM $gcmaz_wpdb->posts
-                    WHERE post_name = '%s'
-                    ";
-        $get_adv_page_id = $gcmaz_wpdb->get_var($gcmaz_wpdb->prepare($sql_adv_pg, $var_for_adv_pg));  // J
 
         // II.  PREPARE THE STATEMENT
         $var_for_publish = "publish"; //C
@@ -122,17 +116,17 @@
                     WHERE (" . implode(' OR ', $sql_search_terms) . ")
                         AND post_status = '%s'
                         AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s')
-                        AND post_parent != %d
+                        AND ID NOT IN (" . implode($pages_to_ignore_gcmaz, ", ") . ")
                     ORDER BY post_date DESC
                     LIMIT $rows_to_return
                      ";
 
         //for debugging
-        //$prepared_statement = $gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash, $get_adv_page_id);
+        //$prepared_statement = $gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash);
         //print_r($prepared_statement);
 
         //  III.  GET RESULTS  see notes (blueprint) for details
-        $rows = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash, $get_adv_page_id));
+        $rows = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash));
 
         //$debug_rows1_total = "<br/>rows1: " . $gcmaz_wpdb->num_rows;
         //print_r($debug_rows1_total);
@@ -140,14 +134,10 @@
 
         // QUERY 2) LOCAL Search
 
-        //  I.  GET ADV PAGE ID
-        $var_for_adv_pg_local = "advertise-on-northern-arizona-radio";
-        $sql_adv_pg_local = "
-                    SELECT ID
-                    FROM $wpdb->posts
-                    WHERE post_name = '%s'
-                    ";
-        $get_adv_page_id_local = $wpdb->get_var($wpdb->prepare($sql_adv_pg_local, $var_for_adv_pg_local));  // J
+        //  I.  
+            // array of pages on gcmaz we don't want to return
+            // need to set this up as options in custom gcmaz plugin instead of hardcoded (select pages to ignore in search results)
+            $pages_to_ignore_local = array(619, 21, );
 
         // II.  PREPARE THE STATEMENT
         $var_for_publish_local = "publish"; //C
@@ -164,7 +154,7 @@
                     WHERE (" . implode(' OR ', $sql_search_terms) . ")
                         AND post_status = '%s'
                         AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s')
-                        AND post_parent != %d
+                        AND ID NOT IN (" . implode($pages_to_ignore_local, ", ") . ")
                     ORDER BY post_date DESC
                     LIMIT $rows_to_return
                      ";
@@ -177,7 +167,7 @@
         //print_r($prepared_statement);
 
         //  III.  GET RESULTS  see notes (blueprint) for details
-        $rows_local = $wpdb->get_results($wpdb->prepare($sql_local, $var_for_publish_local, $var_for_page_local, $var_for_post_local, $var_for_whats_local, $var_for_concert_local, $var_for_community_local, $var_for_splash_local, $get_adv_page_id_local));
+        $rows_local = $wpdb->get_results($wpdb->prepare($sql_local, $var_for_publish_local, $var_for_page_local, $var_for_post_local, $var_for_whats_local, $var_for_concert_local, $var_for_community_local, $var_for_splash_local));
 
 
        
