@@ -137,7 +137,7 @@
         //  I.  
             // array of pages on gcmaz we don't want to return
             // need to set this up as options in custom gcmaz plugin instead of hardcoded (select pages to ignore in search results)
-            $pages_to_ignore_local = array(619, 21, );
+            $pages_to_ignore_local = array(619, 21);
 
         // II.  PREPARE THE STATEMENT
         $var_for_publish_local = "publish"; //C
@@ -163,8 +163,8 @@
         //print_r($debug_rows2_total);
 
         //for debugging
-        //$prepared_statement = $wpdb->prepare($sql_local, $var_for_publish, $var_for_page, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash, $get_adv_page_id_local);
-        //print_r($prepared_statement);
+        //$prepared_statement_local = $wpdb->prepare($sql_local, $var_for_publish_local, $var_for_page_local, $var_for_post_local, $var_for_whats_local, $var_for_concert_local, $var_for_community_local, $var_for_splash_local);
+        //print_r($prepared_statement_local);
 
         //  III.  GET RESULTS  see notes (blueprint) for details
         $rows_local = $wpdb->get_results($wpdb->prepare($sql_local, $var_for_publish_local, $var_for_page_local, $var_for_post_local, $var_for_whats_local, $var_for_concert_local, $var_for_community_local, $var_for_splash_local));
