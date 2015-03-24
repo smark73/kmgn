@@ -44,7 +44,7 @@
     foreach( $stopwords as $stopword ){
         if( array_search ( $stopword, $search_terms ) ){
             $key = array_search( $stopword, $search_terms );
-            print_r($key);
+            //print_r($key);
             unset($search_terms[$key]);
         }
     }
