@@ -19,8 +19,9 @@
  ********************************/
     // since 2 queries, possible total number is 2x this
     $rows_to_return = 100;
-    //results per page (needs to stay above sql statements)
-    $results_per_page = 2;
+    
+    // DEFINE OUR RESULTS PER PAGE FOR PAGINATION
+    $results_per_page = 12;
     
     
 /************************************
@@ -70,14 +71,16 @@
        $results = null;
     } else {
         // call our search function 
-        $results = run_the_queries($gcmaz_wpdb, $wpdb, $sql_search_terms, $rows_to_return, $results_per_page);
+        $results = run_the_queries($gcmaz_wpdb, $wpdb, $sql_search_terms, $rows_to_return);
+        //split the results into an array of arrays with our defined number of results per page
+        $paginated_results = array_chunk($results, $results_per_page);
     }
     
     
 /**********************************************
  *  THE SEARCH FUNCTION
  *********************************************/
-    function run_the_queries($gcmaz_wpdb, $wpdb, $sql_search_terms, $rows_to_return, $results_per_page){
+    function run_the_queries($gcmaz_wpdb, $wpdb, $sql_search_terms, $rows_to_return){
         /*******************************************************
          * 2 Queries (gcmaz domain & local site)
          * 
@@ -189,31 +192,9 @@
         
         return $results;
         
-        
-        // --------  PAGINATION 
-        // get returned rows from query
-        //$total_results = $gcmaz_wpdb->num_rows + $wpdb->num_rows;  <- doesnt work so count array instead
-        $total_results = count($results);
-        //$debug_tr = "<br/>total results: " . $total_results;
-        //print_r($debug_tr);
-
-        //total pages
-        //$total_pages = ceil($total_results / $results_per_page);
-        //$debug_tp= "<br/>total pages: " . $total_pages;
-        //print_r($debug_tp);
-
-
-    // debug array
-    //$debug_rg = "<br/>results gcmaz: " . count($results_gcmaz);
-    //$debug_rl = "<br/>results local: " . count($results_local);
-    //$debug_m = "<br/>results merged: " . count($results_merged);
-    //$debug_s = "<br/>results sorted: " . count($results);
-    //print_r($debug_rg);
-    //print_r($debug_rl);
-    //print_r($debug_m);
-    //print_r($debug_s);
-
     } // end run_the_queries()
+    
+
     
     
 /*******************************************************
@@ -241,18 +222,6 @@
         $pretty_date = date("F j, Y", $p_date);
         return $pretty_date;
     }
-/*******************************************************
- * PAGINATION of RESULTS
- **********************************************/
-    $total_results = count($results);
-    $total_pages = ceil($total_results / $results_per_page);
-    //print_r($total_pages);
-    //echo "<br/>";
-    //print_r($total_results);
-    
-    function gcmaz_pagination(){
-        
-    }
 
 ?>
 
@@ -268,9 +237,23 @@
         <section class="search-results">
 
             <?php if( !empty( $results ) ) : ?>
+            
+                <?php
+                    // Get the show var and validate it
+                    (int) $show = get_query_var('show', 1);
+                    if( preg_match("/[^0-9]/", $show)){
+                        wp_die ('Invalid page number');
+                    }
+                ?>
+
                 <ul class="search-result-list list-unstyled">
                     <?php
-                        foreach($results as $result) {
+                        // the needed array key is $show - 1;
+                        $result_page = $show - 1;
+                        foreach( $paginated_results[$result_page] as $result ) {
+                            
+                            $page_var = $show;
+                            
                             $id = $result['ID'];
                             $title  = $result['post_title'];
 
@@ -283,23 +266,30 @@
                         }
                     ?>
                 </ul>
+            
+            
+            <?php
+                // PAGINATION
+                $pagination_btns = '';
+                //if more than one page of results, loop through paginated results for our pagination links
+                if( count( $results ) > $results_per_page ){
+                    echo "<div class='pagination'>";
+                    for ( $i=1; $i < count($paginated_results) +1; $i++ ) {
+                        if($i == $show){
+                            $btn_class = 'page-numbers current';
+                        } else {
+                            $btn_class = 'page-numbers';
+                        }
+
+                        echo "<a href=/?s=" . $search_qry . "&show=" . $i . " class='" . $btn_class . "'>" . $i . "</a>";
+                    }
+                    echo "</div>";
+                }
+            ?>
+            
             <?php else : ?>
                 <h4>No results.  Please search again.</h4>
             <?php endif; ?>
-            
-            <div style="margin:2% auto;padding:10px;display:block">
-            <?php
-                //display pagination
-                //echo paginate_links( array(
-                    //'base' => add_query_arg('page', '%#%'),
-                    //'format' => '',
-                    //'prev_text' => __('&laquo;'),
-                    //'next_text' => __('&raquo;'),
-                    //'total' => $total_pages,
-                    //'current' => $paged
-                //));
-            ?>
-            </div>
             
         </section>
     </article>
