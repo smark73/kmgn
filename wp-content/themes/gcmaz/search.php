@@ -270,6 +270,8 @@
             
             <?php
                 // PAGINATION
+                // prepare search terms for the url query var
+                $url_search_terms = implode('+', $search_terms);
                 $pagination_btns = '';
                 //if more than one page of results, loop through paginated results for our pagination links
                 if( count( $results ) > $results_per_page ){
@@ -281,7 +283,7 @@
                             $btn_class = 'page-numbers';
                         }
 
-                        echo "<a href=/?s=" . $search_qry . "&show=" . $i . " class='" . $btn_class . "'>" . $i . "</a>";
+                        echo "<a href=/?s=" . $url_search_terms . "&show=" . $i . " class='" . $btn_class . "'>" . $i . "</a>";
                     }
                     echo "</div>";
                 }
