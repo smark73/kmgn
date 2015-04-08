@@ -12,7 +12,7 @@ Version: 1.0
    Base
    ========================================================================== */
 /*max page width set in variables.less via the @container-lg-desktop */
-body {min-width:300px;margin-top:40px;padding-top:20px}
+body {min-width:300px;margin-top:50px;padding-top:20px}
 
 .innerbg{
     background:@gray;
@@ -48,6 +48,7 @@ h5 {color:@red;font-weight:600;}
 /******** FONTS *************/
 .unica{font-family: 'Unica One', cursive;}
 .lifesavers{font-family: 'Life Savers', cursive; }
+.montserrat{font-family: 'Montserrat', sans-serif;}
 
 /******** COLORS ********/
 .yellow{color:@yellow}
@@ -305,11 +306,23 @@ ul.search-result-list li a:hover{ border-left:2px solid @blue;padding-left:8px }
    Navigation
    ========================================================================== */
 
+.navbar {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight:700;
+    font-size:12px;
+}
+.navbar .dropdown-menu {
+    text-transform: capitalize;
+    font-weight:400;
+    font-size:12px;
+}
+
 /* navigation open new window */
 .glyphicon-new-window{font-size:0.8em;margin-left:5px;color:rgba(255,255,255,0.5)}
 .navbar-icons{ float:right;}
 .navbar-icons a img{border:0;text-decoration:none;}
-.navbar-icons a{ text-decoration:none;padding:0;margin:0;line-height:40px;height:40px;width:40px;display:inline-block;vertical-align:middle;text-align:center;}
+.navbar-icons a{ text-decoration:none;padding:0;margin:0;line-height:60px;height:60px;width:60px;display:inline-block;vertical-align:middle;text-align:center;}
 a.icon-fb:hover{background:#3b589c;}
 a.icon-tw:hover{background:#1ab2e8;}
 
@@ -433,6 +446,18 @@ ul.sidebar-nav li ul.dropdown-menu{background:rgba(255,255,255,1)}*/
 // recent posts link color
 .widget_recent_entries div ul li a{color:#ccc}
 
+
+// turn off Safari rounding corners
+textarea,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+input.search-field,
+.search-field {
+    -webkit-appearance: none;
+    border-radius: 0;
+    -webkit-border-radius:0;
+}
 
 /* ==========================================================================
    WordPress Generated Classes
