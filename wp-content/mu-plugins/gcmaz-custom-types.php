@@ -207,38 +207,44 @@ add_action('publish_post', 'save_concert_attributes');
 //save custom fields and set specific category
 function save_whats_attributes(){
     global $post;
-    if($post->post_type == 'whats-happening'){
-        //custom fields
-        $whats_date = sanitize_text_field($_POST['whats_date']);
-        $whats_fulldate = sanitize_text_field($_POST['whats_fulldate']);
-        update_post_meta($post->ID, "whats_date", $whats_date);
-        update_post_meta($post->ID, "whats_fulldate", $whats_fulldate);
-        //category
-        wp_set_object_terms($post->ID, 'whats-happening', 'category', true);
+    if (!empty($post)){
+        if($post->post_type == 'whats-happening'){
+            //custom fields
+            $whats_date = sanitize_text_field($_POST['whats_date']);
+            $whats_fulldate = sanitize_text_field($_POST['whats_fulldate']);
+            update_post_meta($post->ID, "whats_date", $whats_date);
+            update_post_meta($post->ID, "whats_fulldate", $whats_fulldate);
+            //category
+            wp_set_object_terms($post->ID, 'whats-happening', 'category', true);
+        }
     }
 }
 function save_community_attributes(){
     global $post;
-    if($post->post_type == 'community-info'){
-        //custom fields
-        $community_date = sanitize_text_field($_POST['community_date']);
-        $community_fulldate = sanitize_text_field($_POST['community_fulldate']);
-        update_post_meta($post->ID, "community_date", $community_date);
-        update_post_meta($post->ID, "community_fulldate", $community_fulldate);
-        //category
-        wp_set_object_terms($post->ID, 'community-info', 'category', true);
+    if (!empty($post)){
+        if($post->post_type == 'community-info'){
+            //custom fields
+            $community_date = sanitize_text_field($_POST['community_date']);
+            $community_fulldate = sanitize_text_field($_POST['community_fulldate']);
+            update_post_meta($post->ID, "community_date", $community_date);
+            update_post_meta($post->ID, "community_fulldate", $community_fulldate);
+            //category
+            wp_set_object_terms($post->ID, 'community-info', 'category', true);
+        }
     }
 }
 function save_concert_attributes(){
     global $post;
-    if($post->post_type == 'concert'){
-        //custom fields
-        $concert_date = sanitize_text_field($_POST['concert_date']);
-        $concert_fulldate = sanitize_text_field($_POST['concert_fulldate']);
-        update_post_meta($post->ID, "concert_date", $concert_date);
-        update_post_meta($post->ID, "concert_fulldate", $concert_fulldate);
-        //category
-        wp_set_object_terms($post->ID, 'concert', 'category', true);
+    if (!empty($post)){
+        if($post->post_type == 'concert'){
+            //custom fields
+            $concert_date = sanitize_text_field($_POST['concert_date']);
+            $concert_fulldate = sanitize_text_field($_POST['concert_fulldate']);
+            update_post_meta($post->ID, "concert_date", $concert_date);
+            update_post_meta($post->ID, "concert_fulldate", $concert_fulldate);
+            //category
+            wp_set_object_terms($post->ID, 'concert', 'category', true);
+        }
     }
 }
 
