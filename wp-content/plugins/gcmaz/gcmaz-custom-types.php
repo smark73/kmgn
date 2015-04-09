@@ -123,10 +123,9 @@ function add_concert_box(){
 }
 
 // Enqueue Datepicker + jQuery UI CSS
-// Enqueue Datepicker + jQuery UI CSS
 function enqueue_dp_ui(){
     wp_enqueue_script( 'jquery-ui-datepicker' );
-    wp_enqueue_style( 'jquery-ui-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/smoothness/jquery-ui.css', true);
+    wp_enqueue_style( 'jquery-ui-style', '//ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/smoothness/jquery-ui.css', true);
 }
 add_action('admin_init', 'enqueue_dp_ui');
 
@@ -248,32 +247,3 @@ function save_concert_attributes(){
     }
 }
 
-//add taxonomy
-/*add_action('init', 'create_location_taxonomy', 0);
-
-function create_location_taxonomy(){
-    $loc_labels = array(
-        'name' => 'Location',
-        'singular_name' => 'location',
-        'search_items' => 'Search location',
-        'popular_items' => 'Popular locations',
-        'all_items' => 'All locations',
-        'parent_item' => null,
-        'parent_item_colon' => null,
-        'edit_item' => 'Edit location',
-        'update_item' => 'Update location',
-        'add_new_item' => 'Add new location',
-        'new_item_name' => 'New location name',
-        'separate_items_with_commas' => 'Separate locations with commas',
-        'add_or_remove_items' => 'Add or remove locations',
-        'choose_from_most_used' => 'Choose from common locations',
-        'menu_name' => 'Locations',
-    );
-    register_taxonomy('locations', array('whats-happening', 'community-info', 'concert'), array(
-        'hierarchical' => false,
-        'labels' => $loc_labels,
-        'query_var' => true,
-        'update_count_callback' => '_update_post_term_count',
-        'rewrite' => array('slug' => 'locations')
-    ));
-}*/
