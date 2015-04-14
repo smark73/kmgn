@@ -1,10 +1,29 @@
-<div class="listenlive row">
-    <div class="strm-lft col-md-9 col-sm-9 col-xs-7">
-        <a class="listenlive-txt centered" href="javascript:void(window.open('http://player.tritondigital.com/8061', 'KMGNFM', 'width=780,height=600'));">
-            Listen Live <span class="glyphicon glyphicon-play"></span>
-        </a>
-    </div>
-    <div class="strm-spnsr col-md-3 col-sm-3 col-xs-5">
-        <?php echo adrotate_group(15);?>
-    </div>
-</div>
+<?php $adrotate_group_var = 15; ?>
+
+<?php
+    /*test if adrotate is populated or not */
+    if( substr( adrotate_group( $adrotate_group_var ), 0, 5) == "<span" || substr( adrotate_group( $adrotate_group_var ), 0, 2) == "<!" ) {
+        // no adrotate to display
+            echo
+                '<div class="listenlive row">
+                    <div class="strm-lft col-md-12 col-sm-12 col-xs-12">
+                        <a class="listenlive-txt centered" href="javascript:void(window.open(\'http://player.tritondigital.com/8061\', \'KMGNFM\', \'width=780,height=600\'));">
+                            Listen Live <span class="glyphicon glyphicon-play"></span>
+                        </a>
+                    </div>
+                </div>';
+    } else {
+        // we have an ad to squeeze in
+            echo
+                '<div class="listenlive row">
+                    <div class="strm-lft col-md-9 col-sm-9 col-xs-7">
+                        <a class="listenlive-txt centered" href="javascript:void(window.open(\'http://player.tritondigital.com/8061\', \'KMGNFM\', \'width=780,height=600\'));">
+                            Listen Live <span class="glyphicon glyphicon-play"></span>
+                        </a>
+                    </div>
+                    <div class="strm-spnsr col-md-3 col-sm-3 col-xs-5">' .
+                        adrotate_group( $adrotate_group_var ) .
+                    '</div>
+                </div>';
+    }
+?>
