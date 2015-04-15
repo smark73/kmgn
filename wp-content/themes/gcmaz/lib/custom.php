@@ -47,6 +47,17 @@ function my_admin_title($admin_title, $title){
     return get_bloginfo('name') . ' &bull; ' . $title;
 }
 
+/*
+ * Add Custom Code to Page Head
+ */
+add_action('wp_head', 'gcmaz_add_to_head');
+function gcmaz_add_to_head(){
+    echo "<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>";
+    //if( is_front_page() ){
+        //echo "<link type='text/css' rel='stylesheet' href='/assets/css/animate/animate.min.css'>";
+    //}
+}
+
 // PAGE TAKE OVER FUNCTIONS CALLED BY ADMIN OPTIONS
 // get the ptko options array
 $ptko_settings = get_option('ptko_settings');
@@ -168,144 +179,3 @@ function object_to_array($object_to_array) {
     }
 }
 
-/*
- * START Create pages programatically
- * @returns -1 if the post was never created, -2 if a post with the same title exists, or the ID of the post if successful.
- * 
- * pages on templates need to have tpl defined.  pages with their own page-asdf.php need tpl set null
- * pages we need to create are
- * ----------------- 
- * song requests
- * contact
- * advertise (x2)
- * weather
- * thank you - form redirect
- * whats
- * community
- * concerts
- * on air
- * 
- */
-/* ONLY NEEDED FOR SETUP
-$pages = array(
-    $page_requests = array(
-        'page_id' => -1,
-        'slug' => 'song-requests',
-        'author_id' => 1,
-        'title' => 'Request a Song',
-        'tpl' => 'template-rbn-hdr.php',
-    ),
-    $page_contact = array(
-        'page_id' => -1,
-        'slug' => 'contact-radio',
-        'author_id' => 1,
-        'title' => 'Contact Radio',
-        'tpl' => 'template-rbn-hdr.php',
-    ),
-    $page_advertise = array(
-        'page_id' => -1,
-        'slug' => 'advertise-on-northern-arizona-radio',
-        'author_id' => 1,
-        'title' => 'Advertise On Northern Arizona Radio',
-        'tpl' => 'template-rbn-hdr.php',
-    ),
-    $page_adv_info = array(
-        'page_id' => -1,
-        'slug' => 'advertising-info',
-        'author_id' => 1,
-        'title' => 'Advertising Information',
-        'tpl' => 'template-feed-advertising.php',
-    ),
-    $page_weather = array(
-        'page_id' => -1,
-        'slug' => 'weather',
-        'author_id' => 1,
-        'title' => 'Area Weather',
-        'tpl' => '',
-    ),
-    $page_thanks = array(
-        'page_id' => -1,
-        'slug' => 'thank-you',
-        'author_id' => 1,
-        'title' => 'Thank You',
-        'tpl' => 'template-rbn-hdr.php',
-    ),
-    $page_whats = array(
-        'page_id' => -1,
-        'slug' => 'whats-happening-northern-arizona',
-        'author_id' => 1,
-        'title' => 'Whats Happening in Northern Arizona',
-        'tpl' => 'template-feed-whats.php',
-    ),
-    $page_community = array(
-        'page_id' => -1,
-        'slug' => 'northern-arizona-community-info',
-        'author_id' => 1,
-        'title' => 'Northern Arizona Community Information',
-        'tpl' => 'template-feed-community.php',
-    ),
-    $page_concerts = array(
-        'page_id' => -1,
-        'slug' => 'concerts-northern-arizona',
-        'author_id' => 1,
-        'title' => 'Concerts in Northern Arizona,
-        'tpl' => 'template-feed-concerts.php',
-    ),
-    $page_onair = array(
-        'page_id' => -1,
-        'slug' => 'radio-shows',
-        'author_id' => 1,
-        'title' => 'On Air Shows',
-        'tpl' => 'template-rbn-hdr.php',
-    ),
-);
-foreach($pages as $pinfo){
-    //print_r($pinfo);
-    $page_id = $pinfo['page_id'];
-    $slug = $pinfo['slug'];
-    $author_id = $pinfo['author_id'];
-    $title = $pinfo['title'];
-    $tpl = $pinfo['tpl'];
-    
-    $pnum += 1;
-    $programatically_create_pages = 'programatically_create_pages' + $pnum;
-    $programatically_create_pages = function($page_id, $slug, $author_id, $title, $tpl) {
-        $page_id = $page_id;
-        $slug = $slug;
-        $author_id = $author_id;
-        $title = $title;
-        $tpl = $tpl;
-        $parent_id = 0; // default - no parent is 0
-        //if page doesnt exist create it
-        if(null == get_page_by_title($title)){
-            //if one of adv info pages, get page id of parent so we can insert as the parent id
-            if($tpl == 'template-adv-info.php'){
-                $adv_pg = get_page_by_title('Advertise On Northern Arizona Radio');
-                $parent_id = $adv_pg->ID;
-            }
-            //set post id so we know it was successfully created
-            $page_id = wp_insert_post(array(
-                'comment_status' => 'closed',
-                'ping_status' =>'closed',
-                'post_author' => $author_id,
-                'post_name' => $slug,
-                'post_title' => $title,
-                'post_status' => 'publish',
-                'post_type' => 'page',
-                'post_parent' => $parent_id,
-                )
-            );
-            update_post_meta($page_id, '_wp_page_template', $tpl);
-        } else {
-            // use -2 to indicate the page exists
-            $post_id = -2;
-        }
-    };
-    
-    add_filter('after_setup_theme', $programatically_create_pages($page_id, $slug, $author_id, $title, $tpl));
-}
-*/
-
-/*
- * END Auto page creation
- */

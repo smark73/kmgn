@@ -1,7 +1,7 @@
 <div class="in-cnt-wrp row wthr-wrp">
     <div class="centered rbn-hdg">
         <div class="page-header">
-            <h3 class="txtshdw">Area Weather &nbsp; <span class="glyphicon glyphicon-certificate yellow"></span> <span class="glyphicon glyphicon-cloud lt-blue"></span></h3>
+            <h3 class="txtshdw">Area Weather &nbsp; <span class="glyphicon glyphicon-certificate yellow"></span> <span class="glyphicon glyphicon-cloud white"></span></h3>
         </div>
     </div>
     <div class="wthr-lnks centered">

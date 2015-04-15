@@ -46,9 +46,10 @@ img {width:auto;height:auto}
 h5 {color:@red;font-weight:600;}
 
 /******** FONTS *************/
-.unica{font-family: 'Unica One', cursive;}
-.lifesavers{font-family: 'Life Savers', cursive; }
+//.unica{font-family: 'Unica One', cursive;}
+//.lifesavers{font-family: 'Life Savers', cursive; }
 .montserrat{font-family: 'Montserrat', sans-serif;}
+//.oswald{font-family: 'Oswald', sans-serif;}
 
 /******** COLORS ********/
 .yellow{color:@yellow}
@@ -177,6 +178,13 @@ div.rbn-hdg{
     -webkit-border-top-left-radius: 4px;
     -moz-border-radius-topleft: 4px;
     border-top-left-radius: 4px;
+    h1,h2,h3,h4,h5,h6,h7,h8,h9{
+        //.oswald;
+        //text-transform: uppercase;
+        //font-weight:600;
+        //letter-spacing: -1px;
+        color:lighten(@gray-light,10%);
+    }
 }
 div.rbn-hdg:before{
     content:" ";
@@ -219,7 +227,16 @@ span.archv-date{float:right;font-size:11px;margin-top:10px;}
 article.sngl-info{margin:auto}
 
 /****** weather *******/
-.wthr-wrp{background: #6f9dbe;background: -webkit-gradient(linear, left top, left bottom, from(#adc7db), to(#6f9dbe));background: -moz-linear-gradient(top, #b2bcc8, #adc7db);}
+.wthr-wrp{
+    background: #7db9e8; /* Old browsers */
+    background: -moz-linear-gradient(top,  #7db9e8 16%, #f7f2ff 88%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(16%,#7db9e8), color-stop(88%,#f7f2ff)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #7db9e8 16%,#f7f2ff 88%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #7db9e8 16%,#f7f2ff 88%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #7db9e8 16%,#f7f2ff 88%); /* IE10+ */
+    background: linear-gradient(to bottom,  #7db9e8 16%,#f7f2ff 88%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#f7f2ff',GradientType=0 ); /* IE6-9 */
+}
 #weather {width:90%;margin:0 auto;padding:10px;text-align:center }
 #weather h2 {color:#444;font-size:2.0em;text-shadow:rgba(250, 250, 250, 0.8) -1px -1px 0}
 #weather p {font-size:40px;margin:20px 0 0;color:#fff}
@@ -409,7 +426,7 @@ ul.sidebar-nav li ul.dropdown-menu{background:rgba(255,255,255,1)}*/
 
 .content-info { }
 .pg-ftr{
-    background: darken(@gray, 5%);
+    background: darken(@gray, 10%);
     border-top:4px solid @yellow;
     .glyphicon{color: @yellow}
     li{list-style-type:none}
@@ -487,6 +504,8 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
     .row1{margin-bottom:4%}
     // fixed navbar
     body.admin-bar .navbar-fixed-top { top: 46px !important; }
+    //shrink page header text
+    .page-header h1, .page-header h2, .page-header h3, .page-header h4, .page-header h5, .page-header h6 { font-size:1.1em;}
 }
 
 @media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
@@ -500,6 +519,8 @@ figure.alignnone { margin-left: 0; margin-right: 0; }
     body.admin-bar .navbar-fixed-top { top: 28px !important; }
     //hide icons when navbar shrinks to "sm" prevent these from wrapping below menu items and breaking it
     .navbar-icons{ line-height:0px;height:0px;width:0px;display:none;visibility:hidden}
+    //shrink page header text
+    .page-header h1, .page-header h2, .page-header h3, .page-header h4, .page-header h5, .page-header h6 { font-size:1.3em;}
 }
 
 @media (min-width: @screen-md) and (max-width: @screen-md-max) {
