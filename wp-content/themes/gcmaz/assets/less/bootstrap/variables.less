@@ -168,17 +168,17 @@
 // Dropdowns
 // -------------------------
 
-@dropdown-bg:                    lighten(@gray,2%);
-@dropdown-border:              lighten(@gray,2%);
-@dropdown-fallback-border:  lighten(@gray,2%);
-@dropdown-divider-bg:          lighten(@gray,2%);
+@dropdown-bg:                    lighten(@gray-dark, 5%);
+@dropdown-border:              lighten(@gray-dark, 5%);
+@dropdown-fallback-border:  lighten(@gray-dark, 5%);
+@dropdown-divider-bg:          lighten(@gray-dark, 5%);
 
-@dropdown-link-active-color:     @yellow;
-@dropdown-link-active-bg:        @gray;
+@dropdown-link-active-color:     @gray-light;
+@dropdown-link-active-bg:        lighten(@gray-dark, 5%);
 
 @dropdown-link-color:            @yellow;
 @dropdown-link-hover-color:      lighten(@yellow, 5%);
-@dropdown-link-hover-bg:         lighten(@gray, 4%);
+@dropdown-link-hover-bg:         lighten(@gray-dark, 10%);
 
 @dropdown-link-disabled-color:   @gray-light;
 
@@ -247,7 +247,7 @@
 @navbar-height:                    60px;
 @navbar-margin-bottom:             @line-height-computed;
 @navbar-default-color:             @yellow;
-@navbar-default-bg:                darken(@gray, 5%);
+@navbar-default-bg:                  @gray-dark;
 @navbar-default-border:            darken(@navbar-default-bg, 2%);
 @navbar-border-radius:             @border-radius-base;
 @navbar-padding-horizontal:        floor(@grid-gutter-width / 2);
@@ -256,9 +256,9 @@
 // Navbar links
 @navbar-default-link-color:                  @yellow;
 @navbar-default-link-hover-color:        lighten(@yellow, 5%);
-@navbar-default-link-hover-bg:            lighten(@gray,2%);
+@navbar-default-link-hover-bg:            lighten(@gray-dark, 5%);
 @navbar-default-link-active-color:       @gray-light;
-@navbar-default-link-active-bg:            darken(@gray, 2%);
+@navbar-default-link-active-bg:            lighten(@gray-dark, 5%);
 @navbar-default-link-disabled-color:       #ccc;
 @navbar-default-link-disabled-bg:          transparent;
 
