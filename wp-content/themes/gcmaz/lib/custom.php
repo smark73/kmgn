@@ -71,7 +71,7 @@ if($ptko_settings['ptko_toggle'] == 1){
         $bgimg = esc_url($ptko_settings['ptko_bgimg']);
         $newstyles = "
             <style type='text/css'>
-            .takeover{background:$bgcolor;background-image: url('$bgimg');background-position:center 38px;background-repeat:no-repeat;}
+            .takeover{background:$bgcolor;background-image: url('$bgimg');background-position:center 58px;background-repeat:no-repeat;}
             @media (max-width: 767px) { .takeover{background:$bgcolor;}
             </style>
         ";
