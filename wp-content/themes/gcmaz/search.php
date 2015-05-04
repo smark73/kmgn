@@ -114,7 +114,7 @@
         $var_for_splash = "splash-post"; //I
 
         $sql =  "
-                    SELECT ID, post_date, post_title, guid, post_name
+                    SELECT ID, post_date, post_title, guid, post_name, post_type
                     FROM $gcmaz_wpdb->posts
                     WHERE (" . implode(' OR ', $sql_search_terms) . ")
                         AND post_status = '%s'
@@ -152,7 +152,7 @@
         $var_for_splash_local = "splash-post"; //I
 
         $sql_local =  "
-                    SELECT ID, post_date, post_title, guid, post_name
+                    SELECT ID, post_date, post_title, guid, post_name, post_type
                     FROM $wpdb->posts
                     WHERE (" . implode(' OR ', $sql_search_terms) . ")
                         AND post_status = '%s'
@@ -230,12 +230,42 @@
         <h4>Search Results</h4>
     </div>
     <article>
+
         <?php get_search_form(); ?>
         <div class="search-hdr">
             <?php get_template_part('templates/page', 'header'); ?>
         </div>
         <section class="search-results">
-
+            
+            <div id="search-filter-toggle">Filter Search Results<span class="caret"></span></div>
+            <br class="clearfix">
+           <div id="search-filter" class="search-filter-hide">
+               <div class="search-filter-left">
+               <p>Select what you want to see and click search again</p>
+               <div class="checkbox">
+                   <label><input type="checkbox" value="Pages">Pages</label>
+               </div>
+               <div class="checkbox">
+                   <label><input type="checkbox" value="Posts">Posts</label>
+               </div>
+               <div class="checkbox">
+                   <label><input type="checkbox" value="News">KAFF News</label>
+               </div>
+                <div class="checkbox">
+                   <label><input type="checkbox" value="Local">93-9 The Mountain Only</label>
+               </div>
+                <div class="checkbox">
+                   <label><input type="checkbox" value="gcmaz">Entire GCMAZ Domain</label>
+               </div>
+               </div>
+               <div class="search-filter-right">
+                   
+               </div>
+            </div>
+            
+            <div class="clearfix"></div>
+            
+            
             <?php if( !empty( $results ) ) : ?>
             
                 <?php
@@ -256,12 +286,13 @@
                             
                             $id = $result['ID'];
                             $title  = $result['post_title'];
+                            $post_type = $result['post_type'];
 
                             // don't display non-linked items
                             if( isset( $result['guid'] ) && isset( $result['post_name'] ) ){
                                 $link = create_useable_link( $result['guid'], $result['post_name']);
                                 $pdate = pretty_date( $result['post_date'] );
-                                echo "<li><a href='$link' rel='bookmark' title='$title' class='list-group-item'>$title<p class='search-result-date'>$pdate</p></a></li>";
+                                echo "<li class='$post_type'><a href='$link' rel='bookmark' title='$title' class='list-group-item'>$title<p class='search-result-date'>$pdate</p></a></li>";
                             }
                         }
                     ?>

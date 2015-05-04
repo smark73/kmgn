@@ -84,6 +84,38 @@ var GcmazSite = {
     init: function() {
       // JS here
     }
+  },
+  // Search page
+  search: {
+    init: function() {
+      // JS here
+      // 
+      // filter funx
+        var $searchfiltertoggle = $(document).find('#search-filter-toggle');
+        var $searchfilter = $(document).find('#search-filter');
+        var $searchfiltericon = $(document).find('#search-filter-toggle-icon');
+        
+        $(function(){
+           //$searchfilter.delay(10000).animate({ height:0, bottom:0, marginTop:0},
+            //function(){
+                $searchfiltertoggle.click(function(){
+                    //$searchfilter.stop().animate({ height: 100, bottom: 100, marginTop:0});
+                    $searchfilter.toggleClass('search-filter-hide search-filter-show');
+                    $searchfiltericon.toggleClass('glyphicon-plus glyphicon-minus');
+                });
+            //});
+        });
+      //var $all_posts = $(document).find('li.post');
+      //var $all_pages = $(document).find('li.page');
+      //$('#filter-by-page').click(function(){
+          //$all_posts.addClass('hidden');
+          //$all_pages.removeClass('hidden');
+      //});
+      //$('#filter-by-post').click(function(){
+          //$all_pages.addClass('hidden');
+          //$all_posts.removeClass('hidden');
+      //});
+    }
   }
 };
 
