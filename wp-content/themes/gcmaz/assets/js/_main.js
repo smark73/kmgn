@@ -105,6 +105,34 @@ var GcmazSite = {
                 });
             //});
         });
+        
+        var $searchNews = $(document).find('.searchNews');
+        var $searchGcmaz = $(document).find('.searchGcmaz');
+        var $searchLocal = $(document).find('.searchLocal');
+        var $showPosts = $(document).find('#showPosts');
+        var $showPages = $(document).find('#showPages');
+        var $chkbxPages = $(document).find('.chkbxPages');
+        var $chkbxPosts = $(document).find('.chkbxPosts');
+        $(function(){
+            $searchNews.click(function(){
+                $showPosts.prop('disabled', true);
+                $showPages.prop('disabled', true);
+                $chkbxPages.css('display','none');
+                $chkbxPosts.css('display','none');
+            });
+            $searchGcmaz.click(function(){
+                $showPosts.prop('disabled', false);
+                $showPages.prop('disabled', false);
+                $chkbxPages.css('display','block');
+                $chkbxPosts.css('display','block');
+            });
+            $searchLocal.click(function(){
+                $showPosts.prop('disabled', false);
+                $showPages.prop('disabled', false);
+                $chkbxPages.css('display','block');
+                $chkbxPosts.css('display','block');
+            });
+        });
       //var $all_posts = $(document).find('li.post');
       //var $all_pages = $(document).find('li.page');
       //$('#filter-by-page').click(function(){
