@@ -10,9 +10,9 @@
     $gcmaz_wpdb->set_prefix(DB_SRCH_PREFIX);
     
     //show errors
-    echo ("<h1>SHOW DB ERRORS ON</h1>");
-    $wpdb->show_errors();
-    $gcmaz_wpdb->show_errors();
+    //echo ("<h1>SHOW DB ERRORS ON</h1>");
+    //$wpdb->show_errors();
+    //$gcmaz_wpdb->show_errors();
 
     
 /*********************************
@@ -29,7 +29,7 @@
  * GET SEARCH TERMS AND PREPARE SQL STATEMENT
  *  I.  create an array of search terms
  *  II. define and remove stop words
- *  III. compose sql statement
+ *  III. compose sql statement of search terms
  *  IV. call the search function or return no results
  ***********************************/
    
@@ -86,10 +86,10 @@
          * 2 Queries (gcmaz domain & local site)
          * 
          *   I.  unfinished - pages to ignore
-         *   II. Prepare the statement
-         *   --- Set Up Filters
-         *   III. Get the results
-         *   IV.  Merge and sort the results
+         *   II. Prep vars for the statement
+         *   III.  To filter or not
+         *   IV.  The Queries
+         *   V.   Functions (merge, object to array, sort)
          * 
          *  Notes about the prepare statement:
          *  a.    escape the wildcards %=escape and %=wildcard
@@ -106,36 +106,39 @@
         $pages_to_ignore_local = array(619, 21);
             
         // II.  INIT VARS FOR THE SQL PREPARE STATEMENT
-        $var_for_publish = "publish"; //C
-        $var_for_page = "page"; //D
-        $var_for_post = "post"; //E
-        $var_for_whats = "whats-happening"; //F
-        $var_for_concert = "concert"; //G
-        $var_for_community = "community-info"; //H
-        $var_for_splash = "splash-post"; //I
+        $var_for_publish = "publish";
+        $var_for_page = "page";
+        $var_for_post = "post";
+        $var_for_whats = "whats-happening";
+        $var_for_concert = "concert";
+        $var_for_community = "community-info";
+        $var_for_splash = "splash-post";
         
-        $var_for_publish_local = "publish"; //C
-        $var_for_page_local = "page"; //D
-        $var_for_post_local = "post"; //E
-        $var_for_splash_local = "splash-post"; //I
+        $var_for_publish_local = "publish";
+        $var_for_page_local = "page";
+        $var_for_post_local = "post";
+        $var_for_splash_local = "splash-post";
 
         
         // III.  FILTER OR NOT
         // the default search isn't filtered, but it can be refined in which case the following vars will be populated
     
         //check for search filter vars - to filter by domain, posts, pages
+
+        // check news first ... may get overridden in domain check
+        if( isset( $_POST['showNews'] ) ){
+            $showNews = true;
+        } else {
+            $showNews = false;
+        }
+        
         if (isset( $_POST['showDomain'] ) ){
             $showDomain = sanitize_text_field( $_POST['showDomain'] );
-            //if($showDomain == 'local'){
-                // local
-            //} else if ($showDomain == 'true') {
-                // news
-                //$showDomain = 'news';
-            //} else {
-                // entire domain
-            //}
         } else {
+            // default search ... no domain set
             $showDomain = 'gcmaz';
+            // set news to true since its default
+            $showNews = true;
         }
         if (isset( $_POST['showPages'] ) ){
             $showPages = true;
@@ -147,15 +150,16 @@
         } else {
             $showPosts = false;
         }
+
         
         
+        // IV.  THE QUERIES
         //-----------------------------------------------------
         //     FILTERED SEARCH TO SHOW KAFF NEWS
         //-----------------------------------------------------
         // don't bother with local search
         // search gcmaz.com for KAFF News "posts" only
-        if( $showDomain == 'news' ){
-            echo "<div style='background:yellow;color:red'>NEWS</div>";
+        if( $showDomain == 'news' || ( $showDomain = 'gcmaz' && $showNews == true && $showPosts == false && $showPages == false ) ){
             $sql =  "
                     SELECT ID, post_date, post_title, guid, post_name, post_type
                     FROM $gcmaz_wpdb->posts
@@ -167,31 +171,30 @@
                     LIMIT $rows_to_return
                      ";
             //for debugging
+            //echo "<div style='background:yellow;color:red'>NEWS</div>";
             //$prepared_statement = $gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_post);
             //print_r($prepared_statement);
 
             $rows_gcmaz = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_post));
-
-            //$debug_rows1_total = "<br/>rows1: " . $gcmaz_wpdb->num_rows;
-            //print_r($debug_rows1_total);
             
             // convert to array
             $results = convert_results_to_array($rows_gcmaz);
             // dont need to merge, just sort
             $results = sort_results($results);
+            
             return $results;
         }
 
         
         //--------------------------------------------------------------------------------
-        //     DEFAULT SEARCH & FILTERED SEARCH THAT SHOWS POSTS & PAGES
+        //     DEFAULT SEARCH  & FILTERED SEARCH THAT SHOWS POSTS & PAGES
         //--------------------------------------------------------------------------------
         
         if( ( $showPosts == true && $showPages == true ) || ( $showPosts == false && $showPages == false ) ){
             
             if ($showDomain == 'local') {
                 //LOCAL ONLY
-                echo "<div style='background:yellow;color:red'>LOCAL PAGES AND POSTS</div>";
+                //SKIPS NEWS
                     $sql_local =  "
                             SELECT ID, post_date, post_title, guid, post_name, post_type
                             FROM $wpdb->posts
@@ -204,6 +207,7 @@
                              ";
 
                 //for debugging
+                //echo "<div style='background:yellow;color:red'>LOCAL PAGES AND POSTS, SKIPS NEWS</div>";
                 //$prepared_statement_local = $wpdb->prepare($sql_local, $var_for_publish_local, $var_for_page_local, $var_for_post_local, $var_for_splash_local);
                 //print_r($prepared_statement_local);
 
@@ -218,52 +222,105 @@
                 
             } else {
                 // ENTIRE DOMAIN
-
-                // QUERY1) GCMAZ.com 
-                    echo "<div style='background:yellow;color:red'>ALL PAGES AND POSTS</div>";
-                    $sql =  "
-                        SELECT ID, post_date, post_title, guid, post_name, post_type
-                        FROM $gcmaz_wpdb->posts
-                        WHERE (" . implode(' OR ', $sql_search_terms) . ")
-                            AND post_status = '%s'
-                            AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s')
-                            AND ID NOT IN (" . implode($pages_to_ignore_gcmaz, ", ") . ")
-                        ORDER BY post_date DESC
-                        LIMIT $rows_to_return
-                         ";
-                //for debugging
-                //$prepared_statement = $gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash);
-                //print_r($prepared_statement);
-
-                $rows_gcmaz = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash));
-
-                // QUERY 2) LOCAL Search
-                    $sql_local =  "
+                // WITH NEWS
+                if ($showNews == true){
+                    // QUERY1) GCMAZ.com 
+                        $sql =  "
                             SELECT ID, post_date, post_title, guid, post_name, post_type
-                            FROM $wpdb->posts
+                            FROM $gcmaz_wpdb->posts
                             WHERE (" . implode(' OR ', $sql_search_terms) . ")
                                 AND post_status = '%s'
-                                AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s')
-                                AND ID NOT IN (" . implode($pages_to_ignore_local, ", ") . ")
+                                AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s')
+                                AND ID NOT IN (" . implode($pages_to_ignore_gcmaz, ", ") . ")
                             ORDER BY post_date DESC
                             LIMIT $rows_to_return
                              ";
+                    //for debugging
+                    //$prepared_statement = $gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash);
+                    //print_r($prepared_statement);
 
-                //for debugging
-                //$prepared_statement_local = $wpdb->prepare($sql_local, $var_for_publish_local, $var_for_page_local, $var_for_post_local, $var_for_splash_local);
-                //print_r($prepared_statement_local);
+                    $rows_gcmaz = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash));
 
-                $rows_local = $wpdb->get_results($wpdb->prepare($sql_local, $var_for_publish_local, $var_for_page_local, $var_for_post_local, $var_for_splash_local));
+                    // QUERY 2) LOCAL Search
+                        $sql_local =  "
+                                SELECT ID, post_date, post_title, guid, post_name, post_type
+                                FROM $wpdb->posts
+                                WHERE (" . implode(' OR ', $sql_search_terms) . ")
+                                    AND post_status = '%s'
+                                    AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s')
+                                    AND ID NOT IN (" . implode($pages_to_ignore_local, ", ") . ")
+                                ORDER BY post_date DESC
+                                LIMIT $rows_to_return
+                                 ";
 
-                // convert to array
-                $rows_gcmaz = convert_results_to_array($rows_gcmaz);
-                $rows_local = convert_results_to_array($rows_local);
-                // merge results
-                $results = merge_results($rows_gcmaz, $rows_local);
-                //sort results
-                $results = sort_results($results);
+                    //for debugging
+                    //echo "<div style='background:yellow;color:red'>ALL PAGES AND POSTS WITH NEWS</div>";
+                    //$prepared_statement_local = $wpdb->prepare($sql_local, $var_for_publish_local, $var_for_page_local, $var_for_post_local, $var_for_splash_local);
+                    //print_r($prepared_statement_local);
 
-                return $results;
+                    $rows_local = $wpdb->get_results($wpdb->prepare($sql_local, $var_for_publish_local, $var_for_page_local, $var_for_post_local, $var_for_splash_local));
+
+                    // convert to array
+                    $rows_gcmaz = convert_results_to_array($rows_gcmaz);
+                    $rows_local = convert_results_to_array($rows_local);
+                    // merge results
+                    $results = merge_results($rows_gcmaz, $rows_local);
+                    //sort results
+                    $results = sort_results($results);
+
+                    return $results;
+                
+                } else {
+                    // ENTIRE DOMAIN
+                    // WITHOUT NEWS
+
+                    // QUERY1) GCMAZ.com 
+                        $sql =  "
+                            SELECT ID, post_date, post_title, guid, post_name, post_type
+                            FROM $gcmaz_wpdb->posts
+                            WHERE (" . implode(' OR ', $sql_search_terms) . ")
+                                AND post_status = '%s'
+                                AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s')
+                                AND ID NOT IN (" . implode($pages_to_ignore_gcmaz, ", ") . ")
+                            ORDER BY post_date DESC
+                            LIMIT $rows_to_return
+                             ";
+                    //for debugging
+                    //$prepared_statement = $gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash);
+                    //print_r($prepared_statement);
+
+                    $rows_gcmaz = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash));
+
+                    // QUERY 2) LOCAL Search
+                        $sql_local =  "
+                                SELECT ID, post_date, post_title, guid, post_name, post_type
+                                FROM $wpdb->posts
+                                WHERE (" . implode(' OR ', $sql_search_terms) . ")
+                                    AND post_status = '%s'
+                                    AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s')
+                                    AND ID NOT IN (" . implode($pages_to_ignore_local, ", ") . ")
+                                ORDER BY post_date DESC
+                                LIMIT $rows_to_return
+                                 ";
+
+                    //for debugging
+                    //echo "<div style='background:yellow;color:red'>ALL PAGES AND POSTS WITHOUT NEWS</div>";
+                    //$prepared_statement_local = $wpdb->prepare($sql_local, $var_for_publish_local, $var_for_page_local, $var_for_post_local, $var_for_splash_local);
+                    //print_r($prepared_statement_local);
+
+                    $rows_local = $wpdb->get_results($wpdb->prepare($sql_local, $var_for_publish_local, $var_for_page_local, $var_for_post_local, $var_for_splash_local));
+
+                    // convert to array
+                    $rows_gcmaz = convert_results_to_array($rows_gcmaz);
+                    $rows_local = convert_results_to_array($rows_local);
+                    // merge results
+                    $results = merge_results($rows_gcmaz, $rows_local);
+                    //sort results
+                    $results = sort_results($results);
+
+                    return $results;
+
+                }
             }
         }
         
@@ -276,7 +333,7 @@
 
                 if ($showDomain == 'local'){
                     // LOCAL ONLY
-                    echo "<div style='background:yellow;color:red'>LOCAL POSTS</div>";
+                    // SKIPS NEWS
                         $sql_local =  "
                                 SELECT ID, post_date, post_title, guid, post_name, post_type
                                 FROM $wpdb->posts
@@ -287,6 +344,9 @@
                                 ORDER BY post_date DESC
                                 LIMIT $rows_to_return
                                  ";
+                     
+                     //for debugging
+                     //echo "<div style='background:yellow;color:red'>LOCAL POSTS, SKIPS NEWS</div>";
                         
                     $rows_local = $wpdb->get_results($wpdb->prepare($sql_local, $var_for_publish_local, $var_for_post_local, $var_for_splash_local));
                     
@@ -299,55 +359,105 @@
                     
                 } else {
                     //  ENTIRE DOMAIN
-                    echo "<div style='background:yellow;color:red'>ALL POSTS</div>";
-                    // QUERY 1) gcmaz.com
-                    $sql =  "
-                        SELECT ID, post_date, post_title, guid, post_name, post_type
-                        FROM $gcmaz_wpdb->posts
-                        WHERE (" . implode(' OR ', $sql_search_terms) . ")
-                            AND post_status = '%s'
-                            AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s')
-                            AND ID NOT IN (" . implode($pages_to_ignore_gcmaz, ", ") . ")
-                        ORDER BY post_date DESC
-                        LIMIT $rows_to_return
-                         ";
-                    //for debugging
-                    //$prepared_statement = $gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash);
-                    //print_r($prepared_statement);
+                    // WITH NEWS
+                    if($showNews == true){
+                        // QUERY 1) gcmaz.com
+                        $sql =  "
+                            SELECT ID, post_date, post_title, guid, post_name, post_type
+                            FROM $gcmaz_wpdb->posts
+                            WHERE (" . implode(' OR ', $sql_search_terms) . ")
+                                AND post_status = '%s'
+                                AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s')
+                                AND ID NOT IN (" . implode($pages_to_ignore_gcmaz, ", ") . ")
+                            ORDER BY post_date DESC
+                            LIMIT $rows_to_return
+                             ";
+                        //for debugging
+                        //$prepared_statement = $gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash);
+                        //print_r($prepared_statement);
 
-                    // GET RESULTS  see notes (blueprint) for details
-                    $rows_gcmaz = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash));
+                        // GET RESULTS  see notes (blueprint) for details
+                        $rows_gcmaz = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_post, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash));
 
-                    //$debug_rows1_total = "<br/>rows1: " . $gcmaz_wpdb->num_rows;
-                    //print_r($debug_rows1_total);
+                        // QUERY 2) LOCAL Search
+                            $sql_local =  "
+                                    SELECT ID, post_date, post_title, guid, post_name, post_type
+                                    FROM $wpdb->posts
+                                    WHERE (" . implode(' OR ', $sql_search_terms) . ")
+                                        AND post_status = '%s'
+                                        AND (post_type = '%s' OR post_type = '%s')
+                                        AND ID NOT IN (" . implode($pages_to_ignore_local, ", ") . ")
+                                    ORDER BY post_date DESC
+                                    LIMIT $rows_to_return
+                                     ";
 
-                    // QUERY 2) LOCAL Search
-                        $sql_local =  "
-                                SELECT ID, post_date, post_title, guid, post_name, post_type
-                                FROM $wpdb->posts
-                                WHERE (" . implode(' OR ', $sql_search_terms) . ")
-                                    AND post_status = '%s'
-                                    AND (post_type = '%s' OR post_type = '%s')
-                                    AND ID NOT IN (" . implode($pages_to_ignore_local, ", ") . ")
-                                ORDER BY post_date DESC
-                                LIMIT $rows_to_return
-                                 ";
+                        //for debugging
+                        //echo "<div style='background:yellow;color:red'>ALL POSTS WITH NEWS</div>";
+                        //$prepared_statement_local = $wpdb->prepare($sql_local, $var_for_publish_local, $var_for_post_local, $var_for_splash_local);
+                        //print_r($prepared_statement_local);
 
-                    //for debugging
-                    //$prepared_statement_local = $wpdb->prepare($sql_local, $var_for_publish_local, $var_for_post_local, $var_for_splash_local);
-                    //print_r($prepared_statement_local);
+                        $rows_local = $wpdb->get_results($wpdb->prepare($sql_local, $var_for_publish_local, $var_for_post_local, $var_for_splash_local));
 
-                    $rows_local = $wpdb->get_results($wpdb->prepare($sql_local, $var_for_publish_local, $var_for_post_local, $var_for_splash_local));
+                        // convert to array
+                        $rows_gcmaz = convert_results_to_array($rows_gcmaz);
+                        $rows_local = convert_results_to_array($rows_local);
+                        // merge results
+                        $results = merge_results($rows_gcmaz, $rows_local);
+                        //sort results
+                        $results = sort_results($results);
 
-                    // convert to array
-                    $rows_gcmaz = convert_results_to_array($rows_gcmaz);
-                    $rows_local = convert_results_to_array($rows_local);
-                    // merge results
-                    $results = merge_results($rows_gcmaz, $rows_local);
-                    //sort results
-                    $results = sort_results($results);
+                        return $results;
+                    
+                    } else {
+                        // ENTIRE DOMAIN
+                        // WITHOUT NEWS
+                        // QUERY 1) gcmaz.com
+                        $sql =  "
+                            SELECT ID, post_date, post_title, guid, post_name, post_type
+                            FROM $gcmaz_wpdb->posts
+                            WHERE (" . implode(' OR ', $sql_search_terms) . ")
+                                AND post_status = '%s'
+                                AND (post_type = '%s' OR post_type = '%s' OR post_type = '%s' OR post_type = '%s')
+                                AND ID NOT IN (" . implode($pages_to_ignore_gcmaz, ", ") . ")
+                            ORDER BY post_date DESC
+                            LIMIT $rows_to_return
+                             ";
+                        //for debugging
+                        //$prepared_statement = $gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash);
+                        //print_r($prepared_statement);
 
-                    return $results;
+                        // GET RESULTS  see notes (blueprint) for details
+                        $rows_gcmaz = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_whats, $var_for_concert, $var_for_community, $var_for_splash));
+
+                        // QUERY 2) LOCAL Search
+                            $sql_local =  "
+                                    SELECT ID, post_date, post_title, guid, post_name, post_type
+                                    FROM $wpdb->posts
+                                    WHERE (" . implode(' OR ', $sql_search_terms) . ")
+                                        AND post_status = '%s'
+                                        AND (post_type = '%s' OR post_type = '%s')
+                                        AND ID NOT IN (" . implode($pages_to_ignore_local, ", ") . ")
+                                    ORDER BY post_date DESC
+                                    LIMIT $rows_to_return
+                                     ";
+
+                        //for debugging
+                        //echo "<div style='background:yellow;color:red'>ALL POSTS WITHOUT NEWS</div>";
+                        //$prepared_statement_local = $wpdb->prepare($sql_local, $var_for_publish_local, $var_for_post_local, $var_for_splash_local);
+                        //print_r($prepared_statement_local);
+
+                        $rows_local = $wpdb->get_results($wpdb->prepare($sql_local, $var_for_publish_local, $var_for_post_local, $var_for_splash_local));
+
+                        // convert to array
+                        $rows_gcmaz = convert_results_to_array($rows_gcmaz);
+                        $rows_local = convert_results_to_array($rows_local);
+                        // merge results
+                        $results = merge_results($rows_gcmaz, $rows_local);
+                        //sort results
+                        $results = sort_results($results);
+
+                        return $results;
+                    }
                 }
 
             }
@@ -361,7 +471,7 @@
 
             if ($showDomain == 'local'){
                 // LOCAL ONLY
-                echo "<div style='background:yellow;color:red'>LOCAL PAGES</div>";
+                // SKIPS NEWS
                     $sql_local =  "
                             SELECT ID, post_date, post_title, guid, post_name, post_type
                             FROM $wpdb->posts
@@ -374,6 +484,7 @@
                              ";
 
                 //for debugging
+                //echo "<div style='background:yellow;color:red'>LOCAL PAGES, SKIPS NEWS</div>";
                 //$prepared_statement_local = $wpdb->prepare($sql_local, $var_for_publish_local, $var_for_post_local, $var_for_splash_local);
                 //print_r($prepared_statement_local);
 
@@ -386,61 +497,118 @@
                 return $results;
                 
             } else {
-                // ENTIRE DOMAIN
-                echo "<div style='background:yellow;color:red'>ALL PAGES</div>";
-                // QUERY 1) gcmaz.com
-                    $sql =  "
-                        SELECT ID, post_date, post_title, guid, post_name, post_type
-                        FROM $gcmaz_wpdb->posts
-                        WHERE (" . implode(' OR ', $sql_search_terms) . ")
-                            AND post_status = '%s'
-                            AND (post_type = '%s')
-                            AND ID NOT IN (" . implode($pages_to_ignore_gcmaz, ", ") . ")
-                        ORDER BY post_date DESC
-                        LIMIT $rows_to_return
-                         ";
-                //for debugging
-                //$prepared_statement = $gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page);
-                //print_r($prepared_statement);
+                // ENTIRE DOMAIN                
+                // WITH NEWS
+                if($showNews == true){
 
-                $rows_gcmaz = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page));
-
-                // QUERY 2) local
-                // --------------------------
-                // PREPARE THE STATEMENT
-                    $sql_local =  "
+                    // QUERY 1) gcmaz.com
+                        $sql =  "
                             SELECT ID, post_date, post_title, guid, post_name, post_type
-                            FROM $wpdb->posts
+                            FROM $gcmaz_wpdb->posts
                             WHERE (" . implode(' OR ', $sql_search_terms) . ")
                                 AND post_status = '%s'
-                                AND (post_type = '%s')
-                                AND ID NOT IN (" . implode($pages_to_ignore_local, ", ") . ")
+                                AND (post_type = '%s' OR post_type = '%s')
+                                AND ID NOT IN (" . implode($pages_to_ignore_gcmaz, ", ") . ")
                             ORDER BY post_date DESC
                             LIMIT $rows_to_return
                              ";
+                    //for debugging
+                    //$prepared_statement = $gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page);
+                    //print_r($prepared_statement);
 
-                //for debugging
-                //$prepared_statement_local = $wpdb->prepare($sql_local, $var_for_publish_local, $var_for_post_local, $var_for_splash_local);
-                //print_r($prepared_statement_local);
+                    $rows_gcmaz = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_post, $var_for_page));
 
-                //GET RESULTS  see notes (blueprint) for details
-                $rows_local = $wpdb->get_results($wpdb->prepare($sql_local, $var_for_publish_local, $var_for_page_local));
+                    // QUERY 2) local
+                    // --------------------------
+                    // PREPARE THE STATEMENT
+                        $sql_local =  "
+                                SELECT ID, post_date, post_title, guid, post_name, post_type
+                                FROM $wpdb->posts
+                                WHERE (" . implode(' OR ', $sql_search_terms) . ")
+                                    AND post_status = '%s'
+                                    AND (post_type = '%s')
+                                    AND ID NOT IN (" . implode($pages_to_ignore_local, ", ") . ")
+                                ORDER BY post_date DESC
+                                LIMIT $rows_to_return
+                                 ";
 
-                // convert to array
-                $rows_gcmaz = convert_results_to_array($rows_gcmaz);
-                $rows_local = convert_results_to_array($rows_local);
-                // merge results
-                $results = merge_results($rows_gcmaz, $rows_local);
-                //sort results
-                $results = sort_results($results);
+                    //for debugging
+                    //echo "<div style='background:yellow;color:red'>ALL PAGES WITH NEWS</div>";
+                    //$prepared_statement_local = $wpdb->prepare($sql_local, $var_for_publish_local, $var_for_post_local, $var_for_splash_local);
+                    //print_r($prepared_statement_local);
 
-                return $results;
+                    //GET RESULTS  see notes (blueprint) for details
+                    $rows_local = $wpdb->get_results($wpdb->prepare($sql_local, $var_for_publish_local, $var_for_page_local));
+
+                    // convert to array
+                    $rows_gcmaz = convert_results_to_array($rows_gcmaz);
+                    $rows_local = convert_results_to_array($rows_local);
+                    // merge results
+                    $results = merge_results($rows_gcmaz, $rows_local);
+                    //sort results
+                    $results = sort_results($results);
+
+                    return $results;
+                    
+                } else {
+                    // ENTIRE DOMAIN
+                    // WITHOUT NEWS
+                    // QUERY 1) gcmaz.com
+                        $sql =  "
+                            SELECT ID, post_date, post_title, guid, post_name, post_type
+                            FROM $gcmaz_wpdb->posts
+                            WHERE (" . implode(' OR ', $sql_search_terms) . ")
+                                AND post_status = '%s'
+                                AND (post_type = '%s')
+                                AND ID NOT IN (" . implode($pages_to_ignore_gcmaz, ", ") . ")
+                            ORDER BY post_date DESC
+                            LIMIT $rows_to_return
+                             ";
+                    //for debugging
+                    //$prepared_statement = $gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page);
+                    //print_r($prepared_statement);
+
+                    $rows_gcmaz = $gcmaz_wpdb->get_results($gcmaz_wpdb->prepare($sql, $var_for_publish, $var_for_page));
+
+                    // QUERY 2) local
+                    // --------------------------
+                    // PREPARE THE STATEMENT
+                        $sql_local =  "
+                                SELECT ID, post_date, post_title, guid, post_name, post_type
+                                FROM $wpdb->posts
+                                WHERE (" . implode(' OR ', $sql_search_terms) . ")
+                                    AND post_status = '%s'
+                                    AND (post_type = '%s')
+                                    AND ID NOT IN (" . implode($pages_to_ignore_local, ", ") . ")
+                                ORDER BY post_date DESC
+                                LIMIT $rows_to_return
+                                 ";
+
+                    //for debugging
+                    //echo "<div style='background:yellow;color:red'>ALL PAGES WITHOUT NEWS</div>";
+                    //$prepared_statement_local = $wpdb->prepare($sql_local, $var_for_publish_local, $var_for_post_local, $var_for_splash_local);
+                    //print_r($prepared_statement_local);
+
+                    //GET RESULTS  see notes (blueprint) for details
+                    $rows_local = $wpdb->get_results($wpdb->prepare($sql_local, $var_for_publish_local, $var_for_page_local));
+
+                    // convert to array
+                    $rows_gcmaz = convert_results_to_array($rows_gcmaz);
+                    $rows_local = convert_results_to_array($rows_local);
+                    // merge results
+                    $results = merge_results($rows_gcmaz, $rows_local);
+                    //sort results
+                    $results = sort_results($results);
+
+                    return $results;
+                }
             }
         }
 
 } // end run_the_queries()
     
-    
+
+// V.  FUNCTIONS
 /***********************************
  * CONVERT stdClass OBJECT TO ARRAY 
  **************************************/
@@ -533,14 +701,17 @@ function sort_results($results_to_sort){
                     <div class="search-filter-right">
                         <p class="search-filter-info">Show What:</p>
                         <div class="checkbox chkbxPages">
-                            <label><input type="checkbox" name="showPages" id="showPages" value="true" checked class="disabled">Station Info</label>
+                            <label><input type="checkbox" name="showPages" id="showPages" value="true" checked>Station Info</label>
                         </div>
                         <div class="checkbox chkbxPosts">
-                            <label><input type="checkbox" name="showPosts" id="showPosts" value="true" checked>Events &amp; Contests</label>
+                            <label><input type="checkbox" name="showPosts" id="showPosts" value="true" checked>Events, Concerts,Contests</label>
+                        </div>
+                        <div class="checkbox chkbxNews">
+                            <label><input type="checkbox" name="showNews" id="showNews" value="true" checked>News Stories</label>
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <button type="submit" name="submitSearchFilter" class=".submitSearchFilter btn btn-sm btn-primary">Filter Results</button>
+                    <button type="submit" name="submitSearchFilter" class="submitSearchFilter btn btn-md btn-primary">    Filter Results    </button>
                     <div class="clearfix"></div>
                 </div>
             </form>
@@ -574,7 +745,7 @@ function sort_results($results_to_sort){
                             if( isset( $result['guid'] ) && isset( $result['post_name'] ) ){
                                 $link = create_useable_link( $result['guid'], $result['post_name']);
                                 $pdate = pretty_date( $result['post_date'] );
-                                echo "<li class='$post_type'><a href='$link' rel='bookmark' title='$title' class='list-group-item'>$title<p class='search-result-date'>$pdate</p></a></li>$post_type -- $link";
+                                echo "<li class='$post_type'><a href='$link' rel='bookmark' title='$title' class='list-group-item'>$title<p class='search-result-date'>$pdate</p></a></li>";
                             }
                         }
                     ?>

@@ -111,38 +111,36 @@ var GcmazSite = {
         var $searchLocal = $(document).find('.searchLocal');
         var $showPosts = $(document).find('#showPosts');
         var $showPages = $(document).find('#showPages');
+        var $showNews = $(document).find('#showNews');
         var $chkbxPages = $(document).find('.chkbxPages');
         var $chkbxPosts = $(document).find('.chkbxPosts');
+        var $chkbxNews = $(document).find('.chkbxNews');
         $(function(){
             $searchNews.click(function(){
                 $showPosts.prop('disabled', true);
                 $showPages.prop('disabled', true);
+                $showNews.prop('disabled', true);
                 $chkbxPages.css('display','none');
                 $chkbxPosts.css('display','none');
+                $chkbxNews.css('display','block');
             });
             $searchGcmaz.click(function(){
                 $showPosts.prop('disabled', false);
                 $showPages.prop('disabled', false);
+                $showNews.prop('disabled', false);
                 $chkbxPages.css('display','block');
                 $chkbxPosts.css('display','block');
+                $chkbxNews.css('display','block');
             });
             $searchLocal.click(function(){
                 $showPosts.prop('disabled', false);
                 $showPages.prop('disabled', false);
+                $showNews.prop('disabled', true);
                 $chkbxPages.css('display','block');
                 $chkbxPosts.css('display','block');
+                $chkbxNews.css('display','none');
             });
         });
-      //var $all_posts = $(document).find('li.post');
-      //var $all_pages = $(document).find('li.page');
-      //$('#filter-by-page').click(function(){
-          //$all_posts.addClass('hidden');
-          //$all_pages.removeClass('hidden');
-      //});
-      //$('#filter-by-post').click(function(){
-          //$all_pages.addClass('hidden');
-          //$all_posts.removeClass('hidden');
-      //});
     }
   }
 };
