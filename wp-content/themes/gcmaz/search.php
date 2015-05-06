@@ -166,7 +166,7 @@
         //-----------------------------------------------------
         // don't bother with local search
         // search gcmaz.com for KAFF News "posts" only
-        if( $showDomain == 'news' || ( $showDomain = 'gcmaz' && $showNews == true && $showPosts == false && $showPages == false ) ){
+        if( $showDomain == 'news' || ( $showDomain == 'gcmaz' && $showNews == true && $showPosts == false && $showPages == false ) ){
             $sql =  "
                     SELECT ID, post_date, post_title, guid, post_name, post_type
                     FROM $gcmaz_wpdb->posts
