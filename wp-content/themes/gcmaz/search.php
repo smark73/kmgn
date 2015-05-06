@@ -124,36 +124,39 @@
         // the default search isn't filtered, but it can be refined in which case the following vars will be populated
     
         //check for search filter vars - to filter by domain, posts, pages
-
-        // check news first ... may get overridden in domain check
-        if( isset( $_POST['showNews'] ) ){
-            $showNews = true;
+        if ( isset( $_POST['filter_the_search'] ) ){
+            // not default search, filters in play
+            //domain
+            if (isset( $_POST['showDomain'] ) ){
+                $showDomain = sanitize_text_field( $_POST['showDomain'] );
+            } else {
+                $showDomain = 'gcmaz';
+            }
+            //pages
+            if (isset( $_POST['showPages'] ) ){
+                $showPages = true;
+            } else {
+                $showPages = false;
+            }
+            //posts
+            if( isset( $_POST['showPosts'] ) ){
+                $showPosts = true;
+            } else {
+                $showPosts = false;
+            }
+            //news
+            if( isset( $_POST['showNews'] ) ){
+                $showNews = true;
+            } else {
+                $showNews = false;
+            }
         } else {
-            $showNews = false;
-        }
-        
-        if (isset( $_POST['showDomain'] ) ){
-            $showDomain = sanitize_text_field( $_POST['showDomain'] );
-        } else {
-            // default search ... no domain set
+            // default search
             $showDomain = 'gcmaz';
-            // set news to true since its default
-            $showNews = true;
-            $showPosts = '';
-            $showPages = '';
-        }
-        if (isset( $_POST['showPages'] ) ){
-            $showPages = true;
-        } else {
-            $showPages = false;
-        }
-        if( isset( $_POST['showPosts'] ) ){
             $showPosts = true;
-        } else {
-            $showPosts = false;
-        }
-
-        
+            $showPages = true;
+            $showNews = true;
+        } 
         
         // IV.  THE QUERIES
         //-----------------------------------------------------
@@ -711,6 +714,7 @@ function sort_results($results_to_sort){
                         <div class="checkbox chkbxNews">
                             <label><input type="checkbox" name="showNews" id="showNews" value="true" checked>News Stories</label>
                         </div>
+                        <input type="hidden" name="filter_the_search" id="filter_the_search" value="true">
                     </div>
                     <div class="clearfix"></div>
                     <button type="submit" name="submitSearchFilter" class="submitSearchFilter btn btn-md btn-primary">    Filter Results    </button>
