@@ -139,6 +139,8 @@
             $showDomain = 'gcmaz';
             // set news to true since its default
             $showNews = true;
+            $showPosts = '';
+            $showPages = '';
         }
         if (isset( $_POST['showPages'] ) ){
             $showPages = true;
