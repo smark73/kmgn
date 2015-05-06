@@ -672,6 +672,18 @@ function sort_results($results_to_sort){
         $pretty_date = date("F j, Y", $p_date);
         return $pretty_date;
     }
+    
+/*****************************************
+ *  GET & MODIFY THE PAGE URL FOR SEARCH FILTER FORM
+ *******************************************/
+    
+    function get_search_filter_form_url(){
+        //$get_url = $_SERVER['REQUEST_URI'];
+        //$get_query = $_SERVER['QUERY_STRING'];
+        $get_cur_search_var = get_query_var('s');
+        $set_url = "/?s=" . $get_cur_search_var;
+        echo $set_url;
+    }
 
 ?>
 
@@ -689,7 +701,7 @@ function sort_results($results_to_sort){
             
             <div id="search-filter-toggle">Refine Search Results<span class="caret"></span></div>
             <br class="clearfix">
-            <form name="searchFilterForm" method="post" action="">
+            <form name="searchFilterForm" method="post" action="<?php get_search_filter_form_url();?>">
                 <div id="search-filter" class="search-filter-hide">
                     <div class="search-filter-left">
                         <p class="search-filter-info">Search Where:</p>
