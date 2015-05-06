@@ -794,7 +794,7 @@ function sort_results($results_to_sort){
             ?>
             
             <?php else : ?>
-                <h4>No results.  Please search again.</h4>
+                <h4 class="blue">No results.  Please search again.</h4>
             <?php endif; ?>
             
         </section>
