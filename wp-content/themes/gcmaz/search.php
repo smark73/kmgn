@@ -20,10 +20,12 @@
  ********************************/
     // since 2 queries, possible total number is 2x this
     $rows_to_return = 100;
-    
     // DEFINE OUR RESULTS PER PAGE FOR PAGINATION
     $results_per_page = 12;
-    
+    // STATION RELATED VARS
+    $station_name = "93-9 The Mountain";
+    $pages_to_ignore_gcmaz = array(1882, 1881, 1880, 1879, 1878, 1877, 1846, 1845, 15);
+    $pages_to_ignore_local = array(619, 21);
     
 /************************************
  * GET SEARCH TERMS AND PREPARE SQL STATEMENT
@@ -72,7 +74,7 @@
        $results = null;
     } else {
         // call our search function 
-        $results = run_the_queries($gcmaz_wpdb, $wpdb, $sql_search_terms, $rows_to_return);
+        $results = run_the_queries($gcmaz_wpdb, $wpdb, $sql_search_terms, $rows_to_return, $pages_to_ignore_gcmaz, $pages_to_ignore_local);
         //split the results into an array of arrays with our defined number of results per page
         $paginated_results = array_chunk($results, $results_per_page);
     }
@@ -81,7 +83,7 @@
 /**********************************************
  *  THE SEARCH FUNCTION
  *********************************************/
-    function run_the_queries($gcmaz_wpdb, $wpdb, $sql_search_terms, $rows_to_return){
+    function run_the_queries($gcmaz_wpdb, $wpdb, $sql_search_terms, $rows_to_return, $pages_to_ignore_gcmaz, $pages_to_ignore_local){
         /*******************************************************
          * 2 Queries (gcmaz domain & local site)
          * 
@@ -102,8 +104,8 @@
 
         // I.  array of pages on gcmaz we don't want to return
         // need to set this up as options in custom gcmaz plugin instead of hardcoded (select pages to ignore in search results)
-        $pages_to_ignore_gcmaz = array(1882, 1881, 1880, 1879, 1878, 1877, 1846, 1845, 15);
-        $pages_to_ignore_local = array(619, 21);
+        $pages_to_ignore_gcmaz = $pages_to_ignore_gcmaz;
+        $pages_to_ignore_local = $pages_to_ignore_local;
             
         // II.  INIT VARS FOR THE SQL PREPARE STATEMENT
         $var_for_publish = "publish";
@@ -709,7 +711,7 @@ function sort_results($results_to_sort){
                             <label><input type="radio" name="showDomain" value="gcmaz" class="searchGcmaz" checked="checked">All Great Circle Media</label>
                         </div>
                          <div class="radio">
-                            <label><input type="radio" name="showDomain" value="local" class="searchLocal">Only 93-9 The Mountain</label>
+                            <label><input type="radio" name="showDomain" value="local" class="searchLocal">Only <?php echo $station_name; ?></label>
                         </div>
                         <div class="radio">
                             <label><input type="radio" name="showDomain" value="news" class="searchNews" >KAFF News</label>
