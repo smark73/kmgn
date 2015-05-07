@@ -276,7 +276,7 @@ ul.search-result-list li a:hover{ border-left:2px solid @blue;padding-left:8px }
 .search-filter-info{
     font-size:16px;
     font-weight:700;
-    color: @gray;
+    color: #1976d2;
     text-shadow: none;
     margin:0;
     padding:0;
@@ -288,6 +288,7 @@ ul.search-result-list li a:hover{ border-left:2px solid @blue;padding-left:8px }
     width:50%;
     margin-top:7px;
     padding:5px;
+    font-size:1.1em;
 }
 .search-filter-right{
     float:right;
@@ -313,15 +314,21 @@ ul.search-result-list li a:hover{ border-left:2px solid @blue;padding-left:8px }
     min-height:100px;
     padding:0 10px 5px;
     margin:0 auto 20px;
-    background:#f5f5f5;
+    background:#cae7ff;
 }
 #search-filter-toggle{
     float:right;
-    background:#f5f5f5;
+    background:#E3F2FD;
+    color:#1976d2;
+    font-weight:700;
     padding:2px 7px;
     margin:0;
     cursor:pointer;
+    .caret { border-top-color:#1976d2}
 }
+
+.search-filter-left div.radio:hover,
+.search-filter-right div.checkbox:hover { background: rgba(255,255,255, 0.3)}
 
 /* ==========================================================================
    Sidebar

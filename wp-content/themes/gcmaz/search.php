@@ -702,7 +702,7 @@ function sort_results($results_to_sort){
         <section class="search-results">
             
             <div id="search-filter-toggle">Refine Search Results<span class="caret"></span></div>
-            <br class="clearfix">
+            <div class="clearfix"></div>
             <form name="searchFilterForm" method="post" action="<?php get_search_filter_form_url();?>">
                 <div id="search-filter" class="search-filter-hide">
                     <div class="search-filter-left">
