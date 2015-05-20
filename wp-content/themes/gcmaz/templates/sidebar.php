@@ -39,5 +39,9 @@ if(!empty( $post )){
         dynamic_sidebar('sidebar-primary');
     }
     
+} else {
+    
+    dynamic_sidebar('sidebar-primary');
+    
 }
 ?>
