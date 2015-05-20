@@ -1,17 +1,18 @@
 <?php
 global $post;
 
-if(!empty( $post )){
-    // need to keep is_search check first ... otherwise gets wrong sidebar as search info moves into post->info (a search for "concerts" calls the concerts sidebar)
-    if( is_search() ) {
-        //echo "<div style='background:yellow'>search</div>";
-        dynamic_sidebar('sidebar-primary');
+// need to keep is_search check first ... otherwise gets wrong sidebar as search info moves into post->info (a search for "concerts" calls the concerts sidebar)
+if( is_search() ) {
+    //echo "<div style='background:yellow'>search</div>";
+    dynamic_sidebar('sidebar-primary');
+
+} elseif(is_front_page()){
+    //echo "<div style='background:yellow'>front page</div>";
+    dynamic_sidebar('sidebar-homepage');
+
+} elseif(!empty( $post )){
         
-    } elseif(is_front_page()){
-        //echo "<div style='background:yellow'>front page</div>";
-        dynamic_sidebar('sidebar-homepage');
-        
-    } elseif($post->post_type == 'concert' || $post->post_name == 'concerts-northern-arizona'){
+    if($post->post_type == 'concert' || $post->post_name == 'concerts-northern-arizona'){
         //echo "<div style='background:yellow'>concert</div>";
         dynamic_sidebar('sidebar-concert');
         
@@ -40,8 +41,5 @@ if(!empty( $post )){
     }
     
 } else {
-    
     dynamic_sidebar('sidebar-primary');
-    
 }
-?>
