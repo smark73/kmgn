@@ -30,11 +30,13 @@ global $station;
             remove_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
         }
     ?>
+    
+    <?php $counter = 0;//set counter, if we have no listings for this station then display message below ?>
+    
     <?php foreach ($items as $item) : ?>
         <?php foreach ($item->get_categories() as $item_cat) : ?>
             <?php if ($item_cat->get_label() == $station) : ?>
-    
-                <?php //$counter +=1 ; //set counter, if we have no listings for this station then display message below ?>
+                <?php $counter +=1;?>
     
                 <article>
                   <div class="entry-content feed-listing">
@@ -50,12 +52,12 @@ global $station;
     
             <?php endif; ?>
         <?php endforeach; ?>
+    <?php endforeach; ?>
     
-        <?php
-            //if($counter == 0){
-                //echo "<div style='margin:6% 4%'><div class='alert alert-warning'>No listings to display right now</div></div>" ;
-            //}
-        ?>
-    
-  <?php endforeach; ?>
+    <?php
+            // if no listings, output this
+            if($counter == 0){
+                echo "<div style='margin:10% 4%'><div class='alert alert-warning'>No listings to display right now</div></div>" ;
+            }
+    ?>
 </div>
