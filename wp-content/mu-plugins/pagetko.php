@@ -182,7 +182,7 @@ class PTKO_Settings{
     // PTKO Enable/Disable
     public function ptko_toggle_callback(){
         //$settings = $this->settings[ptko_toggle];
-        if($this->settings[ptko_toggle] == 1){
+        if($this->settings['ptko_toggle'] == 1){
             echo "<input type='checkbox' name='ptko_settings[ptko_toggle]' id='ptko_settings[ptko_toggle]' value='1'  checked='true' />";
         } else {
             echo "<input  type='checkbox' name='ptko_settings[ptko_toggle]' id='ptko_settings[ptko_toggle]' value='1'  />";
@@ -190,7 +190,7 @@ class PTKO_Settings{
     }
     // PTKO Link option
     public function ptko_link_callback(){
-        $link = esc_url($this->settings[ptko_link]);
+        $link = esc_url($this->settings['ptko_link']);
         echo "<input type='text' name='ptko_settings[ptko_link]' value='$link' />";
     }
 
@@ -199,8 +199,8 @@ class PTKO_Settings{
         wp_enqueue_media();
         echo "<input type='text' name='ptko_settings[ptko_hdrimg]' id='ptko_settings[ptko_hdrimg]' value='http://' />";
         //display the image if exists
-        if($this->settings[ptko_hdrimg]){
-            echo '<img src="' . $this->settings[ptko_hdrimg] . '" style="width:300px;height:auto;vertical-align:top;margin-left:20px;" />';
+        if($this->settings['ptko_hdrimg']){
+            echo '<img src="' . $this->settings['ptko_hdrimg'] . '" style="width:300px;height:auto;vertical-align:top;margin-left:20px;" />';
         }
     }
 
@@ -209,8 +209,8 @@ class PTKO_Settings{
         wp_enqueue_media();
         echo "<input type='text' name='ptko_settings[ptko_bgimg]' id='ptko_settings[ptko_bgimg]' value='http://' />";
         //display the image if exists
-        if($this->settings[ptko_bgimg]){
-            echo '<img src="' . $this->settings[ptko_bgimg] . '" style="width:300px;height:auto;vertical-align:top;margin-left:20px;" />';
+        if($this->settings['ptko_bgimg']){
+            echo '<img src="' . $this->settings['ptko_bgimg'] . '" style="width:300px;height:auto;vertical-align:top;margin-left:20px;" />';
         }
     }
 

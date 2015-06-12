@@ -76,7 +76,12 @@ var GcmazSite = {
   // Home page
   home: {
     init: function() {
-        //
+        $('.mobile-toggle-news').click(function () {
+          $(this).children('div').toggleClass('toggle-arrow-up toggle-arrow-down');
+        });
+        $('.mobile-toggle-fb').click(function () {
+          $(this).children('div').toggleClass('toggle-arrow-up toggle-arrow-down');
+        });
     }
   },
   // About page
