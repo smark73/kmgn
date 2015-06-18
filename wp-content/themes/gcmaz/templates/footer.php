@@ -7,6 +7,9 @@
             <li><span class="glyphicon glyphicon-tower"></span><a href="http://clubmountain.gcmaz.com/" target="_blank">Win Stuff</a></li>
             <li><span class="glyphicon glyphicon-user"></span><a href="/radio-shows/">On Air</a></li>
         </ul>
+        <div class="visible-sm visible-xs">
+            <?php dynamic_sidebar('sidebar-footer'); ?>
+        </div>
     </section>
     <section class="ftr2 col-md-6 col-lg-6 hidden-sm hidden-xs">
         <?php dynamic_sidebar('sidebar-footer'); ?>
