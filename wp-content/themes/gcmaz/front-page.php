@@ -79,7 +79,7 @@
                     <?php endforeach; ?>
                 <?php endforeach; //end main loop ?>
         </div>
-        <div class="fb-like-box hidden-xs" data-href="https://www.facebook.com/TheNew939" data-height="400" data-show-faces="false" data-colorscheme="light" data-stream="true" show-border="false" data-header="false" style="background-color:#fff !important;max-width:700px;margin:0 auto 4%;"></div>
+        <div class="fb-page" data-href="https://www.facebook.com/TheNew939" data-width="500" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/TheNew939"><a href="https://www.facebook.com/TheNew939">93.9 The Mountain</a></blockquote></div></div>
     </section>
         
     <section class="row indx-social visible-xs" style="background:transparent;">
@@ -144,7 +144,7 @@
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                     <div class="panel-body">
-                        <div class="fb-like-box" data-href="https://www.facebook.com/TheNew939" data-height="400" data-show-faces="false" data-colorscheme="light" data-stream="true" show-border="false" data-header="false" style="background-color:#fff !important;max-width:700px;margin:0 auto 4%;"></div>
+                        <div class="fb-page" data-href="https://www.facebook.com/TheNew939" data-width="500" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/TheNew939"><a href="https://www.facebook.com/TheNew939">93.9 The Mountain</a></blockquote></div></div>
                     </div>
                 </div>
             </div>
