@@ -179,3 +179,16 @@ function object_to_array($object_to_array) {
     }
 }
 
+
+/*
+ * redirect Advertising Info gravity form to sales contacts
+ */
+add_filter( 'gform_confirmation', 'custom_confirmation', 10, 4 );
+function custom_confirmation( $confirmation, $form, $entry, $ajax ) {
+    // id 3 => advertising info
+    if( $form['id'] == '3' ) {
+        $confirmation = array( 'redirect' => '/advertising-info' );
+    }
+    return $confirmation;
+}
+
