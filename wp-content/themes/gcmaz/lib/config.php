@@ -56,6 +56,8 @@ function roots_display_sidebar() {
      */
     array(
       'is_404',
+      array( 'in_category', array( 7 ) ),
+      // 7 is category for splash pages on live (6 local)
       //'is_front_page'
     ),
     /**
