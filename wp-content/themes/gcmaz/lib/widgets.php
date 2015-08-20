@@ -107,7 +107,10 @@ class Roots_Vcard_Widget extends WP_Widget {
   function __construct() {
     $widget_ops = array('classname' => 'widget_roots_vcard', 'description' => __('Use this widget to add a vCard', 'roots'));
 
-    $this->WP_Widget('widget_roots_vcard', __('Roots: vCard', 'roots'), $widget_ops);
+    // DEPRECATED Constructor - causes errors
+    //$this->WP_Widget('widget_roots_vcard', __('Roots: vCard', 'roots'), $widget_ops);
+    // NEW
+    parent::__construct('widget_roots_vcard', __('Roots: vCard', 'roots'), $widget_ops);
     $this->alt_option_name = 'widget_roots_vcard';
 
     add_action('save_post', array(&$this, 'flush_widget_cache'));
