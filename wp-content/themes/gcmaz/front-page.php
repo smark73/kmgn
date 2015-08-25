@@ -1,4 +1,7 @@
 <?php
+    // need to check if adrotate plugin is even active
+    // include file needed to detect plugin - front end use only
+    include_once( ABSPATH . 'wp-admin/includes/plugin.php');
 
     if (function_exists('fetch_feed') ) {
         //clear feed cache
@@ -154,10 +157,20 @@
         
     <section class="indx-bnr-wrap row ">
         <article class="indx-bnr col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <?php echo adrotate_group(4); ?>
+            <?php
+                // check for plugin by using plugin name
+                if( is_plugin_active( 'adrotate/adrotate.php' ) ){
+                    echo adrotate_group(4);
+                }
+                ?>
         </article>
         <article class="indx-bnr col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <?php echo adrotate_group(5); ?>
+            <?php
+                // check for plugin by using plugin name
+                if( is_plugin_active( 'adrotate/adrotate.php' ) ){
+                    echo adrotate_group(5);
+                }
+            ?>
         </article>
     </section>
     <div class="clearfix"></div>
