@@ -3,7 +3,7 @@
         <ul class="ftr-links-list centered">
             <li><span class="glyphicon glyphicon-home"></span><a href="/">Home</a></li>
             <li><span class="glyphicon glyphicon-earphone"></span><a href="/contact-93-9-rock-radio/">Contact Us</a></li>
-            <li><span class="glyphicon glyphicon-play"></span><a href="javascript:void(window.open('http://player.tritondigital.com/8061', 'KMGNFM', 'width=780,height=600'));">Listen Live</a></li>
+            <li><span class="glyphicon glyphicon-play"></span><a href="http://player.listenlive.co/36601" target="_blank">Listen Live</a></li>
             <li><span class="glyphicon glyphicon-tower"></span><a href="http://clubmountain.gcmaz.com/" target="_blank">Win Stuff</a></li>
             <li><span class="glyphicon glyphicon-user"></span><a href="/radio-shows/">On Air</a></li>
         </ul>

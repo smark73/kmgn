@@ -12,7 +12,7 @@
                 echo
                     '<div class="listenlive row">
                         <div class="strm-lft col-md-12 col-sm-12 col-xs-12">
-                            <a class="listenlive-txt centered" href="javascript:void(window.open(\'http://player.tritondigital.com/8061\', \'KMGNFM\', \'width=780,height=600\'));">
+                            <a class="listenlive-txt centered" href="http://player.listenlive.co/36601" target="_blank">
                                 Listen Live <span class="glyphicon glyphicon-play"></span>
                             </a>
                         </div>
@@ -22,7 +22,7 @@
                 echo
                     '<div class="listenlive row">
                         <div class="strm-lft col-md-9 col-sm-9 col-xs-7">
-                            <a class="listenlive-txt centered" href="javascript:void(window.open(\'http://player.tritondigital.com/8061\', \'KMGNFM\', \'width=780,height=600\'));">
+                            <a class="listenlive-txt centered" href="http://player.listenlive.co/36601" target="_blank">
                                 Listen Live <span class="glyphicon glyphicon-play"></span>
                             </a>
                         </div>
@@ -37,7 +37,7 @@
         echo
             '<div class="listenlive row">
                 <div class="strm-lft col-md-12 col-sm-12 col-xs-12">
-                    <a class="listenlive-txt centered" href="javascript:void(window.open(\'http://player.tritondigital.com/8061\', \'KMGNFM\', \'width=780,height=600\'));">
+                    <a class="listenlive-txt centered" href="http://player.listenlive.co/36601" target="_blank">
                         Listen Live <span class="glyphicon glyphicon-play"></span>
                     </a>
                 </div>
