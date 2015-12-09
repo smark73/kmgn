@@ -90,7 +90,7 @@ function roots_wp_title($title) {
 
   return $title;
 }
-add_filter('wp_title', 'roots_wp_title', 10);
+//DEPRECATED add_filter('wp_title', 'roots_wp_title', 10);
 
 /**
  * Clean up output of stylesheet <link> tags
