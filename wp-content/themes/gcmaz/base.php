@@ -24,11 +24,11 @@
                     <img class="size-full wp-image-31 centered logo" alt="93-9 The Mountain Radio - Flagstaff and Prescott Radio" src="/media/logo-939themountain.png"/>
                 </a>
                 
-                <div  class="sticker-logo">
-                    <a href="http://gcmaz.com/info/sticker-on-and-win/">
-                        <img alt="Play Sticker On and Win!" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/kmgn-sticker-on.png" class="stickeron-img"/>
-                    </a>
-                </div>
+                <?php //<div  class="sticker-logo">?>
+                    <?php //<a href="http://gcmaz.com/info/sticker-on-and-win/">?>
+                        <?php //<img alt="Play Sticker On and Win!" src="<?php echo get_stylesheet_directory_uri(); ? >/assets/img/kmgn-sticker-on.png" class="stickeron-img"/>?>
+                    <?php //</a>?>
+                <?php //</div>?>
                 
             </section>
             <section class="col-md-8">
