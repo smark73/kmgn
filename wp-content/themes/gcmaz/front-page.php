@@ -31,14 +31,14 @@
 ?>
 
 
-<div class="row"><!-- front-page-->
+<div class="row">
     <section class="boxy row">
         <?php get_template_part('templates/content', 'page'); ?>
     </section>
     
-    <section class="row indx-social hidden-xs">
+    <section class="row indx-social">
         <div class="rbn-hdg">
-            <span class="centered txtshdw gen-hdr">News and Social</span>
+            <span class="centered txtshdw gen-hdr">Area News</span>
         </div>
         <div class="col-md-12 indx-news">
             <h5>KAFF News | <a href="http://www.gcmaz.com/kaff-news" target="_blank" title="View All KAFF News Stories">View All &raquo;</a></h5>
@@ -82,78 +82,7 @@
                     <?php endforeach; ?>
                 <?php endforeach; //end main loop ?>
         </div>
-        <div class="fb-page" data-href="https://www.facebook.com/TheNew939" data-width="500" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/TheNew939"><a href="https://www.facebook.com/TheNew939">93.9 The Mountain</a></blockquote></div></div>
     </section>
-        
-    <section class="row indx-social visible-xs" style="background:transparent;">
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingOne">
-                    <h4 class="panel-title hp-toggle-feed">
-                        <a class="mobile-toggle-news" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">News Headlines <div class="toggle-arrow-up"></div></a>
-                    </h4>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="panel-body">
-                        <div class="col-md-12 indx-news">
-                                <?php foreach ($items as $item) :  //main loop #1  thru results ?>
-                                    <?php foreach ($item->get_categories() as $item_cat) :   //inner loop for Pinned results ?>
-                                        <?php if ($item_cat->get_label() == 'Pinned') : ?>
-                                            <?php $count_to_max2++; if( $count_to_max2<= $max_total_items) : ?>
-                                                <?php  array_push($temp_store_feed_ids2, $item->get_id()) ; //store id in temp array to prevent duplication ?>
-
-                                                <div class="indx-news-feed-listing">
-                                                    <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank">
-                                                        <?php echo esc_html($item->get_title()); ?>
-                                                    </a>
-                                                    <?php echo "<p>" . shorten_and_strip_html( $item->get_content(), 120 ) . "</p>"; ?>
-                                                <hr/>
-                                                </div>
-
-                                            <?php endif; ?>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                <?php endforeach;?>
-
-                                <?php foreach ($items as $item) :  //main loop #2 thru results ?>
-                                    <?php foreach ($item->get_categories() as $item_cat) : //inner loop for non-Pinned results ?>
-                                        <?php if ($item_cat->get_label() != 'Pinned') : ?>
-                                            <?php if (!in_array($item->get_id(), $temp_store_feed_ids2)) : // dont show posts already in our feed ?>
-                                                <?php $count_to_max2++; if( $count_to_max2<= $max_total_items) : ?>
-                                                    <?php  array_push($temp_store_feed_ids2, $item->get_id()) ; //store id in temp array to prevent duplication ?>
-
-                                                        <div class="indx-news-feed-listing">
-                                                            <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank">
-                                                                <?php echo esc_html($item->get_title()); ?>
-                                                            </a>
-                                                            <?php echo "<p>" . shorten_and_strip_html( $item->get_content(), 120 ) . "</p>"; ?>
-                                                        <hr/>
-                                                        </div>
-
-                                                <?php endif; ?>
-                                            <?php endif; ?>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                <?php endforeach; //end main loop ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingTwo">
-                    <h4 class="panel-title hp-toggle-feed">
-                        <a class="collapsed mobile-toggle-fb" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Facebook Feed <div class="toggle-arrow-down"></div></a>
-                    </h4>
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                    <div class="panel-body">
-                        <div class="fb-page" data-href="https://www.facebook.com/TheNew939" data-width="500" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/TheNew939"><a href="https://www.facebook.com/TheNew939">93.9 The Mountain</a></blockquote></div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-        
         
     <section class="indx-bnr-wrap row ">
         <article class="indx-bnr col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -174,4 +103,4 @@
         </article>
     </section>
     <div class="clearfix"></div>
-</div><!-- /front-page-->
+</div>
