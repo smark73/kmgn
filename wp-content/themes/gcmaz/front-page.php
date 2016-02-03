@@ -36,71 +36,92 @@
         <?php get_template_part('templates/content', 'page'); ?>
     </section>
     
-    <section class="row indx-social">
-        <div class="rbn-hdg">
-            <span class="centered txtshdw gen-hdr">Area News</span>
-        </div>
-        <div class="col-md-12 indx-news">
-            <h5>KAFF News | <a href="http://www.gcmaz.com/kaff-news" target="_blank" title="View All KAFF News Stories">View All &raquo;</a></h5>
-                <?php foreach ($items as $item) :  //main loop #1  thru results ?>
-                    <?php foreach ($item->get_categories() as $item_cat) :   //inner loop for Pinned results ?>
-                        <?php if ($item_cat->get_label() == 'Pinned') : ?>
-                            <?php $count_to_max++; if( $count_to_max<= $max_total_items) : ?>
-                                <?php  array_push($temp_store_feed_ids, $item->get_id()) ; //store id in temp array to prevent duplication ?>
-
-                                <div class="indx-news-feed-listing">
-                                    <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank">
-                                        <?php echo esc_html($item->get_title()); ?>
-                                    </a>
-                                    <?php echo "<p>" . shorten_and_strip_html( $item->get_content(), 120 ) . "</p>"; ?>
-                                <hr/>
-                                </div>
-
-                            <?php endif; ?>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                <?php endforeach;?>
-
-                <?php foreach ($items as $item) :  //main loop #2 thru results ?>
-                    <?php foreach ($item->get_categories() as $item_cat) : //inner loop for non-Pinned results ?>
-                        <?php if ($item_cat->get_label() != 'Pinned') : ?>
-                            <?php if (!in_array($item->get_id(), $temp_store_feed_ids)) : // dont show posts already in our feed ?>
+    <section class="row indx-btm">
+        <div class="col-md-6">
+            <div class="indx-sm-btns">
+                <a href="/song-requests" class="song-req">Request a Song on KMGN &nbsp; <span class="glyphicon glyphicon-music"></span></a>
+            </div>
+            <div class="indx-news">
+                <h5>KAFF News | <a href="http://www.gcmaz.com/kaff-news" target="_blank" title="View All KAFF News Stories">View All &raquo;</a></h5>
+                    <?php foreach ($items as $item) :  //main loop #1  thru results ?>
+                        <?php foreach ($item->get_categories() as $item_cat) :   //inner loop for Pinned results ?>
+                            <?php if ($item_cat->get_label() == 'Pinned') : ?>
                                 <?php $count_to_max++; if( $count_to_max<= $max_total_items) : ?>
                                     <?php  array_push($temp_store_feed_ids, $item->get_id()) ; //store id in temp array to prevent duplication ?>
 
-                                        <div class="indx-news-feed-listing">
-                                            <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank">
-                                                <?php echo esc_html($item->get_title()); ?>
-                                            </a>
-                                            <?php echo "<p>" . shorten_and_strip_html( $item->get_content(), 120 ) . "</p>"; ?>
-                                        <hr/>
-                                        </div>
+                                    <div class="indx-news-feed-listing">
+                                        <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank">
+                                            <?php echo esc_html($item->get_title()); ?>
+                                        </a>
+                                        <?php echo "<p>" . shorten_and_strip_html( $item->get_content(), 120 ) . "</p>"; ?>
+                                    <hr/>
+                                    </div>
 
                                 <?php endif; ?>
                             <?php endif; ?>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                <?php endforeach; //end main loop ?>
+                        <?php endforeach; ?>
+                    <?php endforeach;?>
+
+                    <?php foreach ($items as $item) :  //main loop #2 thru results ?>
+                        <?php foreach ($item->get_categories() as $item_cat) : //inner loop for non-Pinned results ?>
+                            <?php if ($item_cat->get_label() != 'Pinned') : ?>
+                                <?php if (!in_array($item->get_id(), $temp_store_feed_ids)) : // dont show posts already in our feed ?>
+                                    <?php $count_to_max++; if( $count_to_max<= $max_total_items) : ?>
+                                        <?php  array_push($temp_store_feed_ids, $item->get_id()) ; //store id in temp array to prevent duplication ?>
+
+                                            <div class="indx-news-feed-listing">
+                                                <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank">
+                                                    <?php echo esc_html($item->get_title()); ?>
+                                                </a>
+                                                <?php echo "<p>" . shorten_and_strip_html( $item->get_content(), 120 ) . "</p>"; ?>
+                                            <hr/>
+                                            </div>
+
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endforeach; //end main loop ?>
+            </div>
         </div>
-    </section>
-        
-    <section class="indx-bnr-wrap row ">
-        <article class="indx-bnr col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <?php
+        <div class="col-md-6">
+            <div class="visible-xs hidden-md hidden-sm hidden-lg indx-sm-c2a">
+                <?php
                 // check for plugin by using plugin name
+                // homepaeg sidebar banners group (otherwise at very bottom and sales will complain)
+                if( is_plugin_active( 'adrotate/adrotate.php' ) ){
+                    echo adrotate_group(6);
+                }
+                ?>
+            </div>
+            <div class="indx-sm-c2a">
+                <?php
+                // check for plugin by using plugin name
+                // NAU Games = 16
+                if( is_plugin_active( 'adrotate/adrotate.php' ) ){
+                    echo adrotate_group(16);
+                }
+                ?>
+            </div>
+            <div class="indx-sm-c2a">
+                <?php
+                // check for plugin by using plugin name
+                //indexbanner1
                 if( is_plugin_active( 'adrotate/adrotate.php' ) ){
                     echo adrotate_group(4);
                 }
                 ?>
-        </article>
-        <article class="indx-bnr col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <?php
+            </div>
+            <div class="indx-sm-c2a">
+                <?php
                 // check for plugin by using plugin name
+                //indexbanner2
                 if( is_plugin_active( 'adrotate/adrotate.php' ) ){
                     echo adrotate_group(5);
                 }
-            ?>
-        </article>
+                ?>
+            </div>
+        </div>
     </section>
-    <div class="clearfix"></div>
+
 </div>
