@@ -449,7 +449,19 @@ ul.search-result-list li a:hover{ border-left:2px solid @blue;padding-left:8px }
 .sidebar .widget_adrotate_widgets{margin:auto;padding:5px 0 10px;text-align:center;}
 .widget_adrotate_widgets img{width:100%;height:auto;max-width:300px;max-height:250px;margin:auto;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px}
 .widget_adrotate_widgets .widget-inner{ width:100%;margin:auto;padding:2% 0}
-
+/* ADROTATE FIXES */
+/*fix dynamic adrotate that doesn't stay 250px tall*/
+.fix-adrotate-300x250 {
+    max-height: 250px;
+    max-width: 300px;
+    overflow: hidden;
+}
+/* indv fix for adrotate groups (g-6 = group6) */
+.g-6 {
+    max-height: 250px;
+    max-width: 300px;
+    overflow: hidden;
+}
 .sidebar .recent-posts-2,
 .sidebar .widget_recent_entries,
 .sidebar .categories-2,
