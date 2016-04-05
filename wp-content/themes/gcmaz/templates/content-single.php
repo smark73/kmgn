@@ -2,7 +2,7 @@
     <?php while (have_posts()) : the_post(); ?>
         <div class="centered rbn-hdg">
             <div class="page-header">
-                <h4 class="txtshdw"><?php the_title(); ?></h4>
+                <h3 class="txtshdw"><?php the_title(); ?></h3>
             </div>
         </div>
         <article class="entry-content">
