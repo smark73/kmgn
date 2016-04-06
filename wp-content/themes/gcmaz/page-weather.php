@@ -19,7 +19,7 @@
         <br/><br/>
     </div>
 </div>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/2.3.0/jquery.simpleWeather.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         var $w = function($z,$woeid){
