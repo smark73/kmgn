@@ -43,10 +43,10 @@
                 }
             });
         };
-        $w('86001', '');
-        $('#flagstaff').click(function(){ $w('86001', ''); return false; });
-        $('#prescott').click(function(){ $w('86301', ''); return false; });
-        $('#sedona').click(function(){ $w('86336', ''); return false; });
-        $('#gc').click(function(){ $w('86023', ''); return false; });
+        $w('86001', '2404049');
+        $('#flagstaff').click(function(){ $w('86001', '2404049'); return false; });
+        $('#prescott').click(function(){ $w('86301', '2476440'); return false; });
+        $('#sedona').click(function(){ $w('86336', '2490551'); return false; });
+        $('#gc').click(function(){ $w('86023', '23506246'); return false; });
     });
 </script>
