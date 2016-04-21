@@ -3,11 +3,18 @@
  * Custom functions
  */
 
+//debugging things
+// opt A
+//$e = new \Exception;
+//var_dump($e->getTraceAsString());
+// opt B
+//var_dump(debug_backtrace());
+
 global $station;
 $station = 'KMGN';
 
 // *** START Session for all *.gcmaz.com to set domain var (to keep track of which subdomain user started on)
-function register_session( $lifetime = 600 ){
+/*function register_session( $lifetime = 600 ){
     if(!session_id()){
         session_set_cookie_params($lifetime, '/', '.gcmaz.com');
         session_name( 'gcmaz' );
@@ -16,14 +23,14 @@ function register_session( $lifetime = 600 ){
     //set the variable
     $_SESSION['startDomain'] = '939themountain';
 }
-add_action('init', 'register_session');
+add_action('init', 'register_session');*/
 
 /*
  * Flush rewrite rules for custom post types
  * urls give a 404 otherwise
  */
-add_action( 'after_switch_theme', 'bt_flush_rewrite_rules' );
-function bt_flush_rewrite_rules() {
+add_action( 'after_switch_theme', 'our_flush_rewrite_rules' );
+function our_flush_rewrite_rules() {
      flush_rewrite_rules();
 }
 
@@ -93,8 +100,7 @@ if($ptko_settings['ptko_toggle'] == 1){
 /*
  * SimplePie function to shorten feed 
  */
-function shorten($string, $length)
-{
+function shorten($string, $length){
     // By default, an ellipsis will be appended to the end of the text.
     $suffix = '&hellip;';
  
@@ -191,4 +197,3 @@ function custom_confirmation( $confirmation, $form, $entry, $ajax ) {
     }
     return $confirmation;
 }
-

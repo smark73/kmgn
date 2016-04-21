@@ -1,9 +1,15 @@
 <?php
 /*
-Template Name: Feed: Community
+Template Name: Feed: Whats
  * use WP functions to get and display feed
 */
+include_once( ABSPATH . WPINC . '/feed.php' );
+//error_reporting(0);
 global $station;
+
+//display errors instead of error message
+$debug_page = false;
+
 ?>
 <div class="in-cnt-wrp row">
     <div class="centered rbn-hdg">
@@ -14,15 +20,33 @@ global $station;
             //clear feed cache
             function clear_feed_cache($secs){
                 //return 0;  //set to zero
-                return 600;  //10 mins
+                return 300;  //5 mins
             }
             add_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
-            $feed = fetch_feed('http://gcmaz.com/?feed=community');
-            //$feed->enable_cache(false);
-            //$feed->set_cache_duration(0);
-            $feed->enable_order_by_date(false);
-            $limit = $feed->get_item_quantity(999); // specify number of items
-            $items = $feed->get_items(0, $limit); // create an array of items
+
+            $feed = fetch_feed('http://gcmaz.com/?feed=whats');
+            //$feed->force_feed(true);
+
+            if( ! is_wp_error( $feed ) ){
+                //if no errors
+                //$feed->set_timeout(60);
+                $feed->enable_cache(false);
+                $feed->set_cache_duration(0);
+
+                $feed->enable_order_by_date(false);
+                $limit = $feed->get_item_quantity(999); // specify number of items
+                $items = $feed->get_items(0, $limit); // create an array of items
+            } else {
+                //show errors or error message
+                if($debug_page === true){
+                    print_r($feed);
+                    echo "<br/>";
+                    print_r($feed->error());
+                } else {
+                    echo "Sorry, there was an error getting the feed.";
+                }
+            }
+
             //remove feed cache filter
             remove_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
         }
