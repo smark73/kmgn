@@ -85,42 +85,78 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="visible-xs hidden-md hidden-sm hidden-lg indx-sm-c2a">
-                <?php
+<?php
+                // homepage sidebar banners group (hidden lg, vis sm)(otherwise at very bottom and sales will complain)
+                // group = 6
                 // check for plugin by using plugin name
-                // homepaeg sidebar banners group (otherwise at very bottom and sales will complain)
                 if( is_plugin_active( 'adrotate/adrotate.php' ) ){
-                    echo adrotate_group(6);
+                    //check if group has ad
+                    if( substr( adrotate_group(6), 0, 5) == "<span" || substr( adrotate_group(6), 0, 2) == "<!" ) {
+                        //nothing to display
+                    } else {
+                        echo '<div class="visible-xs hidden-md hidden-sm hidden-lg indx-sm-c2a">';
+                        echo adrotate_group(6);
+                        echo '</div>';
+                    }
                 }
-                ?>
-            </div>
-            <div class="indx-sm-c2a">
-                <?php
-                // check for plugin by using plugin name
+            ?>
+
+            <?php
                 // NAU Games = 16
-                if( is_plugin_active( 'adrotate/adrotate.php' ) ){
-                    echo adrotate_group(16);
-                }
-                ?>
-            </div>
-            <div class="indx-sm-c2a">
-                <?php
                 // check for plugin by using plugin name
-                //indexbanner1
                 if( is_plugin_active( 'adrotate/adrotate.php' ) ){
-                    echo adrotate_group(4);
+                    //check if group has ad
+                    if( substr( adrotate_group(16), 0, 5) == "<span" || substr( adrotate_group(16), 0, 2) == "<!" ) {
+                        //nothing to display
+                    } else {
+                        echo '<div class="indx-sm-c2a">';
+                        echo adrotate_group(16);
+                        echo '</div>';
+                    }
                 }
-                ?>
-            </div>
-            <div class="indx-sm-c2a">
-                <?php
+            ?>
+            
+            <?php
+                //indexbanner1 = 4
                 // check for plugin by using plugin name
-                //indexbanner2
                 if( is_plugin_active( 'adrotate/adrotate.php' ) ){
-                    echo adrotate_group(5);
+                    if( substr( adrotate_group(4), 0, 5) == "<span" || substr( adrotate_group(4), 0, 2) == "<!" ) {
+                        //nothing to display
+                    } else {
+                        echo '<div class="indx-sm-c2a">';
+                        echo adrotate_group(4);
+                        echo '</div>';
+                    }
                 }
-                ?>
-            </div>
+            ?>
+            
+            <?php
+                //indexbanner2 = 5
+                // check for plugin by using plugin name
+                if( is_plugin_active( 'adrotate/adrotate.php' ) ){
+                    if( substr( adrotate_group(5), 0, 5) == "<span" || substr( adrotate_group(5), 0, 2) == "<!" ) {
+                        //nothing to display
+                    } else {
+                        echo '<div class="indx-sm-c2a">';
+                        echo adrotate_group(5);
+                        echo '</div>';
+                    }
+                }
+            ?>
+
+            <?php
+                //indexbanner3 = 17
+                // check for plugin by using plugin name
+                if( is_plugin_active( 'adrotate/adrotate.php' ) ){
+                    if( substr( adrotate_group(17), 0, 5) == "<span" || substr( adrotate_group(17), 0, 2) == "<!" ) {
+                        //nothing to display
+                    } else {
+                        echo '<div class="indx-sm-c2a">';
+                        echo adrotate_group(17);
+                        echo '</div>';
+                    }
+                }
+            ?>
         </div>
     </section>
 
