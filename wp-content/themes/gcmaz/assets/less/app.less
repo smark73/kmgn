@@ -335,13 +335,37 @@ a.wthrcty:hover{text-decoration:none;color:#fff}
 .wthrspnsrs {margin-bottom:2%;padding-bottom:2%}
 .wthrspnsrs img{margin:5px auto}
 
-.feed-listing{
-    & a.listhdr{font-size:1.2em;font-weight:600;display:block}
-    & img {clear:both;float:left;max-width:150px;height:auto;padding:0 2% 2% 0}
-    & span.listdate {margin-top:-25px}
-    margin-bottom:0;
-    padding-bottom:0;
-    clear:both;
+article.feed-article {
+
+    a,
+    a:hover {
+        z-index: 1000;
+        text-decoration: none;
+    }
+
+    .feed-listing{
+        & .listhdr{font-size:1.2em;font-weight:600;display:block;}
+        & img {clear:both;max-width:150px;height:auto;padding:0 2% 2% 0}
+        & .listdate {font-size:1em;font-weight:500}
+        margin-bottom:0;
+        padding-bottom:0;
+        clear:both;
+    }
+
+    .feed-wrap-link {
+        display:block;
+
+    }
+
+    &:hover{
+        background: #f0fbff;
+        border-left:5px solid @blue;
+    }
+
+    box-sizing: border-box;
+    padding:5px;
+    position:relative;
+
 }
 
 /*

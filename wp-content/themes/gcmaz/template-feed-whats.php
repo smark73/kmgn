@@ -3,8 +3,13 @@
 Template Name: Feed: Whats
  * use WP functions to get and display feed
 */
-global $station;
 include_once( ABSPATH . WPINC . '/feed.php' );
+//error_reporting(0);
+global $station;
+
+//display errors instead of error message
+$debug_page = false;
+
 ?>
 <div class="in-cnt-wrp row">
     <div class="centered rbn-hdg">
@@ -14,25 +19,34 @@ include_once( ABSPATH . WPINC . '/feed.php' );
         if (function_exists('fetch_feed') ) {
             //clear feed cache
             function clear_feed_cache($secs){
-                return 0;  //set to zero
-                //return 600;  //10 mins
+                //return 0;  //set to zero
+                return 300;  //5 mins
             }
             add_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
-            $feed = fetch_feed('http://dev.gcmaz.com/?feed=whats');
-            //print_r($feed);
-            //echo "<br/>";
-            $success = $feed->init();
-            if($feed->error()){
-                print_r($feed->error());
-            } else {
+
+            $feed = fetch_feed('http://gcmaz.com/?feed=whats');
+            //$feed->force_feed(true);
+
+            if( ! is_wp_error( $feed ) ){
+                //if no errors
                 //$feed->set_timeout(60);
                 $feed->enable_cache(false);
-                //$feed->set_cache_duration(0);
-                $feed->force_feed(true);
+                $feed->set_cache_duration(0);
+
                 $feed->enable_order_by_date(false);
                 $limit = $feed->get_item_quantity(999); // specify number of items
                 $items = $feed->get_items(0, $limit); // create an array of items
+            } else {
+                //show errors or error message
+                if($debug_page === true){
+                    print_r($feed);
+                    echo "<br/>";
+                    print_r($feed->error());
+                } else {
+                    echo "Sorry, there was an error getting the feed.";
+                }
             }
+
             //remove feed cache filter
             remove_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
         }
@@ -45,17 +59,23 @@ include_once( ABSPATH . WPINC . '/feed.php' );
             <?php if ($item_cat->get_label() == $station) : ?>
                 <?php $counter +=1;?>
     
-                <article>
-                    <div class="entry-content feed-listing">
-                        <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank" class="listhdr">
-                            <?php echo esc_html($item->get_title()); //shorten(esc_html($item->get_title()), 90); ?>
-                        </a>
-                        <br/>
-                        <?php echo $item->get_content(); ?>
-                    </div>
-                    <div class="clearfix"/></div>
-                    <hr class="archv-pg-hr"/>
-                </article>
+                            <article class="feed-article">
+
+                                <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank" class="feed-wrap-link">
+                                    
+                                    <div class="entry-content feed-listing">
+                                        <p class="listhdr">
+                                            <?php echo esc_html($item->get_title()); ?>
+                                        </p>
+                                        <br/>
+                                        <?php echo $item->get_content(); ?>
+                                    </div>
+                                    <div class="clearfix"/></div>
+
+                                </a>
+                                
+                                <hr class="archv-pg-hr"/>
+                            </article>
     
             <?php endif; ?>
         <?php endforeach; ?>

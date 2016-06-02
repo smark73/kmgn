@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Feed: Whats
+Template Name: Feed: Community
  * use WP functions to get and display feed
 */
 include_once( ABSPATH . WPINC . '/feed.php' );
@@ -24,7 +24,7 @@ $debug_page = false;
             }
             add_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
 
-            $feed = fetch_feed('http://gcmaz.com/?feed=whats');
+            $feed = fetch_feed('http://gcmaz.com/?feed=community');
             //$feed->force_feed(true);
 
             if( ! is_wp_error( $feed ) ){
@@ -32,7 +32,7 @@ $debug_page = false;
                 //$feed->set_timeout(60);
                 $feed->enable_cache(false);
                 $feed->set_cache_duration(0);
-
+                $feed->force_feed(true);
                 $feed->enable_order_by_date(false);
                 $limit = $feed->get_item_quantity(999); // specify number of items
                 $items = $feed->get_items(0, $limit); // create an array of items
@@ -59,17 +59,23 @@ $debug_page = false;
             <?php if ($item_cat->get_label() == $station) : ?>
                 <?php $counter +=1;?>
     
-                <article>
-                    <div class="entry-content feed-listing">
-                        <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank" class="listhdr">
-                            <?php echo esc_html($item->get_title()); //shorten(esc_html($item->get_title()), 90); ?>
-                        </a>
-                        <br/>
-                        <?php echo $item->get_content(); ?>
-                    </div>
-                    <div class="clearfix"/></div>
-                    <hr class="archv-pg-hr"/>
-                </article>
+                            <article class="feed-article">
+
+                                <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank" class="feed-wrap-link">
+                                    
+                                    <div class="entry-content feed-listing">
+                                        <p class="listhdr">
+                                            <?php echo esc_html($item->get_title()); ?>
+                                        </p>
+                                        <br/>
+                                        <?php echo $item->get_content(); ?>
+                                    </div>
+                                    <div class="clearfix"/></div>
+
+                                </a>
+                                
+                                <hr class="archv-pg-hr"/>
+                            </article>
     
             <?php endif; ?>
         <?php endforeach; ?>
