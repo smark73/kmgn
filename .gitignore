@@ -29,6 +29,8 @@ wp-content/plugins/*
 # !wp-content/plugins/my-single-file-plugin.php
 # !wp-content/plugins/my-directory-plugin/
 !wp-content/plugins/gcmaz/
+#keep our modifications to easy-logo-slider plugin
+!wp-content/plugins/easy-logo-slider/
  
 # Ignore everything in the "themes" directory, except the themes you
 # specify (see the commented-out example for a hint on how to do this.)
