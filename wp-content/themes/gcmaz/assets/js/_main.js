@@ -56,18 +56,18 @@ var GcmazSite = {
         // **** END PAGE TAKEOVER
         
         //****  START exp leaderboard banner 
-        var $exp = $(document).find('.expldrbrd');
-        $(function(){
-            $exp.delay(10000).animate({ height:20, bottom:0}, function(){
+        //var $exp = $(document).find('.expldrbrd');
+        //$(function(){
+            //$exp.delay(10000).animate({ height:20, bottom:0}, function(){
                 //show hide funx
-                $exp.mouseover(function(){
-                    $exp.stop().animate({ height:150, bottom:150});
-                });
-                $exp.mouseout(function(){
-                    $exp.stop().animate({ height:18, bottom:0});
-                });
-            });
-        });
+                //$exp.mouseover(function(){
+                    //$exp.stop().animate({ height:150, bottom:150});
+                //});
+                //$exp.mouseout(function(){
+                    //$exp.stop().animate({ height:18, bottom:0});
+                //});
+            //});
+        //});
         //***** END exp leaderboard
         
     },
