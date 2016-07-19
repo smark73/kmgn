@@ -42,17 +42,17 @@ var GcmazSite = {
         });
 
         //hover funx
-        $(function(){
-           t.tkohdr2.delay(10000).animate({ height:0, bottom:0, marginTop:0},
-            function(){
-                t.tkohdr.mouseover(function(){
-                    t.tkohdr2.stop().animate({ height: t.h2, bottom: t.h2, marginTop:0});
-                });
-                t.tkohdr.mouseout(function(){
-                    t.tkohdr2.stop().animate({ height:0, bottom:0, marginTop:0});
-                });
-            });
-        });
+        // $(function(){
+        //    t.tkohdr2.delay(10000).animate({ height:0, bottom:0, marginTop:0},
+        //     function(){
+        //         t.tkohdr.mouseover(function(){
+        //             t.tkohdr2.stop().animate({ height: t.h2, bottom: t.h2, marginTop:0});
+        //         });
+        //         t.tkohdr.mouseout(function(){
+        //             t.tkohdr2.stop().animate({ height:0, bottom:0, marginTop:0});
+        //         });
+        //     });
+        // });
         // **** END PAGE TAKEOVER
         
         //****  START exp leaderboard banner 
