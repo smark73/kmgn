@@ -197,3 +197,91 @@ function custom_confirmation( $confirmation, $form, $entry, $ajax ) {
     }
     return $confirmation;
 }
+
+
+
+
+//check if  on DEV (VAG) or LIVE site
+function live_or_local(){
+    if( strpos( $_SERVER['HTTP_HOST'], '.vag') !== false ){
+        //on .vag (dev) site
+        $liveOrLocal = 'local';
+    } else {
+        $liveOrLocal = 'live';
+    }
+    return $liveOrLocal;
+}
+
+
+
+
+// Summer Promotion 2016 Casino Chip
+// goal - check "hour" and pick a page to display
+function display_sum_promo_casino_chip() {
+
+    global $post;
+
+    // get current hour 24 format
+    $cur_hour = date('H');
+
+    // slugs aren't consistent or permanent - use keywords in slugs instead
+    $cur_slug = get_permalink();
+
+    $simplified_slugs = array();
+    if ( stripos( $cur_slug, 'community' ) !== false ){
+        $simplified_slugs[] = "community";
+
+    } elseif ( stripos( $cur_slug, 'concert' ) !== false ){
+        $simplified_slugs[] = "concerts";
+
+    } elseif ( stripos( $cur_slug, 'what' ) !== false ){
+        $simplified_slugs[]= "whats";
+
+    } elseif ( stripos( $cur_slug, 'about' ) !== false ){
+        $simplified_slugs[]= "about";
+
+    } elseif ( stripos( $cur_slug, 'weather' ) !== false ){
+        $simplified_slugs[]= "weather";
+
+    } elseif ( stripos( $cur_slug, 'radio-shows' ) !== false ){
+        $simplified_slugs[]= "radio-shows";
+
+    } elseif ( stripos( $cur_slug, 'contact' ) !== false ){
+        $simplified_slugs[]= "contact";
+
+    } elseif ( stripos( $cur_slug, 'request' ) !== false ){
+        $simplified_slugs[]= "request";
+
+    }
+
+    //set pages to display by hour even/odds
+    if ($cur_hour % 2 == 0) {
+        //even hours
+        $pages_to_show_chip = array(
+            'about',
+            'weather',
+            'community',
+            'concerts',
+        );
+    } else {
+        //odd hours
+        $pages_to_show_chip = array(
+            'radio-shows',
+            'contact',
+            'whats',
+            'request',
+        );
+    }
+
+    // if the arrays intersect, display the chip
+    if( array_intersect( $simplified_slugs , $pages_to_show_chip ) ) : ?>
+
+        <div  class="sum-promo-casino-chip">
+            <a href="#" class="chip-click">
+                <img alt="" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/sum-prom-casino-chip-kmgn.png" class="sum-prom-casino-chip"/>
+            </a>
+        </div>
+
+    <?php endif;
+
+}

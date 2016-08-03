@@ -16,10 +16,24 @@
     // display the Page Take Over if it's enabled
     do_action('display_ptko');
   ?>
+
+    <?php
+        //MODALS
+
+        // Summer Prom 2016 Modal
+        get_template_part( 'templates/sum-prom-2016-modal' );
+    ?>
     
   <div class="innerbg wrap container" role="document" <?php if( is_search() ){ echo 'style="margin-top:28px;"'; } //fix display bug on search pages ?>>
         <div class="row row1">
             <section class="col-md-4">
+
+                <?php
+                  // display the Summer Promo 2016 Casino Chip
+                  // in custom functions
+                  display_sum_promo_casino_chip();
+                ?>
+
                 <a href="/" >
                     <img class="size-full wp-image-31 centered logo" alt="93-9 The Mountain Radio - Flagstaff and Prescott Radio" src="/media/logo-939themountain.png"/>
                 </a>

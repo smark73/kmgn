@@ -69,6 +69,19 @@ var GcmazSite = {
             //});
         //});
         //***** END exp leaderboard
+
+
+        //**** START Summer Promotion 2016 Casino Chip
+        jQuery(document).ready(function() {
+           var $casinochip = jQuery(document).find('.chip-click');
+           jQuery(function(){
+               $casinochip.click(function(){
+                   jQuery('#sumPromoModal').modal('show');
+               });
+           });
+        });
+        //**** END Summer Promo
+        
         
     },
     finalize: function() { }
