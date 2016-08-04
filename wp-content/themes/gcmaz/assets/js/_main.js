@@ -71,6 +71,7 @@ var GcmazSite = {
         //***** END exp leaderboard
 
 
+
         //**** START Summer Promotion 2016 Casino Chip
         jQuery(document).ready(function() {
            var $casinochip = jQuery(document).find('.chip-click');
@@ -83,6 +84,17 @@ var GcmazSite = {
         //**** END Summer Promo
         
         
+
+        //**** HIDE JavaScript not enabled notices
+        // (shows if js not enabled)
+        jQuery(document).ready(function() {
+           var $jsnotice = jQuery(document).find('.js-notice');
+           $jsnotice.hide();
+        });
+        //**** END JS Notices
+
+
+
     },
     finalize: function() { }
   },

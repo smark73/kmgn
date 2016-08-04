@@ -221,67 +221,118 @@ function display_sum_promo_casino_chip() {
 
     global $post;
 
-    // get current hour 24 format
-    $cur_hour = date('H');
+    // get current day of week check for Tuesday
+    $cur_day = date('D');
+    //print_r ($cur_day);
 
-    // slugs aren't consistent or permanent - use keywords in slugs instead
-    $cur_slug = get_permalink();
+    // Only on Tuesdays
+    if ($cur_day === 'Tue') {
 
-    $simplified_slugs = array();
-    if ( stripos( $cur_slug, 'community' ) !== false ){
-        $simplified_slugs[] = "community";
+        // get current hour 24 format
+        $cur_hour = intval( date('H') );
 
-    } elseif ( stripos( $cur_slug, 'concert' ) !== false ){
-        $simplified_slugs[] = "concerts";
+        //print_r ($cur_hour);
 
-    } elseif ( stripos( $cur_slug, 'what' ) !== false ){
-        $simplified_slugs[]= "whats";
+        // slugs aren't consistent or permanent - use keywords in slugs instead
+        $cur_slug = get_permalink();
 
-    } elseif ( stripos( $cur_slug, 'about' ) !== false ){
-        $simplified_slugs[]= "about";
+        $simplified_slugs = array();
+        if ( stripos( $cur_slug, 'community' ) !== false ){
+            $simplified_slugs[] = "community";
 
-    } elseif ( stripos( $cur_slug, 'weather' ) !== false ){
-        $simplified_slugs[]= "weather";
+        } elseif ( stripos( $cur_slug, 'concert' ) !== false ){
+            $simplified_slugs[] = "concerts";
 
-    } elseif ( stripos( $cur_slug, 'radio-shows' ) !== false ){
-        $simplified_slugs[]= "radio-shows";
+        } elseif ( stripos( $cur_slug, 'what' ) !== false ){
+            $simplified_slugs[]= "whats";
 
-    } elseif ( stripos( $cur_slug, 'contact' ) !== false ){
-        $simplified_slugs[]= "contact";
+        } elseif ( stripos( $cur_slug, 'about' ) !== false ){
+            $simplified_slugs[]= "about";
 
-    } elseif ( stripos( $cur_slug, 'request' ) !== false ){
-        $simplified_slugs[]= "request";
+        } elseif ( stripos( $cur_slug, 'weather' ) !== false ){
+            $simplified_slugs[]= "weather";
 
-    }
+        } elseif ( stripos( $cur_slug, 'radio-shows' ) !== false ){
+            $simplified_slugs[]= "radio-shows";
 
-    //set pages to display by hour even/odds
-    if ($cur_hour % 2 == 0) {
-        //even hours
-        $pages_to_show_chip = array(
-            'about',
-            'weather',
-            'community',
-            'concerts',
-        );
-    } else {
-        //odd hours
-        $pages_to_show_chip = array(
-            'radio-shows',
-            'contact',
-            'whats',
-            'request',
-        );
-    }
+        } elseif ( stripos( $cur_slug, 'contact' ) !== false ){
+            $simplified_slugs[]= "contact";
 
-    // if the arrays intersect, display the chip
-    if( array_intersect( $simplified_slugs , $pages_to_show_chip ) ) : ?>
+        } elseif ( stripos( $cur_slug, 'request' ) !== false ){
+            $simplified_slugs[]= "request";
 
-        <div  class="sum-promo-casino-chip">
-            <a href="#" class="chip-click">
-                <img alt="" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/sum-prom-casino-chip-kmgn.png" class="sum-prom-casino-chip"/>
-            </a>
-        </div>
+        } elseif ( stripos( $cur_slug, 'home' ) !== false ){
+            $simplified_slugs[]= "home";
 
-    <?php endif;
+        }
+
+        // Set Pages to display by hour
+        // $pages_to_show_chip = array(
+        //     'about',
+        //     'weather',
+        //     'community',
+        //     'concerts',
+        //     'radio-shows',
+        //     'contact',
+        //     'whats',
+        //     'request',
+        // );
+
+        if ( $cur_hour === 0 || $cur_hour === 6 || $cur_hour === 12 || $cur_hour === 18 || $cur_hour === 24 ) {
+            $pages_to_show_chip = array(
+                'about',
+            );
+
+        } elseif ( $cur_hour === 1 || $cur_hour === 7 || $cur_hour === 13 || $cur_hour === 19 ) {
+            $pages_to_show_chip = array(
+                'community',
+            );
+            
+        } elseif ( $cur_hour === 2 || $cur_hour === 8 || $cur_hour === 14 || $cur_hour === 20 ) {
+            $pages_to_show_chip = array(
+                'concerts',
+            );
+            
+        } elseif ( $cur_hour === 3 || $cur_hour === 9 || $cur_hour === 15 || $cur_hour === 21 ) {
+            $pages_to_show_chip = array(
+                'whats',
+            );
+            
+        } elseif ( $cur_hour === 4 || $cur_hour === 10 || $cur_hour === 16 || $cur_hour === 22 ) {
+            $pages_to_show_chip = array(
+                'radio-shows',
+            );
+            
+        } elseif ( $cur_hour === 5 || $cur_hour === 11 || $cur_hour === 17 || $cur_hour === 23 ) {
+            $pages_to_show_chip = array(
+                'request',
+            );
+            
+        } else {
+            // shouldn't ever happen (all possible hours handled above)
+            // just in case
+            $pages_to_show_chip = array(
+                'home',
+            );
+        }
+
+        // if the arrays intersect, display the chip
+        if( array_intersect( $simplified_slugs , $pages_to_show_chip ) ) : ?>
+
+            <div  class="sum-promo-casino-chip">
+                <a href="#" class="chip-click">
+                    <img alt="" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/sum-prom-casino-chip-kmgn.png" class="sum-prom-casino-chip"/>
+                </a>
+            </div>
+            <!-- js notices -->
+            
+            <div class="js-notice" style="background:#ff0;">
+                <noscript>JavaScript Must Be Enabled To Enter The Game!</noscript>
+                <p><a href="https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=enable%20javascript%20in%20browser" style="font-size:18px;font-weight:600;" target="_blank">How To Enable JavaScript &raquo;</a></p>
+            </div>
+
+        <?php endif;
+
+    } // if Tuesday
 
 }
