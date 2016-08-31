@@ -226,7 +226,7 @@ function display_sum_promo_casino_chip() {
     //print_r ($cur_day);
 
     // Only on Tuesdays
-    if ($cur_day === 'Tue') {
+    if ( $cur_day === 'Tue' || $cur_day === 'Mon' ) {
 
         // get current hour 24 format
         $cur_hour = intval( date('H') );
