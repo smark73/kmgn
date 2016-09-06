@@ -217,6 +217,7 @@ function live_or_local(){
 
 // Summer Promotion 2016 Casino Chip
 // goal - check "hour" and pick a page to display
+// function called in base.php
 function display_sum_promo_casino_chip() {
 
     global $post;
@@ -226,7 +227,7 @@ function display_sum_promo_casino_chip() {
     //print_r ($cur_day);
 
     // Only on Tuesdays
-    if ( $cur_day === 'Tue' || $cur_day === 'Mon' ) {
+    if ( $cur_day === 'Tue' ) {
 
         // get current hour 24 format
         $cur_hour = intval( date('H') );

@@ -21,7 +21,7 @@
         //MODALS
 
         // Summer Prom 2016 Modal
-        get_template_part( 'templates/sum-prom-2016-modal' );
+        //get_template_part( 'templates/sum-prom-2016-modal' );
     ?>
     
   <div class="innerbg wrap container" role="document" <?php if( is_search() ){ echo 'style="margin-top:28px;"'; } //fix display bug on search pages ?>>
@@ -31,7 +31,7 @@
                 <?php
                   // display the Summer Promo 2016 Casino Chip
                   // in custom functions
-                  display_sum_promo_casino_chip();
+                  //display_sum_promo_casino_chip();
                 ?>
 
                 <a href="/" >
