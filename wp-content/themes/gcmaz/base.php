@@ -56,10 +56,20 @@
           </div><!-- /.main -->
           <?php if (roots_display_sidebar()) : ?>
             <aside class="sidebar <?php echo roots_sidebar_class(); ?>" role="complementary">
-                <div class="hidden-xs studio-sponsor">
-                    <?php echo adrotate_group(14);?>
-                </div>
-              <?php include roots_sidebar_path(); ?>
+                <?php
+                    //studio sponsor(group 14) md & lg screen only -> see front-page.php for xs & sm
+                    // check for plugin by using plugin name
+                    if( is_plugin_active( 'adrotate/adrotate.php' ) ){
+                        if( substr( adrotate_group(14), 0, 5) === "<span" || substr( adrotate_group(14), 0, 2) === "<!" ) {
+                            //nothing to display
+                        } else {
+                            echo '<div class="hidden-xs hidden-sm studio-sponsor">';
+                            echo adrotate_group(14);
+                            echo '</div>';
+                        }
+                    }
+                ?>
+                <?php include roots_sidebar_path(); ?>
             </aside><!-- /.sidebar -->
           <?php endif; ?>
         </div><!-- /.content -->

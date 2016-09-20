@@ -38,6 +38,21 @@
     
     <section class="row indx-btm">
         <div class="col-md-6">
+
+            <?php 
+                //studio sponsor(group 14) sm & xs screen only -> see base.php for md & lg
+                // check for plugin by using plugin name
+                if( is_plugin_active( 'adrotate/adrotate.php' ) ){
+                    if( substr( adrotate_group(14), 0, 5) === "<span" || substr( adrotate_group(14), 0, 2) === "<!" ) {
+                        //nothing to display
+                    } else {
+                        echo '<div class="studio-sponsor visible-xs visible-sm hidden-lg hidden-md">';
+                        echo adrotate_group(14);
+                        echo '</div>';
+                    }
+                }
+            ?>
+        
             <div class="indx-sm-btns">
                 <a href="/song-requests" class="song-req">Request a Song on KMGN &nbsp; <span class="glyphicon glyphicon-music"></span></a>
             </div>
