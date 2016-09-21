@@ -57,7 +57,7 @@
                 <a href="/song-requests" class="song-req">Request a Song on KMGN &nbsp; <span class="glyphicon glyphicon-music"></span></a>
             </div>
             <div class="indx-news">
-                <h5>KAFF News | <a href="http://www.gcmaz.com/kaff-news" target="_blank" title="View All KAFF News Stories">View All &raquo;</a></h5>
+                <h5>KAFF News | <a href="https://gcmaz.com/kaff-news" target="_blank" title="View All KAFF News Stories">View All &raquo;</a></h5>
                     <?php foreach ($items as $item) :  //main loop #1  thru results ?>
                         <?php foreach ($item->get_categories() as $item_cat) :   //inner loop for Pinned results ?>
                             <?php if ($item_cat->get_label() == 'Pinned') : ?>
