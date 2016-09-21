@@ -19,11 +19,11 @@
         <p>93-9 The Mountain Radio</p>
         <p>&copy; Great Circle Media. All Rights Reserved</p>
         <p>
-            <a href="http://www.gcmaz.com/media/GeneralContestRules.pdf" target="_blank" class="ftr-sm">Contest Rules</a>
+            <a href="https://gcmaz.com/media/GeneralContestRules.pdf" target="_blank" class="ftr-sm">Contest Rules</a>
             &nbsp;|&nbsp;
-            <a href="http://www.gcmaz.com/employment/" class="ftr-sm">Employment</a>
+            <a href="https://gcmaz.com/employment/" class="ftr-sm">Employment</a>
             &nbsp;|&nbsp;
-            <a href="http://www.gcmaz.com/media/eeo.pdf" target="_blank" class="ftr-sm">EEO</a>
+            <a href="https://gcmaz.com/media/eeo.pdf" target="_blank" class="ftr-sm">EEO</a>
         </p>
     </section>
     <div class="clear-fix"></div>
