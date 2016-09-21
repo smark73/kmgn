@@ -76,7 +76,7 @@ $page_var = "Advertising Info";
                   <div class="mediakits entry-content feed-listing">
                       <?php echo $item->get_content(); ?>
                   </div>
-                  <div class="clearfix"/></div>
+                  <div class="clearfix"></div>
                   <hr class="archv-pg-hr"/>
                 </article>
         

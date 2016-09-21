@@ -124,7 +124,7 @@ if ( stripos( $cpt_slug, 'community' ) !== false ){
                                         <br/>
                                         <?php echo $item->get_content(); ?>
                                     </div>
-                                    <div class="clearfix"/></div>
+                                    <div class="clearfix"></div>
 
                                 </a>
                                 
