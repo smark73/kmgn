@@ -12,22 +12,21 @@
         add_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
         $feed = fetch_feed('http://gcmaz.com/category/news/feed');
         $feed->enable_order_by_date(false);
-        $limit = $feed->get_item_quantity(100); // specify large number of items - limit with the count_to_ten below
+        $limit = $feed->get_item_quantity(50); // specify large number of items - limit with the count_to_ten below
         $items = $feed->get_items(0, $limit); // create an array of items
         //remove feed cache filter
         remove_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
     }
 
     // create array to store post ID's of featured stories so we don't show them again below
-    //need 2 ... one for first loop, one for second (mobile)
     $temp_store_feed_ids = array();
-    $temp_store_feed_ids2 = array();
-    //max total items
-    $max_total_items = 10;
-    
-    //count Total feed items with this
-    $count_to_max = 0;
-    $count_to_max2 = 0;
+    //top news categ = "Slider (KAFF News)"
+    $count_top_news = 0;
+    $max_top_news = 5;
+    //more news items
+    $count_news = 0;
+    $max_news = 5;
+
 ?>
 
 
@@ -58,10 +57,11 @@
             </div>
             <div class="indx-news">
                 <h5>KAFF News | <a href="https://gcmaz.com/kaff-news" target="_blank" title="View All KAFF News Stories">View All &raquo;</a></h5>
-                    <?php foreach ($items as $item) :  //main loop #1  thru results ?>
-                        <?php foreach ($item->get_categories() as $item_cat) :   //inner loop for Pinned results ?>
-                            <?php if ($item_cat->get_label() == 'Pinned') : ?>
-                                <?php $count_to_max++; if( $count_to_max<= $max_total_items) : ?>
+
+                    <?php foreach ($items as $item) : ?>
+                        <?php foreach ($item->get_categories() as $item_cat) : ?>
+                            <?php if ($item_cat->get_label() === 'Slider (KAFF News)') : ?>
+                                <?php $count_top_news++; if( $count_top_news <= $max_top_news ) : ?>
                                     <?php  array_push($temp_store_feed_ids, $item->get_id()) ; //store id in temp array to prevent duplication ?>
 
                                     <div class="indx-news-feed-listing">
@@ -77,26 +77,22 @@
                         <?php endforeach; ?>
                     <?php endforeach;?>
 
-                    <?php foreach ($items as $item) :  //main loop #2 thru results ?>
-                        <?php foreach ($item->get_categories() as $item_cat) : //inner loop for non-Pinned results ?>
-                            <?php if ($item_cat->get_label() != 'Pinned') : ?>
-                                <?php if (!in_array($item->get_id(), $temp_store_feed_ids)) : // dont show posts already in our feed ?>
-                                    <?php $count_to_max++; if( $count_to_max<= $max_total_items) : ?>
-                                        <?php  array_push($temp_store_feed_ids, $item->get_id()) ; //store id in temp array to prevent duplication ?>
+                    <?php foreach ($items as $item) : ?>
+                        <?php if (!in_array($item->get_id(), $temp_store_feed_ids)) : // dont show posts already in our feed ?>
+                            <?php $count_news++; if( $count_news <= $max_news ) : ?>
+                                <?php  array_push($temp_store_feed_ids, $item->get_id()) ; //store id in temp array to prevent duplication ?>
 
-                                            <div class="indx-news-feed-listing">
-                                                <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank">
-                                                    <?php echo esc_html($item->get_title()); ?>
-                                                </a>
-                                                <?php echo "<p>" . shorten_and_strip_html( $item->get_content(), 120 ) . "</p>"; ?>
-                                            <hr/>
-                                            </div>
+                                    <div class="indx-news-feed-listing">
+                                        <a href="<?php echo esc_url($item->get_permalink());?>" title="<?php echo esc_html($item->get_title()); ?>" target="_blank">
+                                            <?php echo esc_html($item->get_title()); ?>
+                                        </a>
+                                        <?php echo "<p>" . shorten_and_strip_html( $item->get_content(), 120 ) . "</p>"; ?>
+                                    <hr/>
+                                    </div>
 
-                                    <?php endif; ?>
-                                <?php endif; ?>
                             <?php endif; ?>
-                        <?php endforeach; ?>
-                    <?php endforeach; //end main loop ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
             </div>
         </div>
         <div class="col-md-6">
