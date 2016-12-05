@@ -1,0 +1,1014 @@
+/*
+Theme Name: GCMAZ
+Theme URI: gcmaz.com
+Description: Great Circle Media Theme based on Roots 6.5.0
+Author: Stacy Mark
+Version: 1.0
+*/
+
+@import "bootstrap/bootstrap.less";
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/*max page width set in variables.less via the @container-lg-desktop */
+body {min-width:300px;margin-top:50px;padding-top:20px}
+
+.innerbg{
+    background:@gray;
+    background-position:top center;
+    background-repeat:no-repeat;
+    -webkit-border-radius:14px 14px 0 0;
+    border-radius:14px 14px 0 0;
+    z-index:0;
+}
+
+// *** PAGE TAKE OVER see custom.php for updated css from admin options
+.takeover{width:100%}
+//.takeover-hdr1{width:100%;max-width:1000px;height:100px;overflow:hidden}
+//.takeover-hdr2{width:100%;max-width:1000px;height:auto;overflow:hidden;}
+.takeover-hdr { }
+.takeover-hdr img { max-width:100%; height:auto; }
+.takeover-hdr-wrap{margin-top:-8px; margin: auto; text-align: center;}
+
+// *** EXP LEADERBOARD
+div.expldrbrd{display:block;margin:10px auto;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px}
+div.expldrbrd a img{max-width:100%;height:auto;border:0;margin:auto;}
+
+/**** common styles ****/
+img {width:auto;height:auto}
+.boxy {margin:0 2% 2%;background:darken(@gray,5%); -webkit-border-radius:4px;border-radius:4px;-moz-border-radius:4px;padding:5px;}
+.centered {text-align:center;margin:auto;display:block;}
+.dropshadow{-webkit-box-shadow:  0px 7px 5px 0px rgba(0, 0, 0, .3);box-shadow:  0px 7px 5px 0px rgba(0, 0, 0, .3);}
+.outershadow{-webkit-box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5);box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, .5);}
+.txtshdw{text-shadow:1px 1px 1px rgba(0,0,0,0.3)}
+.undrln{text-decoration:underline}
+.bold{font-weight:700}
+h5 {color:@red;font-weight:600;}
+
+/******** FONTS *************/
+//.unica{font-family: 'Unica One', cursive;}
+//.lifesavers{font-family: 'Life Savers', cursive; }
+.montserrat{font-family: 'Montserrat', sans-serif;}
+//.oswald{font-family: 'Oswald', sans-serif;}
+
+/******** COLORS ********/
+.yellow{color:@yellow}
+.red{color:@red}
+.blue {color:@blue}
+.dark-blue{color:@dark-blue}
+.white{color:@white}
+.black{color:@black}
+.gray{color:@gray}
+.red-bg{background:@red}
+.blue-bg{background:@blue}
+.white-bg{background:@white}
+.opacity (@opacity: 0.5){
+    -webkit-opacity: @opacity;
+    -moz-opacity: @opacity;
+    opacity: @opacity;
+}
+
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.banner { border:1px solid transparent}
+
+
+/* ==========================================================================
+   COMMON elements that repeat on all/most pages
+   ========================================================================== */
+
+.main { }
+.content { }
+
+/* Gallery Shortcode */
+.gallery-row { padding: 15px 0; }
+
+// inner content wrapper in pages
+.in-cnt-wrp{background:#fff;width:90%;margin:auto;border-bottom:5px solid rgba(0,0,0,.2)}
+.in-cnt-wrp article, .in-cnt-wrp .pg-content {margin:20px;background:#fff;width:95%}
+
+/*****listen live button *****/
+.listenlive{
+    background: #faaf40; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZhYWY0MCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjcxJSIgc3RvcC1jb2xvcj0iI2Y3YTEzMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmYWFmNDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #faaf40 0%, #f7a131 71%, #faaf40 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#faaf40), color-stop(71%,#f7a131), color-stop(100%,#faaf40)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #faaf40 0%,#f7a131 71%,#faaf40 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #faaf40 0%,#f7a131 71%,#faaf40 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #faaf40 0%,#f7a131 71%,#faaf40 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #faaf40 0%,#f7a131 71%,#faaf40 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faaf40', endColorstr='#faaf40',GradientType=0 ); /* IE6-8 */
+    -webkit-border-radius:4px; border-radius:4px;
+    -webkit-box-shadow:0 2px 2px 0 rgba(0,0,0,.2); box-shadow:0 2px 2px 0 rgba(0,0,0,.2);
+    width:100%;
+    max-width:675px;
+    margin:5px auto 10px;
+    vertical-align:middle;
+    line-height:60px;
+    height:60px;
+    min-height:60px;
+}
+.listenlive:hover{}
+.listenlive-txt{
+    color:@white;
+    text-decoration:none;
+    font-weight:500;
+    font-size:1em;
+    font-family: 'Montserrat', sans-serif;
+    text-transform:uppercase;
+    display:block;
+    vertical-align:middle;
+    text-shadow:1px 1px 2px rgba(183,109,0,0.5);
+}
+.listenlive-txt:hover{color:@white;text-decoration:none}
+span.glyphicon-play {font-size:0.7em}
+.strm-spnsr{vertical-align:middle;height:100%;padding:0;margin:0 auto;text-align:center;border-left:1px solid rgba(0,0,0,.1)}
+.strm-spnsr a{max-height:100%;display:block}
+.strm-spnsr a img{width:auto;height:auto;max-height:60px;}
+
+.studio-sponsor {margin: 30px auto;}
+.studio-sponsor a img{max-width:100%;height:auto;}
+/******end listen live button*********/
+
+/*make facebook boxes responsive etc ******/
+.fb-like-box, .fb-like-box span, .fb-like-box span iframe[style] {width:100% !important;height:auto;border:0 !important;-webkit-border-radius:3px;border-radius:3px;padding:5px 0;margin:5px auto;}
+
+
+
+/* INDEX */
+
+.indx-btm{
+    width:100%;
+    margin:1%;
+}
+
+.indx-group-wrap{
+    margin:5% 4%;
+    padding:1%;
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+}
+.indx-sm-btns{
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3f3f3f+0,1b1b1b+100 */
+    background: #3f3f3f; /* Old browsers */
+    background: -moz-linear-gradient(top,  #3f3f3f 0%, #1b1b1b 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #3f3f3f 0%,#1b1b1b 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #3f3f3f 0%,#1b1b1b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f3f3f', endColorstr='#1b1b1b',GradientType=0 ); /* IE6-9 */
+    -webkit-border-radius:4px; border-radius:4px;
+    -webkit-box-shadow:0 2px 2px 0 rgba(0,0,0,.2); box-shadow:0 2px 2px 0 rgba(0,0,0,.2);
+    width:98%;
+    margin:15px auto;
+    vertical-align:middle;
+    line-height:35px;
+    height:35px;
+    min-height:35px;
+    color:@yellow;
+    text-align: center;
+}
+.indx-sm-btns:hover{
+    color:@yellow;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#383838+2,303030+100 */
+    background: #383838; /* Old browsers */
+    background: -moz-linear-gradient(top,  #383838 2%, #303030 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #383838 2%,#303030 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #383838 2%,#303030 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#383838', endColorstr='#303030',GradientType=0 ); /* IE6-9 */
+}
+.indx-sm-btns a{
+    color:@yellow;
+    width:100%;
+    height:100%;
+    display:block;
+}
+.song-req .glyphicon-music{
+    font-size:1.2em;
+    color: @gray-light;
+}
+.indx-sm-btns a:hover{
+    text-decoration: none;
+}
+
+.indx-sm-c2a{
+    //small call-2-action (wraps banners etc)
+    margin:5px auto;
+    padding:3px 0;
+    text-align: center;
+    width:100%;
+    background:#5c5c5c;
+}
+.indx-sm-c2a div{
+    //internal div (usually adrotate)
+    width:100%;
+    margin:3px auto;
+    padding:0;
+    text-align: center;
+}
+
+.indx-news{
+    padding:10px;
+    height:400px;
+    overflow:auto;
+    background:@white;
+    border-bottom:1px solid #dadada;
+}
+.indx-news-feed-listing {
+    a {}
+    p{ font-size:12px; color:#4e4e4e }
+    hr { margin:0 auto;padding:1%;display:block}
+}
+.indx-fb-feed{max-width:95%;}
+
+//toggle area for bootstrap collapsible divs for News and FB feeds
+.hp-toggle-feed{color:@yellow;margin:auto;text-align:center;} //h4 togglers
+.toggle-arrow-up{width:10px;height:9px;background:url('/media/toggle-arrow-up.png');display:inline-block;}
+.toggle-arrow-down{width:10px;height:9px;background:url('/media/toggle-arrow-down.png');display:inline-block;}
+.panel-group .panel .panel-heading {background:#333333;}
+.panel {border:1px solid rgba(51,51,51,0.5);}
+.mobile-toggle-news, .mobile-toggle-fb {display:block;width:100%;height:100%;}
+
+
+/* 
+    index ad rotate banners
+    1) z-index for following indx-bnr-wrap, indx-bnr + is to keep the hyperlink wrapped around the image, otherwise the nivo slider squashes
+    2) if display gets messed up after plugin update try this -> indx-bnr-wrap  padding-bottom:19% 
+*/
+// adrotate -> default mode
+.indx-bnr-wrap{margin:5% 4%;padding:1%;background:rgba(0,0,0,0.1);z-index:1000;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px}
+.indx-bnr{height:auto;padding:1% 2%;z-index:1001}
+.indx-bnr a{display:block;z-index:1002}
+.indx-bnr a img {height:auto}
+// adrotate -> dynamic mode group (get couple of new divs added
+//.indx-bnr div.g{z-index:1002;width:auto;height:auto;overflow:hidden}
+//.indx-bnr div.g div{position:absolute;top:0;left:0;height:auto;max-width:95%}
+//.indx-bnr-mulitple{width:auto;height:auto}
+//.indx-bnr-multiple a img{width:auto;height:auto}
+
+// .hr-spcr{height:5px;border-radius:2px;-webkit-border-radius: 2px;border:1px solid rgba(255,255,255,0.1);background:rgba(0,0,0,0.05);width:95%;margin:3% auto;}
+//.instgm-hshtg{font-size:0.75em;font-weight:500;}
+
+/****** RIBBON HEADINGS **********/
+div.rbn-hdg{
+    position:relative;
+    clear:both;
+    padding-top:0;
+    margin:0 0 10px -10px;
+    text-shadow:1px 1px 1px rgba(0,0,0,0.5);
+    z-index:5;
+    background:@gray-dark;
+    border:1px solid transparent; //necessary to display properly
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    border-top-left-radius: 4px;
+    h1,h2,h3,h4,h5,h6,h7,h8,h9{
+        //.oswald;
+        //text-transform: uppercase;
+        //font-weight:600;
+        //letter-spacing: -1px;
+        color:lighten(@gray-light,10%);
+    }
+}
+div.rbn-hdg:before{
+    content:" ";
+    background:url('/media/ribbon.png');
+    display:block;
+    width:10px;
+    height:10px;
+    position:absolute;
+    bottom:0;
+    left:0;
+    margin-bottom:-11px; //10 + 1 for border
+    margin-left:-1px; //1 for border
+    z-index:-1;
+}
+// non page-header headers like index news
+.rbn-hdg span.gen-hdr{margin:5px auto;font-size:1.2em;color:#fff}
+
+/****** forms ********/
+.form-gen{}
+.form-inputbox{width:95%}
+
+/* ==========================================================================
+   PAGE SPECIFIC element styles
+   ========================================================================== */
+
+.addy{padding:2%;font-size:1.2em;}
+.mediakits{padding:4%;margin:auto;background:@white;}
+
+/******** archive pages **********/
+.archv-pg-lstng {margin:5px 10px}
+.archv-pg-hr{width:90%;margin:10px auto 0}
+div.archv-thmb {}
+div.archv-thmb img{max-width:100%}
+div.archv-info{margin:0;padding:2% 0;}
+div.archv-info article{margin:auto;}
+span.archv-date{float:right;font-size:11px;margin-top:10px;}
+
+/******** single pages ***********/
+.info-img{padding:10px;max-width:100%;}
+article.sngl-info{margin:auto}
+
+/****** weather *******/
+.wthr-wrp{
+    background: #7db9e8; /* Old browsers */
+    background: -moz-linear-gradient(top,  #7db9e8 16%, #f7f2ff 88%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(16%,#7db9e8), color-stop(88%,#f7f2ff)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #7db9e8 16%,#f7f2ff 88%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #7db9e8 16%,#f7f2ff 88%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #7db9e8 16%,#f7f2ff 88%); /* IE10+ */
+    background: linear-gradient(to bottom,  #7db9e8 16%,#f7f2ff 88%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#f7f2ff',GradientType=0 ); /* IE6-9 */
+}
+#weather {width:90%;margin:0 auto;padding:10px;text-align:center }
+#weather h2 {color:#444;font-size:2.0em;text-shadow:rgba(250, 250, 250, 0.8) -1px -1px 0}
+#weather p {font-size:40px;margin:20px 0 0;color:#fff}
+#weather p span {font-size:16px;padding-left:15px;color:#47657c}
+#weather a{display:block;clear:both;text-decoration:none;color:#fff;font-size:12px;border:0}
+#weather a:hover { color: #fff;text-decoration: underline;border: 0}
+.wthr-lnks{margin:0 auto;width:100%;max-width:400px}
+a.wthrcty{font-size:1.2em;color:#dfedf7;padding:5px;cursor:pointer;font-weight:700}
+a.wthrcty:hover{text-decoration:none;color:#fff}
+.wthrspnsrs {margin-bottom:2%;padding-bottom:2%}
+.wthrspnsrs img{margin:5px auto}
+
+article.feed-article {
+
+    a,
+    a:hover {
+        z-index: 1000;
+        text-decoration: none;
+    }
+
+    .feed-listing{
+        & .listhdr{font-size:1.2em;font-weight:600;display:block;}
+        & img {clear:both;max-width:150px;height:auto;padding:0 2% 2% 0}
+        & .listdate {font-size:1em;font-weight:500}
+        margin-bottom:0;
+        padding-bottom:0;
+        clear:both;
+    }
+
+    .feed-wrap-link {
+        display:block;
+
+    }
+
+    &:hover{
+        background: #f0fbff;
+        border-left:5px solid @blue;
+    }
+
+    box-sizing: border-box;
+    padding:5px;
+    position:relative;
+
+}
+
+/*
+    Search page results
+*/
+.search-results{ margin:1% auto;min-height:300px }
+ul.search-result-list li {padding:0}
+ul.search-result-list li a{ color:@blue;border:0;padding:1px 0 0 10px }
+ul.search-result-list li a:hover{ border-left:2px solid @blue;padding-left:8px }
+.search-result-date{ font-size:10px;color:#666666 }
+
+.search-hdr h3{color:@gray;font-size:1em}
+
+#search-filter{
+    display:block;
+    text-align:left;
+}
+.search-filter-info{
+    font-size:16px;
+    font-weight:700;
+    color: #1976d2;
+    text-shadow: none;
+    margin:0;
+    padding:0;
+}
+
+.search-filter-left{
+    float:left;
+    text-align:left;
+    width:50%;
+    margin-top:7px;
+    padding:5px;
+    font-size:1.1em;
+}
+.search-filter-right{
+    float:right;
+    text-align:left;
+    width:50%;
+    margin-top:7px;
+    padding:5px;
+}
+.submitSearchFilter{
+    margin:auto;
+    width:100%;
+}
+
+.search-filter-hide{
+    height:0px;
+    overflow:hidden;
+    border:1px solid transparent;
+    margin:0;
+    padding:0;
+}
+.search-filter-hide .search-filter-info {margin:0;padding:0;}
+.search-filter-show{
+    min-height:100px;
+    padding:0 10px 5px;
+    margin:0 auto 20px;
+    background:#cae7ff;
+}
+#search-filter-toggle{
+    float:right;
+    background:#E3F2FD;
+    color:#1976d2;
+    font-weight:700;
+    padding:2px 7px;
+    margin:0;
+    cursor:pointer;
+    .caret { border-top-color:#1976d2}
+}
+
+.search-filter-left div.radio:hover,
+.search-filter-right div.checkbox:hover { background: rgba(255,255,255, 0.3)}
+
+
+
+
+
+// Summer Promo 2016 Casino Chip
+.sum-promo-casino-chip {
+    -webkit-animation: chipMove;
+    -moz-animation: chipMove;
+    -o-animation: chipMove;
+    animation: chipMove;
+    animation-iteration-count: 1;
+    animation-duration: .25s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0,0,0);
+    opacity:0;
+    height: 0;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    margin: auto;
+}
+
+// modified in media queries for xs screens
+@-webkit-keyframes chipMove{
+    0% { height: 0; opacity: 0; }
+    100% { height: 165px; opacity: 1; }
+}
+@-moz-keyframes chipMove{
+    0% { height: 0; opacity: 0; }
+    100% { height: 165px; opacity: 1; }
+}
+@-o-keyframes chipMove{
+    0% { height: 0; opacity: 0; }
+    100% { height: 165px; opacity: 1; }
+}
+@keyframes chipMove{
+    0% { height: 0; opacity: 0; }
+    100% { height: 165px; opacity: 1; }
+}
+
+// End Summer Promo Casino Chip
+
+
+
+
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+
+.sidebar { }
+/********* SIDEBAR WIDGETS ***************
+    the first one is default sidebar widget style
+    the rest override indivual widgets
+*/
+.sidebar .widget {margin:10px auto;padding:5px;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px}
+
+.sidebar .text-2, .sidebar .widget_text {background:@gray-dark}
+.sidebar .search-2, .sidebar .widget_search {margin:5px auto 10px;padding:0;}
+
+/*  search input style */
+//input.search-field{background:#212734;color:#ccc;border:0;}
+//button.search-submit{background:#2c3342;color:#5d636f;border:1px solid rgba(0,0,0,.3);}
+//button.search-submit:hover, button.search-submit:active{color:#9aa2b1;background:#373f50;border:1px solid rgba(0,0,0,.3);}
+    
+/*  mus ctr style */
+.music-ctr, .sidebar .widget_tg_widget{margin:auto;overflow:hidden;background:@gray-dark}
+.music-ctr iframe{width:100%;min-height:300px;max-height:400px;overflow:hidden;margin-top:5px}
+
+/*  facebook */
+/*.sidebar .widget_facebook-like-box {background:@gray-dark}
+.sidebar .widget_facebook-like-box .widget-inner .fb-like-box span iframe,
+.sidebar .widget_facebook-like-box .widget-inner .fb-like-box span,
+.sidebar .widget_facebook-like-box .widget-inner .fb-like-box {padding-top:0;margin-top:0}*/
+
+/* adrotate banner widget */
+.sidebar .widget_adrotate_widgets{margin:auto;padding:5px 0 10px;text-align:center;}
+.widget_adrotate_widgets img{width:100%;height:auto;max-width:300px;max-height:250px;margin:auto;border-radius:4px;-webkit-border-radius:4px;-moz-border-radius:4px}
+.widget_adrotate_widgets .widget-inner{ width:100%;margin:auto;padding:2% 0}
+/* ADROTATE FIXES */
+/*fix dynamic adrotate that doesn't stay 250px tall*/
+.fix-adrotate-300x250 {
+    max-height: 250px;
+    max-width: 300px;
+    overflow: hidden;
+}
+/* indv fix for adrotate groups (g-6 = group6) */
+.g-6 {
+    max-height: 250px;
+    max-width: 300px;
+    overflow: hidden;
+}
+.sidebar .recent-posts-2,
+.sidebar .widget_recent_entries,
+.sidebar .categories-2,
+.sidebar .widget_categories,
+.sidebar .tag_cloud-2,
+.sidebar .widget_tag_cloud {background:rgba(255,255,255,0.2);border-top:1px solid #7a96bf;border-bottom:1px solid #7a96bf;}
+
+.sidebar .recent-posts-2 h4,
+.sidebar .widget_recent_entries h4,
+.sidebar .categories-2 h4,
+.sidebar .widget_categories h4,
+.sidebar .tag_cloud-2 h4,
+.sidebar .widget_tag_cloud  h4{color:#fff;font-weight:400;padding:5px;margin:0 5px;text-shadow: 1px 1px 1px rgba(0,0,0,.2);}
+    
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+
+.navbar {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight:700;
+    font-size:12px;
+}
+.navbar .dropdown-menu {
+    text-transform: capitalize;
+    font-weight:400;
+    font-size:12px;
+}
+
+/* navigation open new window */
+.glyphicon-new-window{font-size:0.8em;margin-left:5px;color:rgba(255,255,255,0.5)}
+.navbar-icons{ float:right;}
+.navbar-icons a img{border:0;text-decoration:none;}
+.navbar-icons a{ text-decoration:none;padding:0;margin:0;line-height:60px;height:60px;width:60px;display:inline-block;vertical-align:middle;text-align:center;}
+a.icon-fb:hover{background:#3b589c;}
+a.icon-tw:hover{background:#1ab2e8;}
+a.icon-instgrm:hover{background:#125688;}
+
+/************ NAV tabs *************/
+// used in advertising info pgs
+.nav-tabs {
+    li a { color:@white;}
+    background: darken(@yellow, 5%);
+}
+.advinfo .nav-tabs {
+    // modified from .nav-tabs in navs.less
+  font-size:0.9em;
+  > li {
+    > a {
+      border-radius: 0;
+      border:0;
+      height: @line-height-computed * 2.75;
+      &:hover { border: 0; }
+    }
+    > a.dropdown-toggle {
+        //to get dropdowns to fill full height
+        height: @line-height-computed * 2.75;
+    }
+  }
+}
+
+.navbar-fixed-top { top: 0px; }
+// see media queries for more navbar fixed top styles
+
+/************ SIDEBAR NAV*************/
+/*ul.sidebar-nav{ border: 1px solid transparent; border-radius: @navbar-border-radius;width:100%}
+ul.sidebar-nav li a{color:@white}
+li.open, li.dropdown{background:rgba(255,255,255,0)}
+ul.sidebar-nav li a:hover{background:rgba(255,255,255,0.2)}
+ul.sidebar-nav li ul.dropdown-menu{background:rgba(255,255,255,1)}*/
+
+/********* end ************/
+
+/** Pagination */
+.pagination {
+    padding:20px 0 20px 2%;
+    position:relative;
+    font-size:11px;
+    line-height:13px;
+}
+.pagination span, .pagination a {
+    display:block;
+    float:left;
+    margin: 2px 2px 2px 0;
+    padding:6px 9px 5px 9px;
+    text-decoration:none;
+    width:auto;
+    color:#fff;
+    background: #555;
+}
+.pagination a:hover{
+    color:#fff;
+    background: #3279BB;
+}
+.pagination .current{
+    padding:6px 9px 5px 9px;
+    background: #3279BB;
+    color:#fff;
+}
+
+
+/* ==========================================================================
+   Posts
+   ========================================================================== */
+
+.hentry header { }
+.hentry time { }
+.hentry .byline { }
+.hentry .entry-content { }
+.hentry footer { border:0}
+.entry-content div.fb-like {margin:10px}
+.entry-summary {width:95%;margin:auto}
+
+
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.content-info { }
+.pg-ftr{
+    background: darken(@gray, 10%);
+    border-top:4px solid @yellow;
+    .glyphicon{color: @yellow}
+    li{list-style-type:none}
+    ul{padding:0;margin:0}
+    -webkit-border-radius:0 0 14px 14px;
+    border-radius:0 0 14px 14px;
+    margin:0 auto;
+    padding:0;
+    height:100%;
+    width:100%;
+}
+
+.ftr1{
+    a{color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,0.1);font-weight:500;}
+    a:hover{color:#fff;text-decoration:none}
+    span{margin:0 5px}
+    ul{margin:auto;text-align:left;border-right:3px solid fade(@white, 10%);}
+    li{line-height:2em;padding-left:5%}
+    padding:2% 0;
+    margin:0;
+    //background:rgba(0,0,0,0.1);
+    text-align:center;
+    -webkit-border-radius:0 0 0 14px;
+    border-radius:0 0 0 14px;
+    height:auto;
+}
+.ftr2{}
+.ftr3{
+    img{width:125px;height:auto;padding-top:4px;}
+    p:nth-child(2){color:#fff;font-size:12px;font-weight:bold;padding:0;margin:2px auto 0;}
+    p:nth-child(3){color:#ccc;font-size:10px;font-weight:bold;padding:0;margin:2px auto;}
+    a.ftr-sm { padding:0; margin:2px auto; font-weight:bold; font-size:10px; text-decoration:none; color: @yellow}
+}
+// recent posts link color
+.widget_recent_entries div ul li a{color:#ccc}
+
+
+// turn off Safari rounding corners
+textarea,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+input.search-field,
+.search-field {
+    -webkit-appearance: none;
+    border-radius: 0;
+    -webkit-border-radius:0;
+}
+
+/* ==========================================================================
+   WordPress Generated Classes
+   See: http://codex.wordpress.org/CSS#WordPress_Generated_Classes
+   ========================================================================== */
+
+.aligncenter { display: block; margin: 0 auto; }
+.alignleft { float: left; }
+.alignright { float: right; }
+figure.alignnone { margin-left: 0; margin-right: 0; }
+
+
+/* ==========================================================================
+   Gravity Forms -> Bootstrap styling
+   ========================================================================== */
+
+.gform_wrapper ul {
+	padding-left: 0;
+	list-style: none;
+}
+
+.gform_wrapper li {
+	margin-bottom: 15px;
+}
+
+.gform_wrapper form {
+	margin-bottom: 0;
+}
+
+.gform_wrapper .gfield_required {
+	padding-left: 1px;
+	color: #b94a48;
+}
+
+.ginput_container input, .ginput_container select, .ginput_container textarea {
+	display: block;
+	width: 100%;
+	/*height: 34px;*/
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #555;
+	vertical-align: middle;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.ginput_container input[type="file"]{
+    border: none;
+}
+
+
+.ginput_container input:-moz-placeholder, .ginput_container select:-moz-placeholder, .ginput_container textarea:-moz-placeholder {
+	color: #999;
+}
+
+.ginput_container input::-moz-placeholder, .ginput_container select::-moz-placeholder, .ginput_container textarea::-moz-placeholder {
+	color: #999;
+}
+
+.ginput_container input:-ms-input-placeholder, .ginput_container select:-ms-input-placeholder, .ginput_container textarea:-ms-input-placeholder {
+	color: #999;
+}
+
+.ginput_container input::-webkit-input-placeholder, .ginput_container select::-webkit-input-placeholder, .ginput_container textarea::-webkit-input-placeholder {
+	color: #999;
+}
+
+.ginput_container input:focus, .ginput_container select:focus, .ginput_container textarea:focus {
+	border-color: #66afe9;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,0.6);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,0.6);
+}
+
+.ginput_container input[disabled], .ginput_container select[disabled], .ginput_container textarea[disabled], .ginput_container input[readonly], .ginput_container select[readonly], .ginput_container textarea[readonly], fieldset[disabled] .ginput_container input, fieldset[disabled] .ginput_container select, fieldset[disabled] .ginput_container textarea {
+	cursor: not-allowed;
+	background-color: #eee;
+}
+
+textarea.ginput_container input, textarea.ginput_container select, textarea.ginput_container textarea {
+	height: auto;
+}
+
+.ginput_container textarea {
+	height: auto;
+}
+
+.gform_button {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.428571429;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	white-space: nowrap;
+	color: #fff;
+	background-color: #428bca;
+	border-color: #357ebd;
+}
+
+.gform_button:focus {
+	outline: thin dotted #333;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+}
+
+.gform_button:hover, .gform_button:focus {
+	color: #333;
+	text-decoration: none;
+}
+
+.gform_button:active, .gform_button.active {
+	outline: 0;
+	background-image: none;
+	-webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+	box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+}
+
+.gform_button.disabled, .gform_button[disabled], fieldset[disabled] .gform_button {
+	cursor: not-allowed;
+	pointer-events: none;
+	opacity: .65;
+	filter: alpha(opacity=65);
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.gform_button:hover, .gform_button:focus, .gform_button:active, .gform_button.active, .open .dropdown-toggle.gform_button {
+	color: #fff;
+	background-color: #3276b1;
+	border-color: #285e8e;
+}
+
+.gform_button:active, .gform_button.active, .open .dropdown-toggle.gform_button {
+	background-image: none;
+}
+
+.gform_button.disabled, .gform_button[disabled], fieldset[disabled] .gform_button, .gform_button.disabled:hover, .gform_button[disabled]:hover, fieldset[disabled] .gform_button:hover, .gform_button.disabled:focus, .gform_button[disabled]:focus, fieldset[disabled] .gform_button:focus, .gform_button.disabled:active, .gform_button[disabled]:active, fieldset[disabled] .gform_button:active, .gform_button.disabled.active, .gform_button[disabled].active, fieldset[disabled] .gform_button.active {
+	background-color: #428bca;
+	border-color: #357ebd;
+}
+
+.gform_wrapper .gfield_error .gfield_label {
+	color: #b94a48;
+}
+
+.gform_wrapper .gfield_error input, .gform_wrapper .gfield_error select, .gform_wrapper .gfield_error textarea {
+	border-color: #eed3d7;
+	background-color: #f2dede;
+	color: #b94a48;
+}
+
+.gform_wrapper .gfield_error input:focus, .gform_wrapper .gfield_error select:focus, .gform_wrapper .gfield_error textarea:focus {
+	border-color: #b94a48;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(185,74,72,0.6);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(185,74,72,0.6);
+}
+
+.validation_error {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	background-color: #f2dede;
+	border-color: #eed3d7;
+	color: #b94a48;
+}
+
+.validation_error h4 {
+	margin-top: 0;
+	color: inherit;
+}
+
+.validation_error .alert-link {
+	font-weight: bold;
+}
+
+.validation_error>p, .validation_error>ul {
+	margin-bottom: 0;
+}
+
+.validation_error>p+p {
+	margin-top: 5px;
+}
+
+.validation_error hr {
+	border-top-color: #e6c1c7;
+}
+
+.validation_error .alert-link {
+	color: #953b39;
+}
+
+#gforms_confirmation_message {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+#gforms_confirmation_message h4 {
+	margin-top: 0;
+	color: inherit;
+}
+
+#gforms_confirmation_message .alert-link {
+	font-weight: bold;
+}
+
+#gforms_confirmation_message>p, #gforms_confirmation_message>ul {
+	margin-bottom: 0;
+}
+
+#gforms_confirmation_message>p+p {
+	margin-top: 5px;
+}
+
+div.ginput_complex label {
+	font-size: 10px;
+	font-weight: 400;
+	color: #666666;
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+@media (max-width: @screen-xs-max)  {
+    .innerbg {
+        background: @gray; /* Old browsers */
+    }
+    img.logo{max-width:145px}
+    /* hide the following for xsmall screens */
+    .sidebar .widget_facebook_likebox{display:none;visibility:hidden;height:0;width:0;}
+    .listenlive{height:50px;line-height:50px}
+    .row1{margin-bottom:4%}
+    // fixed navbar
+    body.admin-bar .navbar-fixed-top { top: 46px !important; }
+    //shrink page header text
+    .page-header h1, .page-header h2, .page-header h3, .page-header h4, .page-header h5, .page-header h6 { font-size:1.1em;}
+    .sticker-logo{z-index:100 !important;position:relative;top:-100px;left:40px;height:0;overflow:visible;}
+    .stickeron-img{max-width:120px;height:auto;}
+    .stickeron-info{position:relative;top:-400px;left:150px;z-index: -10;}
+    .indx-news{
+        max-width:90%;
+        margin:auto;
+    }
+}
+
+@media (min-width: @screen-sm) and (max-width: @screen-sm-max) {
+    .innerbg {background-image: url(/media/bg-top.jpg);}
+    img.logo{max-width:200px}
+    .listenlive-txt{font-size:1.2em}
+    .row1{margin-bottom:3%}
+    // enable navbar dropdowns on hover
+    ul.nav li.dropdown:hover > ul.dropdown-menu {display: block;}
+    // fixed navbar
+    body.admin-bar .navbar-fixed-top { top: 28px !important; }
+    //hide icons when navbar shrinks to "sm" prevent these from wrapping below menu items and breaking it
+    .navbar-icons{ line-height:0px;height:0px;width:0px;display:none;visibility:hidden}
+    //shrink page header text
+    .page-header h1, .page-header h2, .page-header h3, .page-header h4, .page-header h5, .page-header h6 { font-size:1.3em;}
+    .sticker-logo{z-index:100 !important;position:relative;top:-140px;left:100px;height:0;overflow:visible;}
+    .stickeron-info{position:relative;top:-400px;left:150px;z-index: -10;}
+}
+
+@media (min-width: @screen-md) and (max-width: @screen-md-max) {
+    .innerbg {background-image: url(/media/bg-top.jpg);}
+    img.logo{max-width:230px}
+    .listenlive{margin-top:5%}
+    .listenlive-txt{font-size:1.2em}
+    .strm-lft{margin-left:2%;margin-right:-2%}
+    // enable navbar dropdowns on hover
+    ul.nav li.dropdown:hover > ul.dropdown-menu {display: block;}
+    // fixed navbar
+    body.admin-bar .navbar-fixed-top { top: 28px !important; }
+    .sticker-logo{z-index:100 !important;position:relative;top:-180px;left:250px;height:0;overflow:visible;}
+    .stickeron-info{position:relative;top:-400px;left:150px;z-index: -10;}
+}
+
+@media (min-width: @screen-lg) {
+    .innerbg {background-image: url(/media/bg-top.jpg);}
+    img.logo{max-width:250px}
+    .listenlive{margin-top:7%}
+    .listenlive-txt{font-size:1.4em}
+    .strm-lft{margin-left:2%;margin-right:-2%}
+    // enable navbar dropdowns on hover
+    ul.nav li.dropdown:hover > ul.dropdown-menu {display: block;}
+    // fixed navbar
+    body.admin-bar .navbar-fixed-top { top: 28px !important; }
+    .sticker-logo{z-index:100 !important;position:relative;top:-185px;left:300px;height:0;overflow:visible;}
+    .stickeron-info{position:relative;top:-400px;left:150px;z-index: -10;}
+}
