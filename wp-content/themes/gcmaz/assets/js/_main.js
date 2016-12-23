@@ -86,13 +86,13 @@ var GcmazSite = {
 
 
         //**** START 12 Days Xmas Snow
-        jQuery(document).ready(function() {
-            //$(document).snowfall({flakeCount : 100, maxSpeed : 10});
-            //$(document).snowfall();
-            var $xmasPage = jQuery(document).find('.12-days-of-christmas-on-93-9-the-mountain .in-cnt-wrp');
-            //$xmasPage.snowfall();
-            $xmasPage.snowfall({flakeCount : 20, maxSpeed : 1, minSize : 2, maxSize : 3, round : true });
-        });
+        //jQuery(document).ready(function() {
+            // //$(document).snowfall({flakeCount : 100, maxSpeed : 10});
+            // //$(document).snowfall();
+            //var $xmasPage = jQuery(document).find('.12-days-of-christmas-on-93-9-the-mountain .in-cnt-wrp');
+            //  //$xmasPage.snowfall();
+            //$xmasPage.snowfall({flakeCount : 20, maxSpeed : 1, minSize : 2, maxSize : 3, round : true });
+        //});
         //**** END 12 Days Xmas
         
 

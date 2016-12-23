@@ -60,11 +60,11 @@ function gcmaz_enqueue() {
 
     global $post;
     
-    if( $post->post_name === '12-days-of-christmas-on-93-9-the-mountain' ){
-        //jquery snowfall
-        wp_register_script('jquery-snowfall', get_template_directory_uri() . '/assets/js/JQuery-Snowfall/dist/snowfall.jquery.min.js', false, null, false);
-        wp_enqueue_script('jquery-snowfall');
-    }
+    //if( $post->post_name === '12-days-of-christmas-on-93-9-the-mountain' ){
+        //  //jquery snowfall
+        //wp_register_script('jquery-snowfall', get_template_directory_uri() . '/assets/js/JQuery-Snowfall/dist/snowfall.jquery.min.js', false, null, false);
+        //wp_enqueue_script('jquery-snowfall');
+    //}
 }
 add_action('wp_enqueue_scripts', 'gcmaz_enqueue');
 
