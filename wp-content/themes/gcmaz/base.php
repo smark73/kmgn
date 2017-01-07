@@ -46,8 +46,41 @@
                 
             </section>
             <section class="col-md-8">
+
+                <div style="margin:10px 20px; text-align: right; font-weight: 600; font-size:1em;">
+                    <?php
+                        // USER 
+                          if ( is_user_logged_in() ) {
+
+                              // ===== LOGGED IN =====
+                              $our_cur_user = wp_get_current_user();
+                              $our_user_name = $our_cur_user->user_firstname;
+                              //$our_user_name = $our_cur_user->user_nicename;
+                              
+                              echo '
+                                  <div>
+                                      <span style="color:#faaf40;text-shadow: 1px 1px 1px rgba(0,0,0,.25);">' . $our_user_name . '</span> | <a href="' . wp_logout_url( get_permalink() ) . '" title="Logout" style="color:#bababa;text-shadow: 1px 1px 1px rgba(0,0,0,.5);font-size:0.8em;letter-spacing:-1px;">LOGOUT</a>
+                                  </div>
+                                  ';
+
+                          } else {
+
+                              // ===== NOT LOGGED IN =====
+                              echo '
+                                  <div class="user-nav" title="Login">
+                                      <a href="' . wp_login_url( get_permalink() ) . '" style="color:#faaf40;text-shadow: 1px 1px 2px rgba(0,0,0,.5);">
+                                          LOGIN
+                                      </a>
+                                  </div>';
+
+                          } // END USER
+                    ?>
+                </div>
+
                 <?php  get_template_part('templates/exp-leaderboard'); ?>
+
                 <?php  get_template_part('templates/listen-live'); ?>
+
             </section>
         </div>
         <div class="content row">

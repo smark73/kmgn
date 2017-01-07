@@ -352,3 +352,22 @@ function display_sum_promo_casino_chip() {
     } // if Tuesday
 
 }
+
+
+
+
+// Add Body Class to GF Activation Page
+function wp_body_classes( $classes ) {
+    // check if is gf_activation page via url
+    if( isset( $_GET['page'] ) && $_GET['page'] == 'gf_activation') {
+
+        $classes[] = 'gfactivate';
+        //print_r($classes);
+        //body_class( 'gfactivate' );
+
+    }
+    error_reporting(0);
+    return $classes;
+}
+add_filter( 'body_class','wp_body_classes' );
+
