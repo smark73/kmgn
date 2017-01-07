@@ -47,7 +47,7 @@
             </section>
             <section class="col-md-8">
 
-                <div style="margin:10px 20px; text-align: right; font-weight: 600; font-size:1em;">
+                <div style="margin:10px 20px; text-align: right;">
                     <?php
                         // USER 
                           if ( is_user_logged_in() ) {
@@ -59,7 +59,7 @@
                               
                               echo '
                                   <div>
-                                      <span style="color:#faaf40;text-shadow: 1px 1px 1px rgba(0,0,0,.25);">' . $our_user_name . '</span> | <a href="' . wp_logout_url( get_permalink() ) . '" title="Logout" style="color:#bababa;text-shadow: 1px 1px 1px rgba(0,0,0,.5);font-size:0.8em;letter-spacing:-1px;">LOGOUT</a>
+                                      <a href="/user" style="font-weight: 600; font-size:1.2em; color:#faaf40; text-shadow: 1px 1px 1px rgba(0,0,0,.25);">' . $our_user_name . '</a> | <a href="' . wp_logout_url( get_permalink() ) . '" title="Logout" style="font-weight: 600; color:#bababa; text-shadow: 1px 1px 1px rgba(0,0,0,.5); font-size:0.8em; letter-spacing:-1px;">LOGOUT</a>
                                   </div>
                                   ';
 
@@ -67,8 +67,8 @@
 
                               // ===== NOT LOGGED IN =====
                               echo '
-                                  <div class="user-nav" title="Login">
-                                      <a href="' . wp_login_url( get_permalink() ) . '" style="color:#faaf40;text-shadow: 1px 1px 2px rgba(0,0,0,.5);">
+                                  <div>
+                                      <a href="' . wp_login_url( get_permalink() ) . '" style="font-weight: 600; font-size:1em; color:#faaf40; text-shadow: 1px 1px 2px rgba(0,0,0,.5);">
                                           LOGIN
                                       </a>
                                   </div>';
