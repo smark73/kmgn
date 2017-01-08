@@ -59,7 +59,7 @@
                               
                               echo '
                                   <div>
-                                      <a href="/user" style="font-weight: 600; font-size:1.2em; color:#faaf40; text-shadow: 1px 1px 1px rgba(0,0,0,.25);">' . $our_user_name . '</a> | <a href="' . wp_logout_url( get_permalink() ) . '" title="Logout" style="font-weight: 600; color:#bababa; text-shadow: 1px 1px 1px rgba(0,0,0,.5); font-size:0.8em; letter-spacing:-1px;">LOGOUT</a>
+                                      <a href="/user" style="font-weight: 600; font-size:1.2em; color:#faaf40; text-shadow: 1px 1px 1px rgba(0,0,0,.25);">' . $our_user_name . '</a> | <a href="/logout" title="Logout" style="font-weight: 600; color:#bababa; text-shadow: 1px 1px 1px rgba(0,0,0,.5); font-size:0.8em; letter-spacing:-1px;">LOGOUT</a>
                                   </div>
                                   ';
 
@@ -68,7 +68,7 @@
                               // ===== NOT LOGGED IN =====
                               echo '
                                   <div>
-                                      <a href="' . wp_login_url( get_permalink() ) . '" style="font-weight: 600; font-size:1em; color:#faaf40; text-shadow: 1px 1px 2px rgba(0,0,0,.5);">
+                                      <a href="/login" style="font-weight: 600; font-size:1em; color:#faaf40; text-shadow: 1px 1px 2px rgba(0,0,0,.5);">
                                           LOGIN
                                       </a>
                                   </div>';
