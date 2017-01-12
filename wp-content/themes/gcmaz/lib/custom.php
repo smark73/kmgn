@@ -371,3 +371,12 @@ function wp_body_classes( $classes ) {
 }
 add_filter( 'body_class','wp_body_classes' );
 
+
+
+
+
+/* Disable WP Heartbeat */
+function stop_heartbeat() {
+    wp_deregister_script('heartbeat');
+}
+add_action( 'init', 'stop_heartbeat', 1 );
