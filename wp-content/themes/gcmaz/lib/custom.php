@@ -3,6 +3,14 @@
  * Custom functions
  */
 
+
+/* Disable WP Heartbeat */
+function stop_heartbeat() {
+    wp_deregister_script('heartbeat');
+}
+add_action( 'init', 'stop_heartbeat', 1 );
+
+
 //debugging things
 // opt A
 //$e = new \Exception;
@@ -374,9 +382,3 @@ add_filter( 'body_class','wp_body_classes' );
 
 
 
-
-/* Disable WP Heartbeat */
-function stop_heartbeat() {
-    wp_deregister_script('heartbeat');
-}
-add_action( 'init', 'stop_heartbeat', 1 );
