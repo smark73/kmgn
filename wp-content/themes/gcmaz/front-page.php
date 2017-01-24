@@ -7,7 +7,7 @@
         //clear feed cache
         function clear_feed_cache($secs){
             //return 0;  //set to zero
-            return 300;  //5 mins
+            return 600;  //10 mins
         }
         add_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
         $feed = fetch_feed('http://gcmaz.com/category/news/feed');
