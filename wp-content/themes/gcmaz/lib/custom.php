@@ -42,6 +42,26 @@ function our_flush_rewrite_rules() {
      flush_rewrite_rules();
 }
 
+
+
+// ADROTATE
+// need to check if adrotate plugin is even active
+// include file needed to detect plugin - front end use only
+function is_adrotate_plugin_active() {
+
+    include_once( ABSPATH . 'wp-admin/includes/plugin.php');
+
+    if ( is_plugin_active( 'adrotate/adrotate.php' ) ) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+
+
+
 // add more buttons to editor
 function add_more_buttons($buttons) {
  $buttons[] = 'hr';

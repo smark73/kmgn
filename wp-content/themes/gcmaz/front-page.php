@@ -12,7 +12,7 @@
         add_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
         $feed = fetch_feed('http://gcmaz.com/category/news/feed');
         $feed->enable_order_by_date(false);
-        $limit = $feed->get_item_quantity(50); // specify large number of items - limit with the count_to_ten below
+        $limit = $feed->get_item_quantity(20); // specify large number of items - limit with the count_to_ten below
         $items = $feed->get_items(0, $limit); // create an array of items
         //remove feed cache filter
         remove_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
@@ -26,6 +26,13 @@
     //more news items
     $count_news = 0;
     $max_news = 5;
+
+
+    //init adrotate plugin check to display ads or not
+    $show_adrotate_ads = false;
+    if ( is_adrotate_plugin_active() === true ) {
+        $show_adrotate_ads = true;
+    }
 
 ?>
 
@@ -41,7 +48,7 @@
             <?php 
                 //studio sponsor(group 14) sm & xs screen only -> see base.php for md & lg
                 // check for plugin by using plugin name
-                if( is_plugin_active( 'adrotate/adrotate.php' ) ){
+                if( $show_adrotate_ads === true ){
                     if( substr( adrotate_group(14), 0, 5) === "<span" || substr( adrotate_group(14), 0, 2) === "<!" ) {
                         //nothing to display
                     } else {
@@ -100,7 +107,7 @@
                 // homepage sidebar banners group (hidden lg, vis sm)(otherwise at very bottom and sales will complain)
                 // group = 6
                 // check for plugin by using plugin name
-                if( is_plugin_active( 'adrotate/adrotate.php' ) ){
+                if( $show_adrotate_ads === true ){
                     //check if group has ad
                     if( substr( adrotate_group(6), 0, 5) == "<span" || substr( adrotate_group(6), 0, 2) == "<!" ) {
                         //nothing to display
@@ -115,7 +122,7 @@
             <?php
                 // NAU Games = 16
                 // check for plugin by using plugin name
-                if( is_plugin_active( 'adrotate/adrotate.php' ) ){
+                if( $show_adrotate_ads === true ){
                     //check if group has ad
                     if( substr( adrotate_group(16), 0, 5) == "<span" || substr( adrotate_group(16), 0, 2) == "<!" ) {
                         //nothing to display
@@ -130,7 +137,7 @@
             <?php
                 //indexbanner1 = 4
                 // check for plugin by using plugin name
-                if( is_plugin_active( 'adrotate/adrotate.php' ) ){
+                if( $show_adrotate_ads === true ){
                     if( substr( adrotate_group(4), 0, 5) == "<span" || substr( adrotate_group(4), 0, 2) == "<!" ) {
                         //nothing to display
                     } else {
@@ -144,7 +151,7 @@
             <?php
                 //indexbanner2 = 5
                 // check for plugin by using plugin name
-                if( is_plugin_active( 'adrotate/adrotate.php' ) ){
+                if( $show_adrotate_ads === true ){
                     if( substr( adrotate_group(5), 0, 5) == "<span" || substr( adrotate_group(5), 0, 2) == "<!" ) {
                         //nothing to display
                     } else {
@@ -158,7 +165,7 @@
             <?php
                 //indexbanner3 = 17
                 // check for plugin by using plugin name
-                if( is_plugin_active( 'adrotate/adrotate.php' ) ){
+                if( $show_adrotate_ads === true ){
                     if( substr( adrotate_group(17), 0, 5) == "<span" || substr( adrotate_group(17), 0, 2) == "<!" ) {
                         //nothing to display
                     } else {
