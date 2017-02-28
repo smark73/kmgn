@@ -11,9 +11,15 @@
         }
         add_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
         $feed = fetch_feed('http://gcmaz.com/category/news/feed');
-        $feed->enable_order_by_date(false);
-        $limit = $feed->get_item_quantity(20); // specify large number of items - limit with the count_to_ten below
-        $items = $feed->get_items(0, $limit); // create an array of items
+        //$feed = fetch_feed('https://gcmaz.net/nonexistentfeed/');
+        if( ! is_wp_error( $feed ) ){
+            $feed->enable_order_by_date(false);
+            $limit = $feed->get_item_quantity(20); // specify large number of items - limit with the count_to_ten below
+            $items = $feed->get_items(0, $limit); // create an array of items
+            $got_feed = true;
+        } else {
+            $got_feed = false;
+        }
         //remove feed cache filter
         remove_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
     }
@@ -65,6 +71,8 @@
             <div class="indx-news">
                 <h5>KAFF News | <a href="https://gcmaz.com/kaff-news" target="_blank" title="View All KAFF News Stories">View All &raquo;</a></h5>
 
+                <?php if ($got_feed === true) : ?>
+
                     <?php foreach ($items as $item) : ?>
                         <?php foreach ($item->get_categories() as $item_cat) : ?>
                             <?php if ($item_cat->get_label() === 'Slider (KAFF News)') : ?>
@@ -100,6 +108,15 @@
                             <?php endif; ?>
                         <?php endif; ?>
                     <?php endforeach; ?>
+
+                <?php else : ?>
+
+                    <div class="indx-news-feed-listing">
+                        <p>Sorry, there was an error getting the feed</p>
+                    </div>
+
+                <?php endif; ?>
+
             </div>
         </div>
         <div class="col-md-6">
