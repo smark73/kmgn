@@ -5,7 +5,7 @@
 
     if (function_exists('fetch_feed') ) {
         //clear feed cache
-        function clear_feed_cache($secs){
+        function clear_feed_cache(){
             //return 0;  //set to zero
             return 600;  //10 mins
         }

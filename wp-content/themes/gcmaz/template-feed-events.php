@@ -41,12 +41,12 @@ if ( stripos( $cpt_slug, 'community' ) !== false ){
     <?php
         if (function_exists('fetch_feed') ) {
             //clear feed cache
-            function clear_feed_cache($secs){
+            function clear_feed_cache(){
                 //no cache for debugging
-                if($debug_page == true){
+                if($debug_page === true){
                     return 0;
                 } else {
-                    return 300;  //5 mins
+                    return 600;  //10 mins
                 }
             }
             add_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
@@ -59,8 +59,8 @@ if ( stripos( $cpt_slug, 'community' ) !== false ){
             if( ! is_wp_error( $feed ) ){
                 //if no errors
                 //$feed->set_timeout(60);
-                $feed->enable_cache(false);
-                $feed->set_cache_duration(0);
+                //$feed->enable_cache(false);
+                //$feed->set_cache_duration(0);
 
                 $feed->enable_order_by_date(false);
                 $limit = $feed->get_item_quantity(999); // specify number of items
