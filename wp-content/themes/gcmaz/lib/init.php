@@ -30,4 +30,4 @@ function roots_setup() {
 add_action('after_setup_theme', 'roots_setup');
 
 // Backwards compatibility for older than PHP 5.3.0
-if (!defined('__DIR__')) { define('__DIR__', dirname(__FILE__)); }
+//DEP PHP7 if (!defined('__DIR__')) { define('__DIR__', dirname(__FILE__)); }
