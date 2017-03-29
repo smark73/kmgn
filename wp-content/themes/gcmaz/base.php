@@ -59,7 +59,7 @@
                               
                               echo '
                                   <div>
-                                      <a href="/user" style="font-weight: 600; font-size:1.2em; color:#faaf40; text-shadow: 1px 1px 1px rgba(0,0,0,.25);">' . $our_user_name . '</a> | <a href="/logout" title="Logout" style="font-weight: 600; color:#bababa; text-shadow: 1px 1px 1px rgba(0,0,0,.5); font-size:0.8em; letter-spacing:-1px;">LOGOUT</a>
+                                      <a href="/user" style="font-weight: 600; font-size:1.2em; color:#faaf40; text-shadow: 1px 1px 1px rgba(0,0,0,.25);" rel="nofollow">' . $our_user_name . '</a> | <a href="/logout" title="Logout" style="font-weight: 600; color:#bababa; text-shadow: 1px 1px 1px rgba(0,0,0,.5); font-size:0.8em; letter-spacing:-1px;" rel="nofollow">LOGOUT</a>
                                   </div>
                                   ';
 
@@ -68,7 +68,7 @@
                               // ===== NOT LOGGED IN =====
                               echo '
                                   <div>
-                                      <a href="/login" style="font-weight: 600; font-size:1em; color:#faaf40; text-shadow: 1px 1px 2px rgba(0,0,0,.5);">
+                                      <a href="/login" style="font-weight: 600; font-size:1em; color:#faaf40; text-shadow: 1px 1px 2px rgba(0,0,0,.5);" rel="nofollow">
                                           LOGIN
                                       </a>
                                   </div>';
