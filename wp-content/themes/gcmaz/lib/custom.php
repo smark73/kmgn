@@ -86,7 +86,7 @@ function gcmaz_enqueue() {
         //wp_enqueue_script('jquery-snowfall');
     //}
 }
-add_action('wp_enqueue_scripts', 'gcmaz_enqueue');
+//add_action('wp_enqueue_scripts', 'gcmaz_enqueue');
 
 
 /*
