@@ -31,7 +31,8 @@ $page_var = "Advertising Info";
                 return 600;  //10 mins
             }
             add_filter('wp_feed_cache_transient_lifetime', 'clear_feed_cache');
-            $feed = fetch_feed('http://gcmaz.com/station-info/feed/');
+            //$feed = fetch_feed('http://gcmaz.com/station-info/feed/');
+            $feed = fetch_feed('http://gcmaz.com/feed/?post_type=station-content');
             $limit = $feed->get_item_quantity(999); // specify number of items
             $items = $feed->get_items(0, $limit); // create an array of items
             //remove feed cache filter
