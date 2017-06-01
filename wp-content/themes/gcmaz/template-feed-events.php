@@ -38,6 +38,11 @@ if ( stripos( $cpt_slug, 'community' ) !== false ){
     <div class="centered rbn-hdg">
         <?php get_template_part('templates/page', 'header'); ?>
     </div>
+
+    <div>
+        <?php get_template_part('templates/content', 'page'); ?>
+    </div>
+
     <?php
         if (function_exists('fetch_feed') ) {
             //clear feed cache
