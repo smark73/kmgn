@@ -46,7 +46,7 @@ if ( stripos( $cpt_slug, 'community' ) !== false ){
     <?php
         if (function_exists('fetch_feed') ) {
             //clear feed cache
-            function clear_feed_cache(){
+            function clear_feed_cache($debug_page){
                 //no cache for debugging
                 if($debug_page === true){
                     return 0;
