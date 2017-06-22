@@ -59,6 +59,7 @@ function roots_display_sidebar() {
       array( 'in_category', array( 7 ) ),
       // 7 is category for splash pages on live (6 local)
       //'is_front_page'
+
     ),
     /**
      * Page template checks (via is_page_template())
@@ -67,6 +68,7 @@ function roots_display_sidebar() {
     array(
       'template-custom.php',
       'template-no-sidebar.php',
+      'template-micki-free.php',
     )
   );
 
