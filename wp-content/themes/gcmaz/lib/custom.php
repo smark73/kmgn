@@ -80,7 +80,7 @@ function gcmaz_enqueue() {
 
     global $post;
     
-    if( $post->post_name === 'mickis-free-ride' ){
+    if( !empty( $post ) && $post->post_name === 'mickis-free-ride' ){
          //Youtube TV
         wp_register_style('youtube-tv-css', get_template_directory_uri() . '/assets/js/Youtube-TV/src/ytv.css', array(), null);
         wp_enqueue_style('youtube-tv-css');
