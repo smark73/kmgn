@@ -229,18 +229,6 @@ function object_to_array($object_to_array) {
 }
 
 
-/*
- * redirect Advertising Info gravity form to sales contacts
- */
-add_filter( 'gform_confirmation', 'custom_confirmation', 10, 4 );
-function custom_confirmation( $confirmation, $form, $entry, $ajax ) {
-    // id 3 => advertising info
-    if( $form['id'] == '3' ) {
-        $confirmation = array( 'redirect' => '/advertising-info' );
-    }
-    return $confirmation;
-}
-
 
 
 
@@ -383,8 +371,22 @@ function display_sum_promo_casino_chip() {
 
 
 
+// GRAVITY FORMS START
 
-// Add Body Class to GF Activation Page
+/*
+ * redirect Advertising Info gravity form to sales contacts
+ */
+add_filter( 'gform_confirmation', 'custom_confirmation', 10, 4 );
+function custom_confirmation( $confirmation, $form, $entry, $ajax ) {
+    // id 3 => advertising info
+    if( $form['id'] == '3' ) {
+        $confirmation = array( 'redirect' => '/advertising-info' );
+    }
+    return $confirmation;
+}
+
+
+// Add Body Class to Gravity Forms Activation Page
 function wp_body_classes( $classes ) {
     // check if is gf_activation page via url
     if( isset( $_GET['page'] ) && $_GET['page'] == 'gf_activation') {
@@ -401,4 +403,29 @@ add_filter( 'body_class','wp_body_classes' );
 
 
 
+// Populate Gravity Forms with Email Preferences set in Ultimate Member Profile custom user meta
+// custom meta = Entry Confirmation Emails, entry_confirm_emails (yes/no)
+function gf_get_profile_email_prefs() {
 
+    //user logged in?
+    if ( is_user_logged_in() ) {
+        $our_cur_user = wp_get_current_user();
+
+        // if user meta for entry_confirm_emails is set,
+        // get the email prefs from Ultimate Memmber custom user meta (Yes/No)
+        // else assign it default value of 'Yes'
+        if ( !empty( $our_cur_user->entry_confirm_emails ) ) {
+            $entry_confirm_email_prefs = $our_cur_user->entry_confirm_emails;
+            // returns array, assign value
+            $entry_confirm_email_prefs = $entry_confirm_email_prefs[0];
+        } else {
+            // assume they want to get emails as haven't set it to "No"
+            $entry_confirm_email_prefs = 'Yes';
+        }
+        return $entry_confirm_email_prefs;
+    }
+}
+add_filter('gform_field_value_gf_entry_confirm_emails', 'gf_get_profile_email_prefs');
+
+
+// END GRAVITY FORMS
