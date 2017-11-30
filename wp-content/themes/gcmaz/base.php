@@ -35,7 +35,7 @@
                 ?>
 
                 <a href="/" >
-                    <img class="size-full wp-image-31 centered logo" alt="93-9 The Mountain Radio - Flagstaff and Prescott Radio" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo-939themountain.png"/>
+                    <img class="size-full wp-image-31 centered logo" alt="93-9 The Mountain Radio - Flagstaff and Prescott Radio" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo-939themountain-xmas.png"/>
                 </a>
                 
                 <?php //<div  class="sticker-logo">?>
