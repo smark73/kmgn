@@ -80,13 +80,13 @@ function gcmaz_enqueue() {
 
     global $post;
     
-    if( !empty( $post ) && $post->post_name === 'mickis-free-ride' ){
-         //Youtube TV
-        wp_register_style('youtube-tv-css', get_template_directory_uri() . '/assets/js/Youtube-TV/src/ytv.css', array(), null);
-        wp_enqueue_style('youtube-tv-css');
-        wp_register_script('youtube-tv-js', get_template_directory_uri() . '/assets/js/Youtube-TV/src/ytv.js', array('jquery'), null, false);
-        wp_enqueue_script('youtube-tv-js');
-    }
+    //if( !empty( $post ) && $post->post_name === 'mickis-free-ride' ){
+         //Youtube TV for Micki's Free Ride
+        //wp_register_style('youtube-tv-css', get_template_directory_uri() . '/assets/js/Youtube-TV/src/ytv.css', array(), null);
+        //wp_enqueue_style('youtube-tv-css');
+        //wp_register_script('youtube-tv-js', get_template_directory_uri() . '/assets/js/Youtube-TV/src/ytv.js', array('jquery'), null, false);
+        //wp_enqueue_script('youtube-tv-js');
+    //}
 
     //if( $post->post_name === '12-days-of-christmas-on-93-9-the-mountain' ){
         //  //jquery snowfall
@@ -94,7 +94,7 @@ function gcmaz_enqueue() {
         //wp_enqueue_script('jquery-snowfall');
     //}
 }
-add_action('wp_enqueue_scripts', 'gcmaz_enqueue');
+//add_action('wp_enqueue_scripts', 'gcmaz_enqueue');
 
 
 /*

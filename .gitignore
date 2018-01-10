@@ -29,12 +29,12 @@ wp-content/plugins/*
 # !wp-content/plugins/my-single-file-plugin.php
 # !wp-content/plugins/my-directory-plugin/
 !wp-content/plugins/gcmaz/
-#keep our modifications to easy-logo-slider plugin
+#keep our modifications to following plugins
 !wp-content/plugins/easy-logo-slider/
+!wp-content/plugins/advanced-youtube-channel-pagination/
+
  
 # Ignore everything in the "themes" directory, except the themes you
 # specify (see the commented-out example for a hint on how to do this.)
 wp-content/themes/*
 !wp-content/themes/gcmaz/
-
-/nbproject/private/

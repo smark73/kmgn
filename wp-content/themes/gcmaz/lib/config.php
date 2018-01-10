@@ -69,6 +69,7 @@ function roots_display_sidebar() {
       'template-custom.php',
       'template-no-sidebar.php',
       'template-micki-free.php',
+      'template-micki-free2.php',
     )
   );
 
