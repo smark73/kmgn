@@ -1,0 +1,221 @@
+// Color Variables
+
+// ************************************************************
+// COLORS
+// ************************************************************
+$color-alto: #ddd;
+$color-black: #000;
+$color-cod-gray: #111;
+$color-dove-gray: #666;
+$color-dusty-gray: #999;
+$color-gallery: #eee;
+$color-mandy: #e5554e;
+$color-mine-shaft: #333;
+$color-silver-chalice: #aaa;
+$color-silver: #ccc;
+$color-thunderbird: #c3251d;
+$color-white: #fff;
+$color-whitesmoke: #f5f5f5;
+$color-ochre: #ffbb62;
+$color-ochre-lt: #ffd195;
+$color-ochre-ltr: #ffe7c8;
+
+// Primary
+$blue-ltr:			#56b2fe;
+$blue-lt:			#4589ff;
+$blue:				#2e6fdd;
+$blue-dk:			#174ba4;
+$blue-dkr:			#1b3d83;
+$blue-dkst:			#203062;
+$red:				#c00;
+$bright-red: 		#f33;
+$orange:			#ff6600;
+$yellow:			#ffff00;
+
+// Neutrals
+$neutral-tan: 		#e6e4df;
+$neutral-tan-lt:	#f5f3f1;
+$neutral-tan-dk:	#a9a39a;
+$neutral-tan-dkr:	#726c63;
+$neutral-blue-lt:	#edeff9;
+$gunmetal:			#353a44;
+$gunmetal-lt:		#575e6b;
+$gunmetal-dk:		#191c22;
+$gray-dkr:			#222;
+$gray-dk:			#333;
+$gray:				#555;
+$gray-lt:			#777;
+$gray-ltr:			#eee;
+
+$shadow-dk:			transparentize($color-black, .5);
+$shadow-md:			transparentize($color-black, .7);
+$shadow-lt: 		transparentize($color-black, .9);
+
+// Station Colors
+$gcmaz-blue: #3953a4;
+$kaff-red: #ea2328;
+$kaff-blue: #2e4a9d;
+$kmgn-orange: #f69222;
+$kmgn-orange-lt: #faaf40;
+$kmgn-gray: #414143;
+$eagle-yellow: #f5eb1a;
+$kfsz-blue: #0055a5;
+$kfsz-gray: #35393c;
+$ktmg-yellow: #fede11;
+$ktmg-blue: #2f67b2;
+$ktmg-lt-blue: #3399ff;
+$kaffam-blue: #434777;
+$kaffam-red: #ba383a;
+$kaffam-white: #eee8e8;
+$shine-orange: #f8b423;
+$shine-blue: #0e426a;
+
+$nau-blue: #013e7d;
+$nau-yellow: #ffd202;
+
+
+// some classes may be hardcoded in old pages
+.light-blue { color: $blue-lt; }
+.bright-red { color: $bright-red; }
+.red { color: $red; }
+.white { color: $color-white; }
+.black { color: $color-black; }
+.neutral-tan { color: $neutral-tan; }
+.neutral-tan-lt { color: $neutral-tan-lt; }
+.neutral-tan-dk { color: $neutral-tan-dk; }
+.neutral-blue-lt { color: $neutral-blue-lt; }
+
+
+// *****************************************************************
+// BACKGROUND COLORS
+// ****************************************************************
+
+$bg-color-body: $kmgn-gray;
+$bg-color-site-inner:
+	linear-gradient(darken($neutral-tan, 10%), $neutral-tan 20%);
+	//linear-gradient(transparentize($gray-dk, .5), transparentize($blue-dkr, .3)),
+	//url('images/bg-guitar-grunge.jpg');
+// for image also add
+// $bg-size: cover;
+// $bg-pos: middle center;
+
+
+
+// ********************************************************************
+// NORMAL MENU 
+// ********************************************************************
+// TEXT
+$menu-text-color: $color-white;
+$submenu-text-color: $color-white;
+$submenu-text-color-hover: $color-white;
+$menu-text-color-hover: $kmgn-orange-lt;
+// BACKGROUND
+$menu-bg-color: $gray-dkr;
+$menu-bg-color-hover: $gray-dk;
+$menu-bg-color-underline: $kmgn-orange;
+$submenu-bg-color: darken($menu-bg-color, 5%);
+$submenu-bg-color-hover: $menu-bg-color-hover;
+// CURRENT ITEM
+$cur-menu-item: $kmgn-orange;
+// BORDERS
+$menu-border-color: $gray;
+
+
+// ********************************************************************
+// MOBILE MENU (SLIDING PANEL)
+// ********************************************************************
+// TEXT
+$mobile-menu-top-item-color: $kmgn-orange;
+$mobile-menu-item-color: $color-white;
+// BG
+$sliding-panel-color: $color-white;
+$sliding-panel-color-hover: $color-white;
+$sliding-panel-bg: $menu-bg-color;
+$mobile-menu-item-bg-hover: lighten($sliding-panel-bg, 4%);
+// BORDER
+$sliding-panel-border-color: $sliding-panel-bg;
+
+
+// TOGGLE BTN
+$menu-toggle-color: $red;
+
+
+
+
+// ********************************************************************
+// SITE HEADER
+// ********************************************************************
+
+// .site-header has ...
+   // @include background-image(url('images/pg-hdr.png'), linear-gradient($site-hdr-grad-top, $site-hdr-grad-btm 100%));
+
+// to customize
+// create pg-hdr.png and put in /images dir
+// change colors for bg gradient
+
+$site-hdr-grad-top: $kmgn-gray;
+$site-hdr-grad-btm: $gray-dkr;
+
+
+// WIDGET AREA (HDR-NAVICONS)
+$hdr-nav-icons-color: $color-white;
+$hdr-nav-icons-bg-color: $kmgn-orange;
+$listen-live-bg-color: $gray-lt;
+$listen-live-bg-color-hover: $kmgn-orange;
+
+
+// ********************************************************************
+// SITE FOOTER
+// ********************************************************************
+
+// BG
+$site-ftr-bg-color: $gray-dk;
+
+// TEXT
+$ftr-text: $color-white;
+$ftr-text-hover: $color-white;
+
+
+
+
+// ********************************************************************
+// SIDEBAR
+// ********************************************************************
+
+$sidebar-grad-top: transparentize($color-white, .25);
+$sidebar-grad-btm: transparentize($color-white, 1);
+
+
+
+// ********************************************************************
+// WIDGETS
+// ********************************************************************
+
+// title
+$widget-title-color: $neutral-tan-lt;
+//$widget-title-bg: transparentize($blue, .4);
+
+$widget-border: $neutral-tan;
+
+// widget
+//$widget-grad-top: $blue-ltr;
+//$widget-grad-btm: $blue;
+
+
+//widget ul li a
+$widget-list-link: $neutral-tan-dkr;
+$widget-list-link-hover:  $blue;
+$widget-list-link-bg-hover: transparentize($neutral-tan, .5);
+
+
+
+// ********************************************************************
+// OTHER
+// ********************************************************************
+
+// Listen Live & Request Song Boxes on front page
+$listen-live-color: $gray-dkr;//$blue-dk;
+$listen-live-color-hover: $blue;
+$song-request-color : $gray-dkr;
+$song-request-color-hover: $red;
+

@@ -1,0 +1,108 @@
+/* ## Column Widths and Positions
+--------------------------------------------- */
+
+// EXPLAINED - body tag gets following classes based on selection in WP admin for genesis layout
+	// content-sidebar [content][sidebar]
+	// sidebar-content [sidebar][content]
+	// ... same for double sidebars but we've disabled
+
+
+// CONTENT --------------------------------------------
+
+.content {
+	// .sidebar-content .content
+	@include grid-column(8);
+	//@include omega;
+
+	float: right;
+	//border: 1px solid red;
+
+	@include grid-media($gx-grid-md){
+		@include grid-column(12);
+		@include grid-collapse;
+
+		//margin:auto;
+		padding: 0;
+	}
+
+}
+
+
+.content-sidebar .content {
+	float: left;
+}
+
+
+.full-width-content .content {
+	@include grid-column(12);
+}
+
+
+
+// PRIMARY SIDEBAR ------------------------------------
+
+.sidebar-primary {
+
+	@include grid-column(4);
+	//@include omega;
+	float: right;
+	//width: 360px;
+
+	//border: 1px solid green;
+
+	@include grid-media($gx-grid-md){
+		@include grid-column(12);
+	}
+}
+
+.sidebar-content .sidebar-primary,
+.sidebar-sidebar-content .sidebar-primary {
+
+	float: left;
+}
+
+
+
+
+
+
+// WITH SECONDARY SIDEBAR ------------------------------------
+
+/* ### Wrapping div for .content and .sidebar-primary */
+// NOT USING THESE LAYOUTS (double sidebars) UNREGISTERED IN FUNCTIONS
+
+// .content-sidebar-sidebar .content-sidebar-wrap,
+// .sidebar-content-sidebar .content-sidebar-wrap,
+// .sidebar-sidebar-content .content-sidebar-wrap {
+// 	width: 980px;
+// }
+
+// .content-sidebar-sidebar .content-sidebar-wrap {
+// 	float: left;
+// }
+
+// .sidebar-content-sidebar .content-sidebar-wrap,
+// .sidebar-sidebar-content .content-sidebar-wrap {
+// 	float: right;
+// }
+
+//.content-sidebar-sidebar .content,
+//.sidebar-content-sidebar .content {
+//	float: left;
+//}
+
+//.content-sidebar-sidebar .content,
+//.sidebar-content-sidebar .content,
+//.sidebar-sidebar-content .content {
+//	width: 580px;
+//}
+
+
+// .sidebar-secondary {
+// 	float: left;
+// 	width: 180px;
+// }
+
+// .content-sidebar-sidebar .sidebar-secondary {
+// 	float: right;
+// }

@@ -1,0 +1,33 @@
+// Fonts
+
+//Font-Awesome path variable - relative to compiled css 
+$fa-font-path:		  "./fonts";
+
+//import google fonts
+@import url(//fonts.googleapis.com/css?family=Bree+Serif|Montserrat:400,700);
+
+//Font variables
+$font-bree: 'Bree Serif', serif;
+$font-montserrat: 'Montserrat', sans-serif;
+
+$font-sans:  'Montserrat', sans-serif;
+$font-serif: Georgia, Times, "Times New Roman", serif;
+$font-mono:  "Courier 10 Pitch", Courier, monospace;
+
+
+// Sets global base em size for the px-to-em and px-to-rem function.
+// This should be the same size as your body font-size.
+$em-base: 16px;
+
+
+
+// FONTS
+.bree,
+%bree {
+  font-family: $font-bree;
+}
+
+.montserrat,
+%montserrat {
+  font-family: $font-montserrat;
+}

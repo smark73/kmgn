@@ -1,0 +1,136 @@
+// CUSTOMIZE DEFAULT VARS ------------------------------
+
+// NEAT 1 Grid options
+// sets default for outer-container mixin
+//$max-width: 100%;
+// $column: 90px;
+// $gutter: 10px;
+// $grid-columns: 12
+
+
+
+// GRID BREAKPOINTS AND MEDIA QUERIES ------------------------------------------
+// Breakpoints
+$bp-xs:          544px;
+$bp-sm:          768px;
+$bp-md:          992px;
+$bp-lg:          1200px;
+
+// NEAT 2 Grid Settings
+
+// Examples of options
+// $max-width-grid: (
+//   media: "(max-width: 1200px)",
+// );
+// $small-only-grid: (
+//   media: "(min-width:10px) and (max-width: 700px)",
+// );
+// $print-only-grid: (
+//   media: "print",
+// );
+
+// default neat-grid (change to override)
+//$neat-grid: (
+//	columns: 12,
+//	gutter: 20px,
+//	direction: ltr,
+//);
+
+// custom neat-grids
+
+$gx-grid-xl: (
+	columns: 12,
+	gutter: 20px,
+	media: "(min-width: 1201px)",
+);
+
+$gx-grid-lg: (
+	columns: 12,
+	gutter: 20px,
+	media: "(max-width: 1200px)",
+);
+
+$gx-grid-md: (
+	columns: 12,
+	gutter: 20px,
+	media: "(max-width: 992px)",
+);
+
+$gx-grid-sm: (
+	columns: 12,
+	gutter: 20px,
+	media: "(max-width: 768px)",
+);
+
+$gx-grid-xs: (
+	columns: 12,
+	gutter: 0,
+	media: "(max-width: 554px)",
+);
+
+
+// Media Queries with 1 breakpoint
+//$xs-screen: new-breakpoint(max-width $bp-xs);
+//$sm-screen: new-breakpoint(max-width $bp-sm);
+//$md-screen: new-breakpoint(max-width $bp-md);
+//$lg-screen: new-breakpoint(max-width $bp-lg);
+//$xl-screen: new-breakpoint(min-width $bp-lg + 1);
+
+// Media Queries with MIN & MAX breakpoints
+// 0 - 543px  
+//$screen-0-to-xs: new-breakpoint(max-width $bp-xs - 1);
+// 544 - 767 
+//$screen-xs-to-sm: new-breakpoint(min-width $bp-xs max-width $bp-sm - 1);
+// 768 - 991  
+//$screen-sm-to-md: new-breakpoint(min-width $bp-sm max-width $bp-md - 1);
+// 992 - 1199 
+//$screen-md-to-lg: new-breakpoint(min-width $bp-md max-width $bp-lg - 1);
+// 1200+
+//$screen-lg-to-infinity: new-breakpoint(min-width $bp-lg);
+
+
+// ETC ----------------------------------------
+
+// Typography
+$base-font-family: $font-stack-system;
+$heading-font-family: $base-font-family;
+
+// Font Sizes
+$base-font-size: 1em;
+
+// Line height
+$base-line-height: 1.5;
+$heading-line-height: 1.2;
+
+// Other Sizes
+$base-border-radius: 3px;
+$base-spacing: $base-line-height * 1em;
+$small-spacing: $base-spacing / 2;
+$base-z-index: 0;
+
+// Colors
+$default-blue: #1565c0;
+$default-dark-gray: #333;
+$default-medium-gray: #999;
+$default-light-gray: #ddd;
+
+// Font Colors
+$base-font-color: $default-dark-gray;
+$action-color: $default-blue;
+
+// Border
+$base-border-color: $default-light-gray;
+$base-border: 1px solid $base-border-color;
+
+// Background Colors
+$base-background-color: #fff;
+$secondary-background-color: tint($base-border-color, 75%);
+
+// Forms
+$form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
+$form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
+
+// Animations
+$base-duration: 150ms;
+$base-timing: ease;
+

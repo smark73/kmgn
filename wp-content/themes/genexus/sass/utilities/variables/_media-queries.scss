@@ -1,0 +1,43 @@
+// MEDIA QUERIES
+// SEE BOURBON/NEAT Variables for Extension of Media Queries to Mixins
+
+
+// mixing common (Bootstrap 4) breakpoints with Genesis ones
+
+// G  0                   880       1023       1280
+//BS  0-543 | 544-767 | 768-991 | 992-1199 | 1200+
+
+// Extra small screen / phone         (0-543)
+// Small screen / phone               (544-767)
+// Medium screen / tablet             (768-991)
+// Large screen / desktop             (992-1199)
+// Extra large screen / wide desktop  (1200+)
+
+
+// (GENESIS) Max Widths 880, 1023, 1280 (if needed)
+//$break-880:			    880px;
+//$break-1023:				1023px;
+//$break-1280:				1280px;
+
+
+//define breakpoints
+//$break-sm:          544px;
+//$break-md:          768px;
+//$break-lg:          992px;
+//$break-xl:          1200px;
+
+
+//define col sizes based on break points
+//$col-xs-max:        ($break-sm - 1);   //0-543
+
+//$col-sm-min:        $break-sm;         //544
+//$col-sm-max:        ($break-md - 1);   //767
+
+//$col-md-min:        $break-md;         //768
+//$col-md-max:        ($break-lg - 1);   //991
+
+//$col-lg-min:        $break-lg;         //992
+//$col-lg-max:        ($break-xl - 1);   //1199
+
+//$col-xl-min:        $break-xl;         //1200+
+

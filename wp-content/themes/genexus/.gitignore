@@ -1,0 +1,29 @@
+#Theme Specific Build Files to ignore
+
+#ignore the symlink
+node_modules
+
+uploads/
+blogs.dir/
+upgrade/
+backup-db/
+cache/
+backups/
+bower/
+bower_components/
+
+
+.htaccess
+.sass-cache
+compass_app_log.txt
+
+advanced-cache.php
+wp-cache-config.php
+
+sitemap.xml
+sitemap.xml.gz
+*.log
+
+.DS_Store
+.AppleDouble
+.LSOverride

@@ -1,0 +1,44 @@
+/* ## Titles
+--------------------------------------------- */
+
+.archive-title {
+	//font-size: 20px;
+	//font-size: 2rem;
+}
+
+.entry-title {
+	font-size: 36px;
+	font-size: 3.6rem;
+}
+
+.entry-title a,
+.sidebar .widget-title a {
+	color: #333;
+	text-decoration: none;
+}
+
+.entry-title a:hover,
+.entry-title a:focus {
+	color: #cc3d25;
+}
+
+.widget-title {
+	font-size: 18px;
+	font-size: 1.8rem;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+
+
+
+// We can target specific titles through a body class
+// we have a fn that adds its category "slug" to body class like "cateogry-" + slug
+// Ex: the slug for splash category is "info", so the added class is .category-info
+
+.category-info {
+
+	.entry-title {
+		margin: auto;
+		text-align: center;
+	}
+}

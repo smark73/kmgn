@@ -1,0 +1,187 @@
+// RESPONSIVE MENU styles
+// http://ozzyrodriguez.com/tutorials/genesis/genesis-responsive-menu-2-0/
+
+
+//use our breakpoint ==>  $bp-md = 768px
+
+nav {
+	clear: both;
+}
+
+// Navigation toggles
+//---------------------------------------------
+.sub-menu-toggle,
+.menu-toggle {
+	display: none;
+	visibility: hidden;
+}
+
+
+// Navigation toggles - Normal Menu
+//--------------------------------------------- 
+@media only screen and (min-width: ($bp-md + 1)) {
+	//nav {
+	//	display: block !important;
+	//}
+}
+
+
+// Navigation toggles - Mobile Menu
+//---------------------------------------------
+@media only screen and (max-width: $bp-md) {
+	.menu-toggle,
+	.sub-menu-toggle {
+		display: block;
+		font-size: 24px;
+		font-size: 2rem;
+		font-weight: 700;
+		margin: 0 auto;
+		overflow: hidden;
+		//padding: 6px;
+		text-align: center;
+		visibility: visible;
+		color: $menu-text-color;
+		background: $menu-bg-color;
+	}
+
+	//topmost menu toggle
+	button.menu-toggle {
+		width: 100%;
+		color: $menu-toggle-color;
+		background: darken($menu-bg-color, 5%);
+	}
+
+	//submenu toggle
+	button.sub-menu-toggle {
+        padding: 0 10px 0 0;
+        margin: 0;
+        width: 100%;
+        height: 50px;
+        z-index: 1000;
+        background: transparent;
+	}
+
+	.sub-menu-toggle {
+		padding: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+		background: $menu-bg-color;
+		text-align: right;
+	}
+
+	.menu-toggle:before {
+		text-align: center;
+		margin: auto;
+		font-size: 2em;
+		content: "≡";
+	}
+
+	.menu-toggle.activated:before {
+		text-align: center;
+		margin: auto;
+		font-size: 2em;
+		content: "≡";
+	}
+
+	.sub-menu-toggle:after {
+		//content: url(../../img/toggle-arrow-down.png);
+		//content: $toggle-arrow-down-image;
+		font-size: 2em;
+	}
+
+	.sub-menu-toggle.activated:after {
+		//content: url(../../img/toggle-arrow-up.png);
+		//content: $toggle-arrow-up-image;
+		font-size: 2em;
+	}
+
+	// nav {
+	// 	display: none;
+	// 	position: relative;
+	// }
+
+	.genesis-nav-menu .menu-item {
+		color: #fff;
+		display: block;
+		position: relative;
+		text-align: left;
+	}
+
+	.genesis-nav-menu .menu-item:hover {
+		position: relative;
+	}
+
+	.genesis-nav-menu .sub-menu {
+		clear: both;
+		display: none;
+		opacity: 1;
+		position: static;
+		width: 100%;
+	}
+
+	.genesis-nav-menu .sub-menu a {
+		border-left: 0;
+		position: relative;
+		width: auto;
+	}
+
+	.genesis-nav-menu .sub-menu .sub-menu {
+		margin: 0;
+	}
+
+	.genesis-nav-menu .sub-menu .sub-menu a {
+		background-color: $menu-bg-color;
+		padding-left: 30px;
+	}
+
+	.genesis-nav-menu .sub-menu .sub-menu .sub-menu a {
+		background-color: $menu-bg-color;
+		padding-left: 40px;
+	}
+
+	.nav-primary a:hover,
+	.nav-primary .current-menu-item > a {
+		color: $cur-menu-item;
+	}
+
+	.nav-primary .genesis-nav-menu .current-menu-item > a {
+		color: $cur-menu-item;
+	}
+
+	.nav-primary .genesis-nav-menu .current-menu-item {
+	}
+
+    .genesis-nav-menu {
+    	background-color: $menu-bg-color;
+    }
+
+
+    .nav-primary .genesis-nav-menu a,
+    .nav-primary .genesis-nav-menu .menu-item a,
+    .nav-primary .genesis-nav-menu .sub-menu a,
+    .nav-primary .genesis-nav-menu .sub-menu .sub-menu a,
+    .nav-primary .genesis-nav-menu .sub-menu .sub-menu .sub-menu a {
+    	// affects height of menu items in dropdowns
+    	padding-top: 2rem;
+    	padding-bottom: 2rem;
+    }
+
+
+	.menu-item-has-children {
+
+	    .current-menu-item {
+	    	border-left:4px solid $cur-menu-border-left;
+	    	background-color: lighten($menu-bg-color, 5%);
+	    }
+
+	}
+
+
+
+
+
+
+}
+
+

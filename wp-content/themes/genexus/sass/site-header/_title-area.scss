@@ -1,0 +1,79 @@
+/* ## Title Area
+--------------------------------------------- */
+// In Genexus -> whole header
+// we removed the default left/right in favor of more control (3 columns )
+
+.title-area {}
+
+//if use genesis logo header image
+// > .site-title {
+// 	// directly target logo 
+
+// 	> a {
+// 		//contain img
+// 		background-size: contain !important;
+
+// 		//center on sm
+// 		@include grid-media($gx-grid-sm){
+// 			background-position: center !important;
+// 		}
+
+// 	}
+// }
+
+//NOTE .header-image & .header-full-width ==> classes given to body
+
+.header-image .title-area {
+	padding: 10px;
+}
+
+.header-full-width .title-area {
+	width: 100%;
+}
+
+.site-title {
+	font-size: 30px;
+	font-size: 3rem;
+	font-weight: 900;
+	line-height: 1.2;
+
+	@include grid-media($gx-grid-sm){
+		@include grid-column(12);
+
+		text-align: center;
+		margin:auto;
+	}
+}
+
+.site-title a,
+.site-title a:hover,
+.site-title a:focus {
+	color: #333;
+	text-decoration: none;
+}
+
+.header-image .site-title > a {
+	float: left;
+	min-height: 100px;
+	width: 100%;
+
+}
+
+.site-description {
+	font-size: 16px;
+	font-size: 1.6rem;
+	font-weight: 300;
+	line-height: 1.5;
+}
+
+.site-description,
+.site-title {
+	margin-bottom: 0;
+}
+
+.header-image .site-description,
+.header-image .site-title {
+	display: block;
+	text-indent: -9999px;
+}
+

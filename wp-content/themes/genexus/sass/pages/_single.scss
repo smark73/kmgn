@@ -1,0 +1,69 @@
+// Single Post/Page
+
+
+// on body class
+.single {
+
+	.entry {
+
+		@include grid-container;
+
+		.featured-image {
+			img {
+				//max-height: 300px;
+				margin: auto;
+			}
+			text-align: center;
+		}
+
+		.featured-image-caption{
+			font-size: .6em;
+			color: $neutral-tan-dk;
+		}
+
+		.entry-header {
+
+			.entry-title {
+
+				//@extend %bree;
+				font-weight: 400;
+				margin: 20px 0 30px 0;
+				color: $gunmetal;
+
+				@include grid-media($gx-grid-sm){
+					font-size: 1.4em;
+				}
+			}
+
+			display: block;
+			clear: both;
+		}
+
+
+
+		.event-date {
+			//@extend %montserrat;
+			color: $gunmetal-lt;
+			margin-bottom: 20px;
+		}
+
+
+		.post-meta-info {
+			text-align: right;
+			margin-right: 20px;
+			font-size: .8em;
+			color: $neutral-tan-dkr;
+
+			.author-link {
+				color: $neutral-tan-dkr;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+
+	}
+
+}
+
+

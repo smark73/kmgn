@@ -1,0 +1,34 @@
+// FEED EVENTS CPT TPL (Whats, Concerts, Community)
+
+
+.feed-article {
+
+	.feed-listing {
+
+		.listhdr {
+
+			a {
+				text-decoration: none;
+				color: $blue-dk;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+			font-size: 1.4em;
+			font-weight: 600;
+
+		}
+
+		.feed-img {
+			padding: 5px;
+		}
+
+		.listdate {
+			//font-size: .8em
+		}
+
+		font-size: .8em;
+
+	}
+}

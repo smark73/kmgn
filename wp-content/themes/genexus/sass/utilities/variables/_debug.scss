@@ -1,0 +1,11 @@
+/* MEDIA QUERY DEBUG ASSISTANCE */
+@media only screen and (min-width: $break-xl) { body{ border-top:3px solid orange } }
+@media only screen and (min-width: $break-lg) { body{ border-top:3px solid red } }
+@media only screen and (min-width: $break-md) { body{ border-top:3px solid blue } }
+@media only screen and (min-width: $break-sm) { body{ border-top:3px solid green } }
+@media only screen and (max-width: ($break-sm - 1)) { body{ border-top:3px solid purple } }
+
+// NEAT visual grid
+$visual-grid: true;
+$visual-grid-color: #eee;
+$visual-grid-opacity: 0.8;

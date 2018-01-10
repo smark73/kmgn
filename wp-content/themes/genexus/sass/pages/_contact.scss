@@ -1,0 +1,45 @@
+// CONTACT
+
+
+// address tag 
+address {
+
+	.addy {
+		padding: 10px;
+		//border-bottom: 1px solid transparentize($neutral-tan-dk,.5);
+		background: transparentize($color-white,.5);
+		box-shadow: 0 0 5px transparentize($neutral-tan-dk, .6);
+	}
+
+	.addy-title {
+		font-size: 1.4em;
+		color: $blue-dk;
+		text-shadow: 1px 1px 1px $shadow-lt;
+	}
+
+	.phone {
+		margin-top: 10px;
+		padding: 10px;
+		font-size: 1.2em;
+		background: transparentize($color-white,.5);
+		box-shadow: 0 0 5px transparentize($neutral-tan-dk, .6);
+	}
+
+	a {
+		text-decoration: none;
+		color: $blue;
+		font-weight: 600;
+		&:hover{
+			color: $blue-dk;
+			text-decoration: underline;
+		}
+	}
+
+	font-size: 1em;
+	font-weight: 500;
+	background: linear-gradient($neutral-tan, darken($neutral-tan,2%));
+	padding: 10px;
+	color: $neutral-tan-dkr;
+
+}
+

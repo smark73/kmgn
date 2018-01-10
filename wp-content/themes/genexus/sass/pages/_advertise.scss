@@ -1,0 +1,190 @@
+// ADVERTISE AND ADVERTISING-INFO
+
+// $adv-logos-grid: (
+// 	columns: 8,
+// 	gutter: 0,
+// );
+
+.adv-info {
+
+	.adv-info-logos-wrap {
+
+		@include grid-container;
+		@include grid-collapse;
+
+		.adv-logo-block {
+
+			// @include grid-column(1, $adv-logos-grid);
+			@include grid-column(2);
+
+			padding: 10px;
+			height: 90px;
+			text-align: center;
+			border-radius: 8px;
+
+			@include grid-media($gx-grid-xl){
+				@include grid-column(2);
+				min-width: 130px;
+			}
+
+			@include grid-media($gx-grid-md){
+				@include grid-column(3);
+				margin: 5px;
+				min-width: 130px;
+			}
+			@include grid-media($gx-grid-sm){
+				@include grid-column(4);
+				min-width: 140px;
+			}
+			@include grid-media($gx-grid-xs){
+				@include grid-column(4);
+				min-width: 120px;
+			}
+
+		}
+
+		//img class
+		.adv-kaff-logo {
+			width: auto;
+			height: auto;
+			max-width: 90%;// 120px;
+			max-height: 90%;
+		}
+		.adv-kmgn-logo {
+			width: auto;
+			height: auto;
+			max-width: 90%;// 100px;
+			max-height: 90%;
+		}
+		.adv-kfsz-logo {
+			width: auto;
+			height: auto;
+			max-width: 90%;// 100px;
+			max-height: 90%;
+		}
+		.adv-kzgl-logo {
+			width: auto;
+			height: auto;
+			max-width: 90%;// 100px;
+			max-height: 90%;
+		}
+		.adv-ktmg-logo {
+			width: auto;
+			height: auto;
+			max-width: 90%;// 120px;
+			max-height: 90%;
+		}
+		.adv-kaffam-logo {
+			width: auto;
+			height: auto;
+			max-width: 90%;// 120px;
+			max-height: 90%;
+		}
+		.adv-knot-logo {
+			width: auto;
+			height: auto;
+			max-width: 90%;// 120px;
+			max-height: 90%;
+		}
+		.adv-kaffnews-logo {
+			width: auto;
+			height: auto;
+			max-width: 90%;// 120px;
+			max-height: 90%;
+		}
+
+		.kaff-block {
+			//@include grid-collapse;
+			background: $kaff-blue;
+		}
+		.kmgn-block {
+			//@include grid-collapse;
+			background: $kmgn-gray;
+		}
+		.kzgl-block {
+			//@include grid-collapse;
+			background: $color-black;
+		}
+		.kfsz-block {
+			//@include grid-collapse;
+			background: $kfsz-gray;
+		}
+		.ktmg-block {
+			//@include grid-collapse;
+			background: $ktmg-blue;
+		}
+		.kaffam-block {
+			//@include grid-collapse;
+			background: $kaffam-white;
+		}
+		.knot-block {
+			//@include grid-collapse;
+			background: transparentize($color-white,.2);
+		}
+		.kaffnews-block {
+			//@include grid-collapse;
+			background: transparentize($color-white, .5);
+		}
+
+		margin-top: 20px;
+		text-align: center;
+
+	}
+
+
+	.adv-info-txt-links {
+
+		a {
+			&:hover {
+				text-decoration: underline;
+			}
+			color: $neutral-tan-dkr;
+			text-decoration: none;
+		}
+
+		margin-top: 30px;
+		padding: 5px;
+		text-align: center;
+		font-size: 1.1em;
+		font-weight: 500;
+		background: $neutral-tan;
+		width: 100%;
+		color: $neutral-tan-dk;
+
+		@include grid-media($gx-grid-sm){
+			font-size: .9em;
+		}
+	}
+
+	.mediakits {
+
+		// backward comp for bootstrap classes on some things
+		.row {
+
+			@include grid-container;
+
+			.col-md-6 {
+				@include grid-column(6);
+
+				@include grid-media($gx-grid-sm){
+					@include grid-column(12);
+				}
+			}
+
+			margin-top: 20px;
+			font-size: 1.2em;
+
+		}
+
+		h1, h2, h3, h4, h5, h6, h7 {
+			font-weight: 700;
+		}
+
+		padding: 30px;
+		background: $color-white;
+		border-top: 5px solid transparentize($neutral-tan-dk,.4);
+	}
+
+
+}
+

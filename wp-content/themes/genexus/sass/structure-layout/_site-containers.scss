@@ -1,0 +1,32 @@
+/* ## Site Containers
+--------------------------------------------- */
+
+body {
+	background: $bg-color-body;
+}
+
+.site-inner,
+.wrap {
+
+	@include grid-container;
+
+}
+
+.site-inner {
+
+	.content,
+	.sidebar {
+		padding: 1%;
+	}
+
+	.content {
+		@include grid-media($gx-grid-sm){
+			//@include grid-collapse;
+		}
+	}
+
+	padding-top: 40px;
+	background: $bg-color-site-inner;
+  //background-size: $bg-size;
+  //background-position: $bg-pos;
+}

@@ -1,0 +1,18 @@
+// Common custom styles
+
+
+.centered {
+	display:block;
+	margin: auto;
+}
+
+//keep chunk of text together when lines break
+.txt-nobreak {
+	display: inline-block;
+}
+
+.center-page-title{
+	.entry-title {
+		text-align: center;
+	}
+}

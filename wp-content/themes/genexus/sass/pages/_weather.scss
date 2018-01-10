@@ -1,0 +1,88 @@
+// WEATHER
+
+.wthr-wrp {
+
+	#weather {
+
+		h2 {
+			color: $gunmetal-dk;
+			font-size: 2em;
+			text-shadow: -1px -1px 0 rgba(255,255,255,.8);
+		}
+
+		p {
+			span {
+				font-size: 16px;
+				padding-left: 15px;
+				color: $gunmetal;
+			}
+			font-size: 40px;
+			margin: 20px 0 0;
+			color: $color-white;
+		}
+
+		a {
+
+			&:hover {
+				color: $color-white;
+				text-decoration: underline;
+				border: 0;
+			}
+			display: block;
+			clear: both;
+			text-decoration: none;
+			color: $color-white;
+			font-size: 12px;
+			border: 0;
+		}
+
+		width: 90%;
+		margin: 0 auto;
+		padding: 10px;
+		text-align: center;
+
+	}
+
+	.wthr-lnks{
+		text-align: center;
+		margin: 0 auto;
+		width: 100%;
+		//max-width:400px
+	}
+
+	a.wthrcty {
+
+		&:hover {
+			color: $color-white;
+			text-decoration: underline;
+		}
+		font-size: 1.2em;
+		color: $neutral-blue-lt;
+		padding: 5px;
+		cursor: pointer;
+		font-weight: 700;
+		text-decoration: none;
+		text-shadow: 1px 1px 1px $shadow-lt;
+	}
+
+	.wthr-spnsrs {
+
+		img {
+			margin: 10px;
+		}
+		margin: 2% auto;
+		font-size: 12px;
+		color: $color-white;
+	}
+
+	padding: 20px 10px;
+	text-align: center;
+	margin: auto;
+  background: linear-gradient(to bottom,  $blue-lt, transparentize($blue-ltr,.5));
+  border-radius: 4px;
+
+}
+
+
+
+
