@@ -17,8 +17,8 @@ Template Name: Mickis Free Ride
 //remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 
 // Content Area
-remove_action( 'genesis_loop', 'genesis_do_loop' );
-add_action( 'genesis_loop', 'page_loop' );
+//remove_action( 'genesis_loop', 'genesis_do_loop' );
+//add_action( 'genesis_loop', 'page_loop' );
 
 
 function page_loop(){
@@ -31,36 +31,18 @@ function page_loop(){
     echo "<div class='entry-content'>";
 
     ?>
-
-<div class="" style="background:#000000;">
-
-       <div id="MickiFreeClips"></div>
-
-
-
-</div>
-
-<script type="text/javascript">
-//  jQuery(function($) {
-//    $(document).ready(function() {
-      document.addEventListener("DOMContentLoaded", function(event) {
-      	var controller = new YTV('MickiFreeClips', {
-         		//channelId: 'UCzhV348cX1pFjZzNXVwGT8Q'
-         		playlist: 'PLOJW20xKwaRCMTPpnLDgZxlEhCVlt0zKr'
-      	});
-      	//manually hide the video titles - they show even thow showinfo=0
-//      	$hideYtpTitle = $(document).find('.ytp-title');
-//      	$hideYtpTitle.hide();
-      });
-//    });
-//  });
-</script>
-
-<?php
-
+    <div class="">
+        <?php echo do_shortcode( '[Advanced_Youtube_Channel_Pagination]' ); ?>
+    </div>
+    <?php
     echo "</div></article>"; // /div.entry-content article.entry
-
 }
+
+function show_videos(){
+    echo do_shortcode( '[Advanced_Youtube_Channel_Pagination]' );
+}
+add_action( 'genesis_entry_footer', 'show_videos' );
+
 
 // genesis child theme
 genesis();

@@ -3,6 +3,14 @@
 // ************************************************************
 // COLORS
 // ************************************************************
+
+//THEME SPECIFIC COLORS
+$kmgn-orange-lt: #faaf40;
+$kmgn-purple: #93298e;
+$kmgn-purple-dk: #7f257a;
+$search-btn: $kmgn-purple;
+
+//Genexus / Neat / Defaults
 $color-alto: #ddd;
 $color-black: #000;
 $color-cod-gray: #111;
@@ -20,43 +28,26 @@ $color-ochre: #ffbb62;
 $color-ochre-lt: #ffd195;
 $color-ochre-ltr: #ffe7c8;
 
-// Primary
-$blue-ltr:			#56b2fe;
-$blue-lt:			#4589ff;
-$blue:				#2e6fdd;
-$blue-dk:			#174ba4;
-$blue-dkr:			#1b3d83;
-$blue-dkst:			#203062;
-$red:				#c00;
-$bright-red: 		#f33;
-$orange:			#ff6600;
-$yellow:			#ffff00;
-
 // Neutrals
-$neutral-tan: 		#e6e4df;
-$neutral-tan-lt:	#f5f3f1;
-$neutral-tan-dk:	#a9a39a;
-$neutral-tan-dkr:	#726c63;
-$neutral-blue-lt:	#edeff9;
-$gunmetal:			#353a44;
-$gunmetal-lt:		#575e6b;
-$gunmetal-dk:		#191c22;
-$gray-dkr:			#222;
-$gray-dk:			#333;
-$gray:				#555;
-$gray-lt:			#777;
-$gray-ltr:			#eee;
-
-$shadow-dk:			transparentize($color-black, .5);
-$shadow-md:			transparentize($color-black, .7);
-$shadow-lt: 		transparentize($color-black, .9);
+$neutral-tan: #e6e4df;
+$neutral-tan-lt: #f5f3f1;
+$neutral-tan-dk: #a9a39a;
+$neutral-tan-dkr: #726c63;
+$neutral-blue-lt: #edeff9;
+$gunmetal: #353a44;
+$gunmetal-lt: #575e6b;
+$gunmetal-dk: #191c22;
+$gray-dkr: #222;
+$gray-dk: #333;
+$gray: #555;
+$gray-lt: #777;
+$gray-ltr: #eee;
 
 // Station Colors
 $gcmaz-blue: #3953a4;
 $kaff-red: #ea2328;
 $kaff-blue: #2e4a9d;
 $kmgn-orange: #f69222;
-$kmgn-orange-lt: #faaf40;
 $kmgn-gray: #414143;
 $eagle-yellow: #f5eb1a;
 $kfsz-blue: #0055a5;
@@ -70,9 +61,25 @@ $kaffam-white: #eee8e8;
 $shine-orange: #f8b423;
 $shine-blue: #0e426a;
 
+$blue-ltr: #56b2fe;
+$blue-lt: #4589ff;
+$blue: #2e6fdd;
+$blue-dk: #174ba4;
+$blue-dkr: #1b3d83;
+$blue-dkst: #203062;
+$red: #c00;
+$bright-red: #f33;
+$orange: #ff6600;
+$yellow: #ffff00;
+
 $nau-blue: #013e7d;
 $nau-yellow: #ffd202;
 
+
+//Shadows
+$shadow-dk:	transparentize($color-black, .5);
+$shadow-md: transparentize($color-black, .7);
+$shadow-lt: transparentize($color-black, .9);
 
 // some classes may be hardcoded in old pages
 .light-blue { color: $blue-lt; }
@@ -98,6 +105,7 @@ $bg-color-site-inner:
 // for image also add
 // $bg-size: cover;
 // $bg-pos: middle center;
+$dark-bg-color: $color-black;
 
 
 
@@ -160,7 +168,7 @@ $site-hdr-grad-btm: $gray-dkr;
 // WIDGET AREA (HDR-NAVICONS)
 $hdr-nav-icons-color: $color-white;
 $hdr-nav-icons-bg-color: $kmgn-orange;
-$listen-live-bg-color: $gray-lt;
+$listen-live-bg-color: $kmgn-purple-dk;//$gray-lt;
 $listen-live-bg-color-hover: $kmgn-orange;
 
 
@@ -213,9 +221,5 @@ $widget-list-link-bg-hover: transparentize($neutral-tan, .5);
 // OTHER
 // ********************************************************************
 
-// Listen Live & Request Song Boxes on front page
-$listen-live-color: $gray-dkr;//$blue-dk;
-$listen-live-color-hover: $blue;
-$song-request-color : $gray-dkr;
-$song-request-color-hover: $red;
+
 

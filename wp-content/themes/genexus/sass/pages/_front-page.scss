@@ -15,6 +15,12 @@
 //  [/home-row-social]
 //
 
+// Listen Live & Request Song Boxes on front page
+$listen-live-color: $gray-dkr;
+$listen-live-color-hover: $kmgn-orange;
+$song-request-color : $gray-dkr;
+$song-request-color-hover: $kmgn-purple-dk;
+
 
 //override default page pad/marg that don't work on "home"
 .home .site-inner,
@@ -37,22 +43,19 @@
   @include grid-container;
   @include grid-collapse;
 
-  padding: 20px;//30px 0;
+  padding: 40px 20px 60px;
   background:
-    //linear-gradient(to top right, transparentize($color-black, .8), transparentize($color-black, 1) 25%),
-    //linear-gradient(to bottom left, transparentize($color-white, .1), transparentize($color-white, 1) 25%),
-    //linear-gradient(transparentize($blue-dk, .5), transparentize($blue, .3)),
-    linear-gradient(transparentize($gray-dk, .5), transparentize($blue-dkr, .3)),
+    linear-gradient(transparentize($kmgn-purple-dk, .9), transparentize($kmgn-purple-dk, .3)),
     //url('images/bg-american-flag.jpg'),
-    url('images/bg-guitar-grunge.jpg'),
-    $blue-dk;
-    //$color-alto;
+    url('images/bg-concert-crowd-2.jpg'),
+    $color-black;
   background-size: cover;
   background-position: middle center;
 
   @include grid-media($gx-grid-sm){
+    padding: 40px 10px;
     background:
-      linear-gradient(transparentize($blue-dkst, .5), transparentize($blue-dk, .3)),
+      linear-gradient(transparentize($kmgn-purple-dk, .5), transparentize($kmgn-purple-dk, 1)),
       //url('images/bg-guitar-hat-boots.jpg'),
       $color-black;
   }
@@ -126,13 +129,11 @@
 
     .listen-live {
       i {
-        color: $bright-red;
+        color: $kmgn-orange-lt;
         margin-left: 5px;
       }
 
       &:hover {
-        //color: $bright-red;
-        //background: linear-gradient(to left, lighten($listen-live-color,10%), transparentize($listen-live-color, 1));
         background: $listen-live-color-hover;
         text-shadow: 1px 1px 1px transparentize($color-black, .5);
       }
@@ -155,11 +156,11 @@
       //this shows when no stream sponsor in box
 
       i {
-        color: $bright-red;
+        color: $kmgn-orange-lt;
       }
 
       &:hover {
-        background: transparentize($listen-live-color-hover, .5);
+        background: transparentize($listen-live-color-hover, .8);
         text-shadow: 1px 1px 1px transparentize($color-black, .5);
       }
 
@@ -172,9 +173,9 @@
       font-style: italic;
       padding: 10px 0;
       display: block;
-      border: 1px solid $blue-lt;
+      border: 1px solid $listen-live-color-hover;
       border-radius: 5px;
-      background: transparentize($blue-lt, .8);
+      background: transparentize($kmgn-orange, .95);
       width: 90%;
       margin: 10px auto;
 
@@ -182,7 +183,6 @@
 
     .stream-inner-wrap {
       padding: 5px;
-      //background: linear-gradient($blue-dkst, $blue-dkr);
       background: linear-gradient(darken($listen-live-color, 5%), lighten($listen-live-color, 5%));
     }
 
@@ -216,7 +216,7 @@
     }
 
     text-align: center;
-    background: darken($listen-live-color, 5%);//$blue-dkst;
+    background: darken($listen-live-color, 5%);
     box-shadow: 0 0 10px transparentize($color-black, .5);
 
     @include grid-media($gx-grid-xl){
@@ -254,12 +254,11 @@
 
     .song-request {
       i {
-        color: $bright-red;
+        color: $kmgn-purple;//$kmgn-orange-lt;
         margin: 0 10px;
       }
 
       &:hover {
-        //color: $bright-red;
         background: $song-request-color-hover;
         text-shadow: 1px 1px 1px transparentize($color-black, .5);
       }
@@ -294,7 +293,7 @@
       font-weight: 600;
       font-style: italic;
       color: $color-white;
-      background: $red;
+      background: $kmgn-purple;
       padding: 4px;
     }
 
@@ -361,7 +360,7 @@
   @include grid-collapse;
 
   padding: 4% 2% 4%;
-  background: $blue-dkr;
+  background: $kmgn-gray;
 }
 
 
@@ -413,7 +412,7 @@
 
   .news-hdr-wrap{
     width: 100%;
-    border-bottom: 1px solid $blue;
+    border-bottom: 1px solid $kmgn-orange;
   }
 
   .news-hdr {
@@ -441,11 +440,11 @@
 
         a {
           &:hover{
-            background: transparentize($blue-lt, .8);
+            background: transparentize($gray-lt, .8);
             color: $color-white;
           }
           text-decoration: none;
-          color: $blue-ltr;
+          color: lighten($gray-lt,5%);
           font-size: 12px;
           line-height: normal;
           display: block;
@@ -453,7 +452,7 @@
         }
 
         line-height: normal;
-        border-bottom: 1px solid transparentize($blue, .5);
+        border-bottom: 1px solid $gray-lt;
         padding: 0;
         margin: 0 0 7px 0;
 
@@ -466,7 +465,7 @@
   }
 
   overflow: hidden;
-  background: $blue-dk;
+  background: $gray-dkr;
 
 }//.kaff-news-feed
 

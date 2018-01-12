@@ -83,16 +83,6 @@ function gx_enqueue_reqs() {
     //* Add compiled JS
     wp_enqueue_script( 'gx-scripts', get_stylesheet_directory_uri() . '/js/script.min.js', array(), CHILD_THEME_VERSION, true );
 
-    //global $post;
-    
-    //if( !empty( $post ) && $post->post_name === 'mickis-free-ride' ){
-         //Youtube TV for Micki's Free Ride
-        wp_register_style('youtube-tv-css', get_stylesheet_directory_uri() . '/js/Youtube-TV/src/ytv.css', array(), null);
-        wp_enqueue_style('youtube-tv-css');
-        wp_register_script('youtube-tv-js', get_stylesheet_directory_uri() . '/js/Youtube-TV/src/ytv.js', array('jquery'), null, false);
-        wp_enqueue_script('youtube-tv-js');
-    //}
-
 }
 add_action( 'wp_enqueue_scripts', 'gx_enqueue_reqs' );
 
@@ -623,12 +613,12 @@ add_filter('login_headerurl', 'gx_url_login');
 function gx_login_logo() {
     ?>
     <style type="text/css">
-        body { background: #174ba4; }
+        body { background: #333; }
         #login #nav a,
         #login #backtoblog a{ color: #ffffff; }
         #login{ width:500px !important; }
         .login h1 a {
-            background-image: url(<?php echo get_stylesheet_directory_uri();?>/images/929_KAFF_SVG.svg) !important;
+            background-image: url(<?php echo get_stylesheet_directory_uri();?>/images/93-9-the-mountain.svg) !important;
             width:500px !important;
             height:100px !important;
             background-size:contain !important;
@@ -1013,26 +1003,32 @@ function whos_in_the_studio() {
 
         if ( $cur_hour >= 6 && ( $cur_hour < 10 ) ) {
             //morning 6:00a-9:59a
-            $current_show = 'Vicki & Mike in the Morning';
+            $current_show = 'Eddie Miller';
 
         } elseif ( $cur_hour >= 10 && $cur_hour < 14 ) {
             //midday 10:00a-1:59p
-            $current_show = 'AJ';
+            $current_show = 'Leza';
 
         } elseif( $cur_hour >= 14 && $cur_hour < 19 ) {
             //afternoon 2:00p-7:00p
-            $current_show = 'Scott Fisher';
+            $current_show = 'Mike Menter';
         }
 
-    } elseif ( $cur_day === 'Sun' ) {
-        //Sunday
-        if ( $cur_hour >= 6 && ( $cur_hour < 10 ) ) {
-            //Sund morning
-            $current_show = 'Kix Brooks';
+    } elseif ( $cur_day === 'Fri' ) {
+        //Fri
+        if ( $cur_hour >= 9 && ( $cur_hour < 12 ) ) {
+            //9-midnight
+            $current_show = 'The House of Hair';
+        }
+    } elseif ( $cur_day === 'Sat' ) {
+        //Sat
+        if ( $cur_hour >= 7 && ( $cur_hour < 10 ) ) {
+            //Micki Free
+            $current_show = 'Micki Free';
         }
     } else {
         //Default
-        $current_show = 'KAFF Country';
+        $current_show = '93-9 The Mountain';
     }
 
     return $current_show;

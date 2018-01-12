@@ -75,13 +75,13 @@ $(document).ready(function () {
 
             if (items[0]) {
                 var current_videoId = items[0].snippet.resourceId.videoId;
-                $("#youtube-channel-video .display-watch-video").html('<div class="col-sm-12"><iframe width="100%" src="https://www.youtube.com/embed/' + current_videoId + '?listType=playlist&list=PLOJW20xKwaRCMTPpnLDgZxlEhCVlt0zKr&loop=1&rel=0" frameborder="0" allowfullscreen="" style="width:auto;height:auto;min-width:350px;min-height:250px;"></iframe><h2> ' + items[0].snippet.title + '</h2></div>');
+                $("#youtube-channel-video .display-watch-video").html('<div class="col-sm-12 "><iframe width="100%" src="https://www.youtube.com/embed/' + current_videoId + '?listType=playlist&list=PLOJW20xKwaRCMTPpnLDgZxlEhCVlt0zKr&loop=1&rel=0" frameborder="0" allowfullscreen="" style="width:auto;height:auto;min-width:350px;min-height:250px;"></iframe><h2> ' + items[0].snippet.title + '</h2></div>');
             }
 
             grid_video_list = 0;
             videoList = '';
             $.each(items, function (index, e) {
-                videoList = videoList + '<div class="col-lg-3 col-md-4 col-sm-' + gridPreRowList + ' ycv-list-snippet"><div class="item-list-box"><div class="ycv-simple-thumb-wrap"><img class="img-responsive" alt="' + e.snippet.title + '" src="' + e.snippet.thumbnails.medium.url + '"></div><div class="current-video-id" style="display:none">' + e.snippet.resourceId.videoId + '</div><div class="title">' + e.snippet.title + '</div></div></div>';
+                videoList = videoList + '<div class="col-lg-3 col-md-4 col-sm-' + gridPreRowList + ' ycv-list-snippet one-third"><div class="item-list-box"><div class="ycv-simple-thumb-wrap"><img class="img-responsive" alt="' + e.snippet.title + '" src="' + e.snippet.thumbnails.medium.url + '"></div><div class="current-video-id" style="display:none">' + e.snippet.resourceId.videoId + '</div><div class="title">' + e.snippet.title + '</div></div></div>';
             });
             $("#yc-pagination-watch").html(videoList);
             videoList = '';
@@ -90,7 +90,7 @@ $(document).ready(function () {
     $('#youtube-channel-pagination #yc-pagination-watch').on('click', '.ycv-list-snippet', function () {
         var currentVideoId = $(this).find(".current-video-id").text();
         var video_snippet = $(this).find(".title").text();
-        $("#youtube-channel-video .display-watch-video").html('<div class="col-sm-12"><iframe width="100%" src="https://www.youtube.com/embed/' + currentVideoId + '?listType=playlist&list=PLOJW20xKwaRCMTPpnLDgZxlEhCVlt0zKr&autoplay=1&loop=1&rel=0" frameborder="0" allowfullscreen="" style="width:auto;height:auto;min-width:350px;min-height:250px;"></iframe><h2> ' + video_snippet + '</h2></div>');
+        $("#youtube-channel-video .display-watch-video").html('<div class="col-sm-12 one-third"><iframe width="100%" src="https://www.youtube.com/embed/' + currentVideoId + '?listType=playlist&list=PLOJW20xKwaRCMTPpnLDgZxlEhCVlt0zKr&autoplay=1&loop=1&rel=0" frameborder="0" allowfullscreen="" style="width:auto;height:auto;min-width:350px;min-height:250px;"></iframe><h2> ' + video_snippet + '</h2></div>');
     });
 
 });

@@ -11,8 +11,38 @@
 	display: inline-block;
 }
 
+
+// PAGE TITLES
 .center-page-title{
 	.entry-title {
 		text-align: center;
 	}
 }
+
+.page-title-hidden{
+	.entry-title {
+		display: none;
+		visibility: hidden;
+		height: 0;
+	}
+}
+
+
+// DARK BACKGROUND
+.dark-bg {
+
+	.site-inner {
+
+		.entry {
+			background: $dark-bg-color;
+			color: $color-white;
+		}
+
+		background: $dark-bg-color;
+		color: $color-white;
+	}
+
+	background: $dark-bg-color;
+	color: $color-white;
+}
+

@@ -58,15 +58,15 @@ function page_loop(){
 
     //first include FB sdk in page
     ?>
-
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=100319983507036";
+      js.src = '//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=159639224186993';
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
+
 
     <div class="home-row-main">
 
@@ -140,7 +140,7 @@ function page_loop(){
                                 } else {
                                     echo '
                                         <a class="listen-live-big" href="' . $listenlivelink . '" target="_blank" title="Listen Live">
-                                          Stream KAFF <span class="txt-nobreak">Country <i class="fa fa-volume-up" aria-hidden="true"></i></span>
+                                          <span class="txt-nobreak">Stream 93-9 <i class="fa fa-volume-up" aria-hidden="true"></i></span>
                                         </a>
                                     ';
                                 }
@@ -192,10 +192,10 @@ function page_loop(){
             <?php
                 if (live_or_local() === 'live') {
                     //live slider
-                    echo do_shortcode("[metaslider id=3001]");
+                    echo do_shortcode("[metaslider id=1948]");
                 } else {
                     //local
-                    echo do_shortcode("[metaslider id=729]");
+                    echo do_shortcode("[metaslider id=332]");
                 }
             ?>
 
@@ -268,7 +268,7 @@ function page_loop(){
         </div>
 
         <div class="home-thirds-col fb-box">
-            <div class="fb-page" data-href="https://www.facebook.com/KAFFcountry" data-show-facepile="true" data-width="500" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/KAFFcountry" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/KAFFcountry">92.9 KAFF Country</a></blockquote></div>
+            <div class="fb-page" data-href="https://www.facebook.com/TheNew939" data-width="500" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/TheNew939" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/TheNew939">93.9 The Mountain</a></blockquote></div>
         </div>
 
     </div>
