@@ -361,7 +361,9 @@ $song-request-color-hover: $kmgn-purple-dk;
   @include grid-collapse;
 
   padding: 4% 2% 4%;
-  background: $kmgn-gray;
+  background:
+    linear-gradient(transparentize($kmgn-purple-dk,.1), transparentize($kmgn-purple-dk,.9)),
+    $color-black;
 }
 
 
@@ -380,9 +382,9 @@ $song-request-color-hover: $kmgn-purple-dk;
   }
 
   height: 320px;
-  border: 1px solid transparentize($color-white, 1);
+  border: 1px solid transparentize($color-black, 1);
   color: $color-white;
-  background: transparentize($color-black, .9);
+  background: transparentize($color-black, .8);
   padding: 10px;
   margin-top: 30px;
 }
