@@ -25,10 +25,12 @@
     color:#fff000;
 }
 
-// .micki-free {
-// 	.row {
-// 		@include grid-container;
-// 	}
+
+// .mf-cur-vid,
+// .mf-clips-wrap,
+// #youtube-channel-pagination {
+// 	@include grid-container;
+// }
 
 // 	@include grid-media($gx-grid-xl){
 // 		.col-* { @include grid-column(3); }
@@ -45,4 +47,3 @@
 
 
 
-// }

@@ -50,14 +50,14 @@ class AdvancedYoutubeChannelPagination {
           <button type="button" id="pageTokenPrev" value="" class="btn btn-default pull-left"><i class="fa fa-angle-left"></i> Previous</button>
           <button type="button" id="pageTokenNext" value="" class="btn btn-default pull-right">Next <i class="fa fa-angle-right"></i></button>
           </div></div>
-          </div></div><div class="clearfix"></div>';
+          </div></div>';
         return $YCOagination;
     }
 
     /* Load script file */
 
     public function register_scripts_and_register_styles() {
-        //wp_enqueue_style('youtube-channel-pagination-bootstrap', plugins_url('/bootstrap.min.css', __FILE__));
+        wp_enqueue_style('youtube-channel-pagination-bootstrap', plugins_url('/bootstrap.min.css', __FILE__));
         wp_enqueue_style('youtube-channel-pagination-channel-styles', plugins_url('/channel-styles.css', __FILE__));
         wp_enqueue_script('jquery');
         wp_enqueue_script('youtube-channel-pagination', plugins_url('/channel-scripts.js', __FILE__), false, false, true);
