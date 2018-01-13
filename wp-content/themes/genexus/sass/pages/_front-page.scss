@@ -55,8 +55,9 @@ $song-request-color-hover: $kmgn-purple-dk;
   @include grid-media($gx-grid-sm){
     padding: 40px 10px;
     background:
-      linear-gradient(transparentize($kmgn-purple-dk, .5), transparentize($kmgn-purple-dk, 1)),
-      //url('images/bg-guitar-hat-boots.jpg'),
+      linear-gradient(transparentize($kmgn-purple-dk, .9), transparentize($kmgn-purple-dk, .3)),
+      //url('images/bg-american-flag.jpg'),
+      url('images/bg-concert-crowd-2.jpg'),
       $color-black;
   }
 

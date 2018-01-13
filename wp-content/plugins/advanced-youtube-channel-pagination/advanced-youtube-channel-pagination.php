@@ -50,7 +50,7 @@ class AdvancedYoutubeChannelPagination {
           <button type="button" id="pageTokenPrev" value="" class="btn btn-default pull-left"><i class="fa fa-angle-left"></i> Previous</button>
           <button type="button" id="pageTokenNext" value="" class="btn btn-default pull-right">Next <i class="fa fa-angle-right"></i></button>
           </div></div>
-          </div></div>';
+          </div></div><div class="clearfix"></div>';
         return $YCOagination;
     }
 
