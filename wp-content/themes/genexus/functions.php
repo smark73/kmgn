@@ -1012,6 +1012,9 @@ function whos_in_the_studio() {
         } elseif( $cur_hour >= 14 && $cur_hour < 19 ) {
             //afternoon 2:00p-7:00p
             $current_show = 'Mike Menter';
+            
+        } else {
+            $current_show = '93-9 The Mountain';
         }
 
     } elseif ( $cur_day === 'Fri' ) {
@@ -1019,13 +1022,19 @@ function whos_in_the_studio() {
         if ( $cur_hour >= 9 && ( $cur_hour < 12 ) ) {
             //9-midnight
             $current_show = 'The House of Hair';
+        } else {
+            $current_show = '93-9 The Mountain';
         }
+
     } elseif ( $cur_day === 'Sat' ) {
         //Sat
         if ( $cur_hour >= 7 && ( $cur_hour < 10 ) ) {
             //Micki Free
             $current_show = 'Micki Free';
+        } else {
+            $current_show = '93-9 The Mountain';
         }
+
     } else {
         //Default
         $current_show = '93-9 The Mountain';
