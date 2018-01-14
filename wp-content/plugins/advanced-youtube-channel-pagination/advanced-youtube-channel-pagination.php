@@ -60,7 +60,9 @@ class AdvancedYoutubeChannelPagination {
         wp_enqueue_style('youtube-channel-pagination-bootstrap', plugins_url('/bootstrap.min.css', __FILE__));
         wp_enqueue_style('youtube-channel-pagination-channel-styles', plugins_url('/channel-styles.css', __FILE__));
         wp_enqueue_script('jquery');
-        wp_enqueue_script('youtube-channel-pagination', plugins_url('/channel-scripts.js', __FILE__), false, false, true);
+        if ( is_page( 'mickis-free-ride' ) ){
+            wp_enqueue_script('youtube-channel-pagination', plugins_url('/channel-scripts.js', __FILE__), false, false, true);
+        }
     }
 
 }
