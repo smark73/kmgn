@@ -1,5 +1,20 @@
 // MICKI'S FREE RIDE & CONTACT MICKI
 
+
+.micki-free {
+	.site-inner {
+		.content {
+			.entry {
+				@include grid-media($gx-grid-sm){
+					padding: 0;
+				}
+			}
+		}
+		padding-top: 10px;
+	}
+}
+
+
 // .mickis-free-ride .in-cnt-wrp,
 // .mickis-free-ride .pg-content,
 // .contact-micki-free .in-cnt-wrp,
