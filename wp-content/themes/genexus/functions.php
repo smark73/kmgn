@@ -444,7 +444,7 @@ function gx_header_right(){
 
 
 /**********************************************************/
-// PAGE TAKEOVER (big header 1000x200)
+// PAGE TAKEOVER 2.0
 /**********************************************************/
 
 // get the ptko options array

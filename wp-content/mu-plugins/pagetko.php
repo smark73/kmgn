@@ -2,10 +2,10 @@
 
 /*
 Plugin Name: GCMAZ Page Take Over
-Plugin URI: http://www.gcmaz.com
+Plugin URI: https://gcmaz.com
 Description: Enable / Disable page take overs on site
 Author: Stacy Mark
-Version: 1.0
+Version: 2.0
 Author URI: 
 */
 
@@ -85,31 +85,6 @@ class PTKO_Settings{
                     //Open the uploader dialog
                     hdr_uploader.open();
                 });
-                //bg image uploader
-                var bg_uploader;
-                $('#ptko_settings\\[ptko_bgimg\\]').click(function(e) {
-                    e.preventDefault();
-                    //If the uploader object has already been created, reopen the dialog
-                    if (bg_uploader) {
-                        bg_uploader.open();
-                        return;
-                    }
-                    //Extend the wp.media object
-                    bg_uploader = wp.media.frames.file_frame = wp.media({
-                        title: 'Choose Image',
-                        button: {
-                            text: 'Choose Image'
-                        },
-                        multiple: false
-                    });
-                    //When a file is selected, grab the URL and set it as the text field's value
-                    bg_uploader.on('select', function() {
-                        attachment = bg_uploader.state().get('selection').first().toJSON();
-                        $('#ptko_settings\\[ptko_bgimg\\]').val(attachment.url);
-                    });
-                    //Open the uploader dialog
-                    bg_uploader.open();
-                });
             });
         </script>
         <?php
@@ -148,24 +123,16 @@ class PTKO_Settings{
                 );
         add_settings_field(
                 'ptko_hdrimg',                                   // ID 
-                'Header Image (1000x150):',                                // label
+                'Header Image (1200x240 recommended):',                                // label
                 array($this, 'ptko_hdrimg_callback'),   // name of the function rendering the interface
                 'page-takeover-settings',                   // page this option will be displayed
                 'ptko-settings-section',                      // name of the section this field belongs
                 array('')                                           // array of arguments to pass to the callback
                 );
         add_settings_field(
-                'ptko_bgimg',                                       // ID 
-                'Background Image (1600x900 avg):',                           // label
-                array($this, 'ptko_bgimg_callback'),      // name of the function rendering the interface
-                'page-takeover-settings',                      // page this option will be displayed
-                'ptko-settings-section',                         // name of the section this field belongs
-                array('')                                            // array of arguments to pass to the callback
-                );
-        add_settings_field(
                 'ptko_bgcolor',                                     // ID 
                 'Background Color:',                            // label
-                array($this, 'ptko_bgcolor_callback'),    // name of the function rendering the interface
+                array($this, 'ptko_bgcolor_alpha_callback'),    // name of the function rendering the interface
                 'page-takeover-settings',                     // page this option will be displayed
                 'ptko-settings-section',                        // name of the section this field belongs
                 array('')                                            // array of arguments to pass to the callback
@@ -197,43 +164,27 @@ class PTKO_Settings{
     // PTKO Hdr Image
     public function ptko_hdrimg_callback(){
         wp_enqueue_media();
-        echo "<input type='text' name='ptko_settings[ptko_hdrimg]' id='ptko_settings[ptko_hdrimg]' value='http://' />";
+        echo "<input type='text' name='ptko_settings[ptko_hdrimg]' id='ptko_settings[ptko_hdrimg]' value='Select Image' />";
         //display the image if exists
         if($this->settings['ptko_hdrimg']){
             echo '<img src="' . $this->settings['ptko_hdrimg'] . '" style="width:300px;height:auto;vertical-align:top;margin-left:20px;" />';
         }
     }
 
-    // PTKO Bg Image
-    public function ptko_bgimg_callback(){
-        wp_enqueue_media();
-        echo "<input type='text' name='ptko_settings[ptko_bgimg]' id='ptko_settings[ptko_bgimg]' value='http://' />";
-        //display the image if exists
-        if($this->settings['ptko_bgimg']){
-            echo '<img src="' . $this->settings['ptko_bgimg'] . '" style="width:300px;height:auto;vertical-align:top;margin-left:20px;" />';
-        }
-    }
-
-    // PTKO Bg Color option
-    public function ptko_bgcolor_callback(){
+    // PTKO Bg Color option (WITH ALPHA) 
+    public function ptko_bgcolor_alpha_callback(){
         // enqueue and load necessary jquery ui components and iris color picker assets
-        wp_enqueue_style('iris-cp', get_template_directory_uri() . '/assets/js/Automattic-Iris-8ac1152/src/iris.min.css', false, null);
-        wp_register_script('iris-colorpicker', get_template_directory_uri() . '/assets/js/Automattic-Iris-8ac1152/dist/iris.min.js', false, null, true);
-        wp_enqueue_style('iris-cp');
+        //-- wp-color-picker-alpha https://github.com/kallookoo/wp-color-picker-alpha
+        wp_enqueue_style( 'wp-color-picker' );
+        wp_enqueue_script( 'wp-color-picker-alpha', get_stylesheet_directory_uri() . '/js/wp-color-picker-alpha-master/dist/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), false, null, true );
         wp_enqueue_script('jquery-ui-widget');
         wp_enqueue_script('jquery-ui-slider');
         wp_enqueue_script('jquery-ui-draggable');
-        wp_enqueue_script('iris-colorpicker');
         //get and return stored settings
         $bgcolor = $this->settings['ptko_bgcolor'];
         echo "
-        <p>Background color should match the BOTTOM of the bg image<br/>so the color continues below the image</p>
-        <input type='text' id='ptko_settings[ptko_bgcolor]' name='ptko_settings[ptko_bgcolor]' value='$bgcolor' />
-        <script type='text/javascript'>
-            jQuery(document).ready(function($){
-                $('#ptko_settings\\\[ptko_bgcolor\\\]').iris();
-            });
-        </script>
+        <p>Background Color</p>
+        <input type='text' id='ptko_settings[ptko_bgcolor]' name='ptko_settings[ptko_bgcolor]' value='$bgcolor' class='color-picker' data-alpha='true' />
         ";
     }
 
@@ -254,19 +205,11 @@ class PTKO_Settings{
         }
 
         //HEADER IMAGE
-        if($input['ptko_hdrimg'] === 'http://'){
+        if($input['ptko_hdrimg'] === 'Select Image'){
             //no input, so keep old value
             $output['ptko_hdrimg'] = $this->settings['ptko_hdrimg'];
         } else {
             $output['ptko_hdrimg'] = $input['ptko_hdrimg'];
-        }
-        
-        //BACKGROUND IMAGE
-        if($input['ptko_bgimg'] === 'http://'){
-            //no input, so keep old value
-            $output['ptko_bgimg'] = $this->settings['ptko_bgimg'];
-        } else {
-            $output['ptko_bgimg'] = $input['ptko_bgimg'];
         }
         
         //BACKGROUND COLOR
@@ -297,18 +240,12 @@ class PTKO_Settings{
             </ol>
             <h4>Header Image</h4>
             <ol>
-                <li>1000 pixels wide by 150 pixels high</li>
-                <li>This is the show/hide header that animates up/down on hover</li>
-            </ol>
-            <h4>Background Image</h4>
-            <ol>
-                <li>Approximately 1600 pixels wide by 900 pixels high</li>
-                <li>This fills the background, and the left / right gutters
-                <li>Should contain a logo or text on the left / right gutters for the sponsor</li>
+                <li>1200 pixels wide by 240 pixels high is recommended for gx theme 2018, but any size 'works'</li>
+                <li>It is responsive, small text will get hard to read on small screens</li>
             </ol>
             <h4>Background Color</h4>
             <ol>
-                <li>This color should MATCH the bottom of the background image, so the background appears continuous.  The color will continue where the image cuts off.</li>
+                <li>Choose a background color and transparency</li>
             </ol>
         ";
 

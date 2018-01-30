@@ -2,26 +2,19 @@
 
 .takeover {
 
-	@include grid-container;
-	@include grid-collapse;
-
 	a {
 		img {
-			//max-width: 1000px;
 			height: auto;
 			margin: 0 auto;
 			padding: 0;
 		}
 
 		margin: 0 auto;
+		text-align: center;
 		padding: 0;
 	}
 
 	text-align: center;
-	padding: 30px 5px;
-
-	@include grid-media($gx-grid-sm){
-		padding: 50px 5px;
-	}
+	padding: 20px 5px 10px;
 
 }
