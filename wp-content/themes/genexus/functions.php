@@ -489,7 +489,7 @@ function gx_footer() {
     ?>
     <div class="ftr-txt">
         <p class="copyright" data-enhance="false" data-role="none">
-            <?php echo do_shortcode( '[footer_copyright]');?> <a href="/" data-enhance="false" data-role="none" title="Great Circle Media Northern Arizona">Great Circle Media</a> and <a href="https://939themountain.gcmaz.com" title="93-9 The Mountain KMGN Radio">93-9 The Mountain KMGN Radio</a> &middot; All Rights Reserved
+            <?php echo do_shortcode( '[footer_copyright]');?> <a href="https://gcmaz.com" data-enhance="false" data-role="none" title="Great Circle Media Northern Arizona">Great Circle Media</a> and <a href="/" title="93-9 The Mountain KMGN Radio">93-9 The Mountain KMGN Radio</a> &middot; All Rights Reserved
         </p>
     </div>
     <div class="ftr-logos">
@@ -499,8 +499,8 @@ function gx_footer() {
             </a>
         </div>
         <div class="ftr-logo-station">
-            <a href="https://939themountain.gcmaz.com" title="93-9 The Mountain Radio Arizona">
-                <img src="<?php echo get_stylesheet_directory_uri();?>/images/93-9-the-mountain.svg)" alt="93-9 The Mountain Radio - Flagstaff - Prescott">
+            <a href="/" title="93-9 The Mountain Radio Arizona">
+                <img src="<?php echo get_stylesheet_directory_uri();?>/images/93-9-the-mountain.svg" alt="93-9 The Mountain Radio - Flagstaff - Prescott">
             </a>
         </div>
     </div>

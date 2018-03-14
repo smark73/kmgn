@@ -1,5 +1,5 @@
 {
-  "name": "genesis-sample",
+  "name": "Genexus-Genesis-Child",
   "version": "2.2.3",
   "description": "The Genesis Sample theme with modern build tools.",
   "main": "Gulpfile.js",
@@ -38,15 +38,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gregrickaby/genesis-sample"
+    "url": "git+https://github.com/smark73/genexus"
   },
   "keywords": [
     "theme"
   ],
-  "author": "WebDevStudios",
+  "author": "Stacy Mark",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/gregrickaby/genesis-sample/issues"
+    "url": "https://github.com/smark73/genexus/issues"
   },
-  "homepage": "https://github.com/Wgregrickaby/genesis-sample#readme"
+  "homepage": "https://github.com/smark73/genexus#readme"
 }
