@@ -32,10 +32,17 @@ var GenexusSite = {
                     $button = $(this);
                     var $sBar = $(document).find('.searchbar');
                     var $sForm = $sBar.children('.searchbar-form');
+                    var $sInput = $sForm.children('.search-field');
                     $sBar.removeClass('hide-me');
                     $sForm.removeClass('hide-me');
                     $sBar.toggleClass('search-hide search-show');
-
+                    if($sBar.hasClass('search-show')){
+                        $sInput.focus();
+                    }
+                    if($sBar.hasClass('search-hide')){
+                        $sInput.val('');
+                        $sInput.blur();
+                    }
                 });
 
 

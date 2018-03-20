@@ -27,6 +27,7 @@
     } else {
         //default wp
         $is_um_active = false;
+        $our_cur_user = wp_get_current_user();
         $our_user_link = get_edit_user_link( $our_cur_user->ID );
     }
 

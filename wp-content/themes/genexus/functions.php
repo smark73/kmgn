@@ -1001,7 +1001,7 @@ function whos_in_the_studio() {
     // Weekdays
     if ( $cur_day === 'Mon' || $cur_day === 'Tue' || $cur_day === 'Wed' || $cur_day === 'Thu' || $cur_day === 'Fri') {
 
-        if ( $cur_hour >= 6 && ( $cur_hour < 10 ) ) {
+        if ( $cur_hour >= 6 &&  $cur_hour < 10 ) {
             //morning 6:00a-9:59a
             $current_show = 'Eddie Miller';
 
