@@ -18,7 +18,7 @@
 
     //get appropriate user links (if plugin active it's different)
     include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-    if( is_plugin_active('ultimate-member/index.php')){
+    if( is_plugin_active('ultimate-member/ultimate-member.php')){
         //ult mem active
         $is_um_active = true;
         $our_login_link = "/login";
