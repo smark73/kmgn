@@ -1028,7 +1028,7 @@ function whos_in_the_studio() {
 
     } elseif ( $cur_day === 'Sat' ) {
         //Sat
-        if ( $cur_hour >= 7 && ( $cur_hour < 10 ) ) {
+        if ( $cur_hour >= 19 && ( $cur_hour < 22 ) ) {
             //Micki Free
             $current_show = 'Micki Free';
         } else {
